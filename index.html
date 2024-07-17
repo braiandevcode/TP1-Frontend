@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Trabajo practico de la carrera fullstack de la institucion CEPIT">
     <meta name="keywords" content="HTML, CSS, JAVASCRIPT, TYPESCRIPT">
-    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="./src/assets/css/styles.css">
     <title>TP-1-Frontend</title>
 </head>
+
 <body>
-    <h1>Practico desarrollo web Frontend</h1>
-    <script src="./index.js"></script>
+    <header>
+        <h2>Good evening</h2>
+    </header>
+    <!-- Cabezera de página -->
+    <main>
+        <nav>
+            <ul class="header__nav">
+                <li><a href=""><i class="bi bi-house-door-fill"></i>Home</a></li>
+                <li><a href=""><i class="bi bi-bag-fill"></i>Products</a></li>
+                <li><a href=""><i class="bi bi-person-fill"></i>Contact</a></li>
+            </ul>
+        </nav>
+
+        <div id="banner" class="banner"></div>
+
+        <!-- Slide -->
+        <div class="slide">
+            <figure>
+                <img src="./src/assets/images/shopping-cart.jpg" alt="">
+
+            </figure>
+            <figure>
+                <img src="./src/assets/images/shopping-cart.jpg" alt="">
+
+            </figure>
+            <figure>
+                <img src="./src/assets/images/shopping-cart.jpg" alt="">
+            </figure>
+        </div>
+
+
+        <section class="cards">
+            <article class="cards__card">
+                <div>
+                    <h2 class="cards__title">nose</h2>
+                    <img class="cards__img" src="./src/assets/images/shopping-cart.jpg" alt="">
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer footer--visible"></footer>
+
+    <script src="./src/js/script.js"></script>
 </body>
+
 </html>
