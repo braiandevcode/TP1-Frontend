@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Trabajo practico de la carrera fullstack de la institucion CEPIT"/>
+        <meta name="keywords" content="HTML, CSS, JAVASCRIPT, TYPESCRIPT" />
+        <!-- <link rel="stylesheet" href="./src/assets/css/styles.css" /> -->
+         <link rel="stylesheet" href="/src/assets/css/test.css">
+        <title>TP-1-Frontend</title>
+    </head>
+
+    <body>
+        <div class="root-page">
+            <!-- CABECERA DE PÁGINA -->
+            <header class="header-page c-flex ai-center">
+                <div class="header-page__greeting">
+                    <!-- <i class="bi bi-brightness-alt-high-fill"></i> BUENOS DÍAS-->
+                    <!-- <i class="bi bi-cloud-sun-fill"></i> BUENAS TARDES-->
+                    <h2 class="header-page__title"><i class="bi bi-cloud-moon-fill"></i>Buenas Noches</h2>
+                </div>
+                <div class="header-page__search">
+                    <form class="form-search">
+                        <input type="search" class="form-search__search" placeholder="Buscar...">
+                        <i class="bi bi-search"></i>
+                    </form>
+                </div>
+                <div class="header-page__theme">
+                    <!-- <i class="bi bi-moon"></i> -->
+                    <i class="bi bi-brightness-high-fill"></i>
+                </div>
+            </header>
+            <main>
+                <!-- CONTENEDOR PRINCIPAL DEL MAIN -->
+                <div class="container-main c-flex">
+                    <!--NAVEGACION ASIDE  -->
+                    <aside class="aside-nav ai-center aside-nav--visible">
+                        <div class="logo c-flex ai-center jc-center">
+                            <h3>MB</h3>
+                        </div>
+                        <nav class="nav">
+                            <ul class="nav-list nav-list--direction c-flex jc-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="nav-icon bi bi-house-door-fill"></i>Inicio
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="nav-icon bi bi-bag-fill"></i>Productos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="nav-icon bi bi-person-fill"></i>Contacto
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </aside>
+                     <nav class="nav nav--position nav--visible">
+                        <ul class="nav-list nav-list--direction c-flex jc-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <i class="nav-icon bi bi-house-door-fill"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <i class="nav-icon bi bi-bag-fill"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <i class="nav-icon bi bi-person-fill"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- CONTENEDOR  PRINCIPAL DE INFORMACIÓN DE PÁGINA-->
+                    <div class="container-info-page">
+                        <!-- BANNER -->
+                        <div id="banner" class="banner"></div>
+                        <!-- SLIDE -->
+                        <div class="slide c-flex">
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="" />
+                            </figure>
+                        </div>
+                        <!-- TARJETAS CON INFO -->
+                        <section class="section-cards">
+                            <article class="section-cards__card">
+                                <div class="section-cards__info">
+                                    <h2 class="section-cards__title">Titulo de la información</h2>
+                                    <img class="section-cards__img" src="./src/assets/images/shopping-cart.jpg" alt="Imagen de info"/>
+                                </div>
+                                <div>
+                                    <a href="#" target="_blank" rel="noopener noreferrer">Ver Más</a>
+                                    <i class="bi bi-chevron-double-right"></i>
+                                </div>
+                            </article>
+                        </section>
+                    </div>
+                </div>
+            </main>
+            <!-- FOOTER -->
+            <footer class="footer footer--visible">
+                <div class="footer__container-social">
+                    <nav>
+                        <ul class="footer__social c-flex">
+                            <li class="footer__list-item">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/icons/github.svg" alt="Logo de GitHub">
+                                </a>
+                            </li>
+                            <li class="footer__list-item">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/icons/instagram.svg" alt="Logo de Instagram">
+                                </a>
+                            </li>
+                            <li class="footer__list-item">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/icons/x.svg" alt="Logo de X ex Twitter">
+                                </a>
+                            </li>
+                            <li class="footer__list-item">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp">
+                                </a>
+                            </li>
+                            <li class="footer__list-item">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/icons/linkedin.svg" alt="Logo de Linkedin">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div>
+                    Uno mas
+                </div>
+            </footer>
+        </div>
+        <script src="./src/js/script.js"></script>
+    </body>
+</html>

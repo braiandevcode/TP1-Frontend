@@ -1,0 +1,180 @@
+/**************************************IMPORTACIÓN DE ICONOS**********************************************/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/**************************************IMPORTACIÓN DE FUENTES DE GOOGLE**********************************************/
+
+
+/****************************RESETEO ****************************************************/
+*, ::before, ::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+/* PARA TODO EL CUERPO */
+body {
+    background-color: antiquewhite;
+    margin: 0;
+}
+/* PARA CUERPO Y PRINCIPAL "MAIN" */
+body,
+main{
+    min-height: 100vh;
+}
+/* PARA TODAS LAS LISTAS DESORDENADAS */
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+/* PARA TODOS LOS ENLACES */
+a {
+    text-decoration: none;
+    color: #FDFDFD;
+}
+/* PARA TODAS LA IMAGENES */
+img {
+    object-fit: cover;
+    width: 100%;
+}
+
+/* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
+.bi:not(.bi-cloud-moon-fill){
+    cursor: pointer;
+}
+/*************************CLASES PERSONALIZADAS CON ESTILOS POR DEFECTO********************************+*/
+/* CLASE PARA TODAS LAS CAJAS FLEXBOX */
+.c-flex{
+    display: flex;
+}
+/* CLASE PARA ALINEACION CENTRADA */
+.ai-center{
+    align-items: center;
+}
+/* CLASE PARA CONTENIDO JUSTIFICADO */
+.jc-center{
+    justify-content: center;
+}
+
+/*********************************CONTENEDOR PRINCIPAL DE TODA LA PÁGINA**********************************/
+.root-page{
+    max-width: 98%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+/************************************CABECERA DE PÁGINA**********************************************************/
+.header-page{
+    height: 10rem;
+    justify-content: space-between;
+}
+
+/* ICONOS DEL HEADER */
+.bi-cloud-moon-fill{
+    margin-right: .5rem;
+}
+
+
+/*************************CONTENEDOR PRINCIPAL DEL MAIN****************************/
+.container-main{
+    background-color: #16b7b7;
+}
+
+/*********************************ASIDE NAVEGACIÓN***********************************/
+/* LOGO */
+.logo{
+    width: 75px;
+    height:75px;
+    margin: .7rem 0;
+    border-radius: 50%;
+    background-color: hsl(340, 91%, 47%);
+    color: #FFF;
+}
+
+.aside-nav{
+    color: #FDFDFD;
+    width: 30%;
+}
+.aside-nav  .nav-icon{
+    margin-right: .7rem;
+}
+
+
+.aside-nav--visible{
+    display: none;
+}
+
+.nav{
+    width: 100%;
+    background-color: rgba(169, 15, 117, 0.708);
+    font-size: 1.2rem;
+    padding: 1rem 0;
+}
+
+
+.nav--position{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-list{
+    gap: 1rem;
+}
+
+/* .aside-nav > .nav-item{
+ 
+} */
+
+/**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
+.container-info-page{
+  background: red;
+  flex: 1;
+}
+
+/* BANNER */
+.banner {
+    background-image: url(../images/shopping-cart.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+/* SLIDE DE IMAGENES */
+/* .slide {
+  
+} */
+
+
+/*********************************FOOTER******************************************************/
+.footer {
+    width: 100%;
+    display: none;
+    height: 10rem;
+    background-color: rgba(18, 24, 24, 0.546);
+}
+.footer div:last-child{
+    background-color: chocolate;
+}
+
+.footer__list-item a img{
+    max-width: 40px;
+}
+
+/***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
+@media screen and (min-width: 520px) {
+    .footer--visible {
+        display: block;
+    }
+
+    .nav--position{
+       display: none;
+    }
+
+    .nav-list--direction{
+        flex-direction: column;
+    }
+    .aside-nav--visible{
+        display: flex;
+        flex-direction: column;
+    }
+}
