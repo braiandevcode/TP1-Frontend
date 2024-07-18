@@ -7,7 +7,7 @@
         <meta name="keywords" content="HTML, CSS, JAVASCRIPT, TYPESCRIPT" />
         <!-- <link rel="stylesheet" href="./src/assets/css/styles.css" /> -->
          <link rel="stylesheet" href="/src/assets/css/test.css">
-        <title>TP-1-Frontend</title>
+        <title>Supermercado MB</title>
     </head>
 
     <body>
@@ -32,7 +32,7 @@
             </header>
             <main>
                 <!-- CONTENEDOR PRINCIPAL DEL MAIN -->
-                <div class="container-main c-flex">
+                <div class="container-main c-flex jc-center">
                     <!--NAVEGACION ASIDE  -->
                     <aside class="aside-nav ai-center aside-nav--visible">
                         <div class="logo c-flex ai-center jc-center">
@@ -58,7 +58,7 @@
                             </ul>
                         </nav>
                     </aside>
-                     <nav class="nav nav--position nav--visible">
+                    <nav class="nav nav--position nav--visible">
                         <ul class="nav-list nav-list--direction c-flex jc-center">
                             <li class="nav-item">
                                 <a class="nav-link" href="">
@@ -80,64 +80,92 @@
                     <!-- CONTENEDOR  PRINCIPAL DE INFORMACIÓN DE PÁGINA-->
                     <div class="container-info-page">
                         <!-- BANNER -->
-                        <div id="banner" class="banner"></div>
+                        <div id="banner" class="banner c-flex">
+                            <hr class="banner__divisor">
+                        </div>
                         <!-- SLIDE -->
-                        <div class="slide c-flex">
-                            <figure class="slide__fig">
-                                <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="" />
-                            </figure>
+                        <div class="slide c-flex ai-center">
+                            <div class="slide__show c-flex ai-center">
+                                <i class="bi bi-arrow-left-circle-fill"></i>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="" />
+                                </figure>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="" />
+                                </figure>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="" />
+                                </figure>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="" />
+                                </figure>
+                                <i class="bi bi-arrow-right-circle-fill"></i>
+                            </div>
                         </div>
                         <!-- TARJETAS CON INFO -->
-                        <section class="section-cards">
-                            <article class="section-cards__card">
-                                <div class="section-cards__info">
-                                    <h2 class="section-cards__title">Titulo de la información</h2>
-                                    <img class="section-cards__img" src="./src/assets/images/shopping-cart.jpg" alt="Imagen de info"/>
+                        <section class="section-cards c-flex">
+                            <article class="card c-flex">
+                                <div class="card__image-wrapper c-flex jc-center">
+                                    <img class="card__image" src="./src/assets/images/shopping-cart.jpg" alt="Imagen de info"/>
+                                    <div class="card__price">
+                                        <h5>$99.99</h5>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a href="#" target="_blank" rel="noopener noreferrer">Ver Más</a>
-                                    <i class="bi bi-chevron-double-right"></i>
+                                <div class="card__content c-flex jc-center">
+                                    <h2 class="card__title">Titulo de la información</h2>
+                                    <p class="card__description">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. In, eius tempora neque, libero sequi ipsa excepturi vitae accusamus dignissimos maxime non totam ad assumenda accusantium molestiae officiis voluptas voluptate et.
+                                        Minus ab natus odio corporis voluptatem eum reprehenderit magnam ex eos soluta quisquam excepturi, ipsa, earum expedita, tempora velit deleniti in reiciendis ullam? Nobis ipsa unde nemo voluptates atque iste.
+                                    </p>
+                                    <div class="card__footer">
+                                        <div class="card__more-info c-flex">
+                                            <a class="card__link" href="#" target="_blank" rel="noopener noreferrer">Ver Más
+                                                <i class="bi bi-chevron-double-right card__icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </article>
+                            
                         </section>
                     </div>
                 </div>
             </main>
             <!-- FOOTER -->
-            <footer class="footer footer--visible">
+            <footer class="footer footer--visible c-flex jc-center">
                 <div class="footer__container-social">
                     <nav>
-                        <ul class="footer__social c-flex">
-                            <li class="footer__list-item">
-                                <a href="#" target="_blank" rel="noopener noreferrer">
-                                    <img src="./src/assets/images/icons/github.svg" alt="Logo de GitHub">
+                        <ul class="footer-social c-flex">
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/github.svg" alt="Logo de GitHub">
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/instagram.svg" alt="Logo de Instagram">
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/x.svg" alt="Logo de X ex Twitter">
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp">
                                 </a>
                             </li>
                             <li class="footer__list-item">
-                                <a href="#" target="_blank" rel="noopener noreferrer">
-                                    <img src="./src/assets/images/icons/instagram.svg" alt="Logo de Instagram">
-                                </a>
-                            </li>
-                            <li class="footer__list-item">
-                                <a href="#" target="_blank" rel="noopener noreferrer">
-                                    <img src="./src/assets/images/icons/x.svg" alt="Logo de X ex Twitter">
-                                </a>
-                            </li>
-                            <li class="footer__list-item">
-                                <a href="#" target="_blank" rel="noopener noreferrer">
-                                    <img src="./src/assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp">
-                                </a>
-                            </li>
-                            <li class="footer__list-item">
-                                <a href="#" target="_blank" rel="noopener noreferrer">
-                                    <img src="./src/assets/images/icons/linkedin.svg" alt="Logo de Linkedin">
+                                <a class="footer__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/linkedin.svg" alt="Logo de Linkedin">
                                 </a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                <div>
-                    Uno mas
+                <div class="footer__copyrigth">
+                    <p><i class="bi bi-c-circle"></i>Todos los derechos reservados.2024</p>
                 </div>
             </footer>
         </div>

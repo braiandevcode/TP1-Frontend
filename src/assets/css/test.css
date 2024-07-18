@@ -13,8 +13,8 @@
 }
 /* PARA TODO EL CUERPO */
 body {
-    background-color: antiquewhite;
     margin: 0;
+    font-family: sans-serif;
 }
 /* PARA CUERPO Y PRINCIPAL "MAIN" */
 body,
@@ -38,7 +38,7 @@ img {
 }
 
 /* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
-.bi:not(.bi-cloud-moon-fill){
+.bi{
     cursor: pointer;
 }
 /*************************CLASES PERSONALIZADAS CON ESTILOS POR DEFECTO********************************+*/
@@ -58,24 +58,27 @@ img {
 /*********************************CONTENEDOR PRINCIPAL DE TODA LA PÁGINA**********************************/
 .root-page{
     max-width: 98%;
+    min-height: inherit;
     margin: 0 auto;
-    padding: 1rem;
 }
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page{
     height: 10rem;
     justify-content: space-between;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    background-color: #23192e;
 }
 
 /* ICONOS DEL HEADER */
 .bi-cloud-moon-fill{
     margin-right: .5rem;
+    cursor: initial;
 }
-
 
 /*************************CONTENEDOR PRINCIPAL DEL MAIN****************************/
 .container-main{
-    background-color: #16b7b7;
+    padding-bottom: 2rem;
 }
 
 /*********************************ASIDE NAVEGACIÓN***********************************/
@@ -91,12 +94,13 @@ img {
 
 .aside-nav{
     color: #FDFDFD;
+    background-color: #1c1229;
     width: 30%;
+    position: relative;
 }
-.aside-nav  .nav-icon{
+.nav-icon{
     margin-right: .7rem;
 }
-
 
 .aside-nav--visible{
     display: none;
@@ -104,9 +108,7 @@ img {
 
 .nav{
     width: 100%;
-    background-color: rgba(169, 15, 117, 0.708);
     font-size: 1.2rem;
-    padding: 1rem 0;
 }
 
 
@@ -115,34 +117,136 @@ img {
     bottom: 0;
     left: 0;
     right: 0;
+    background-color: #1c1229;
 }
 
 .nav-list{
     gap: 1rem;
 }
 
-/* .aside-nav > .nav-item{
- 
-} */
-
 /**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
 .container-info-page{
-  background: red;
-  flex: 1;
+  flex: 0 1 95%;
+  overflow-y: hidden;
+  gap: 1rem;
 }
 
 /* BANNER */
 .banner {
+    height: 50vh;
+    margin-bottom: 1rem;
     background-image: url(../images/shopping-cart.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size:cover;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+}
+.banner__divisor{
+    height: 3px;
+    background-color: #FDFDFD;
+    width: 90%;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+}
+.banner::before,
+.banner::after{
+    width: 100%;
+    position: absolute;
+    font-weight: bold;
+    padding: .8rem;
+    background-color: rgba(213, 19, 90, 0.438);
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.banner::before{
+    content: "Todos los viernes 20% de descuento con tu tarjeta Naranja X!";
+    font-size: 1.6rem;
+    height:50%;
+    color: #FFF;
+}
+.banner::after{
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam non, soluta aut rerum molestias eum. Illum sequi corrupti expedita? Distinctio aperiam sit, temporibus laborum magnam aliquam in maiores laboriosam odit?";
+    font-size: 1rem;
+    height:50%;
+    bottom: 0;
+    color: #dfdfdf;
 }
 
 /* SLIDE DE IMAGENES */
-/* .slide {
-  
-} */
+.slide {
+    height: min-content;
+    width: 100%;
+    position: relative;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    background: rgba(16, 14, 35, 0.789);
+}
+.bi-arrow-left-circle-fill,
+.bi-arrow-right-circle-fill{
+    color: rgba(39, 38, 42, 0.765);
+    font-size: 2rem;
+    right: 1rem;
+    position: absolute;
+}
+.bi-arrow-left-circle-fill{ 
+    left: 1rem;
+}
+
+/* SECCION TARJETAS */
+.section-cards{
+   width: 100%;
+   flex-wrap: wrap;
+   gap: 1rem;
+   color: #FFF;
+}
+.card{
+    width: 100%;
+    padding: .5rem;
+    background: #23192e;
+    gap: 1rem;
+    flex-wrap: wrap;
+    /* flex: 1 1 200px; */
+    
+}
+
+.card__title{
+  font-size: 1rem;
+}
+.card__description{
+    text-wrap: nowrap; 
+    text-overflow: ellipsis;
+    font-size: .8rem;
+}
+.card__more-info{
+    font-size: 1.2rem;
+    color: #FFDD;
+}
+.card__image-wrapper{
+    flex-direction: column;
+    gap: 1rem;
+}
+.card__content {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card__image{
+    max-width: 100%;
+    align-self: center;
+}
+.card__price{
+    align-self: center;
+}
+.card__icon{
+    transition: all .7s ease-in-out;
+}
 
 
 /*********************************FOOTER******************************************************/
@@ -150,15 +254,26 @@ img {
     width: 100%;
     display: none;
     height: 10rem;
-    background-color: rgba(18, 24, 24, 0.546);
+    background-color: rgba(18, 24, 24, 0.931);
+    flex-direction: column;
 }
-.footer div:last-child{
+.footer__copyrigth{
     background-color: chocolate;
+    text-align: center;
 }
 
-.footer__list-item a img{
-    max-width: 40px;
+/* .footer-social__image{
+   
+} */
+
+
+/******************HOVERS***************************/
+@media(hover: hover){
+    .card__icon:hover{
+        color: orange;
+    }
 }
+
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
 @media screen and (min-width: 520px) {
