@@ -1,60 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Trabajo practico de la carrera fullstack de la institucion CEPIT"/>
+        <meta name="keywords" content="HTML, CSS, JAVASCRIPT, TYPESCRIPT" />
+        <!-- <link rel="stylesheet" href="./src/assets/css/styles.css" /> -->
+        <link rel="stylesheet" href="/src/assets/css/test.css">
+        <title>Supermercado MB</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Trabajo practico de la carrera fullstack de la institucion CEPIT">
-    <meta name="keywords" content="HTML, CSS, JAVASCRIPT, TYPESCRIPT">
-    <link rel="stylesheet" href="./src/assets/css/styles.css">
-    <title>TP-1-Frontend</title>
-</head>
-
-<body>
-    <header>
-        <h2>Good evening</h2>
-    </header>
-    <!-- Cabezera de página -->
-    <main>
-        <nav>
-            <ul class="header__nav">
-                <li><a href=""><i class="bi bi-house-door-fill"></i>Home</a></li>
-                <li><a href=""><i class="bi bi-bag-fill"></i>Products</a></li>
-                <li><a href=""><i class="bi bi-person-fill"></i>Contact</a></li>
-            </ul>
-        </nav>
-
-        <div id="banner" class="banner"></div>
-
-        <!-- Slide -->
-        <div class="slide">
-            <figure>
-                <img src="./src/assets/images/shopping-cart.jpg" alt="">
-
-            </figure>
-            <figure>
-                <img src="./src/assets/images/shopping-cart.jpg" alt="">
-
-            </figure>
-            <figure>
-                <img src="./src/assets/images/shopping-cart.jpg" alt="">
-            </figure>
-        </div>
-
-
-        <section class="cards">
-            <article class="cards__card">
-                <div>
-                    <h2 class="cards__title">nose</h2>
-                    <img class="cards__img" src="./src/assets/images/shopping-cart.jpg" alt="">
+    <body>
+        <div class="root-page">
+            <!-- CABECERA DE PÁGINA -->
+            <header class="header-page c-flex ai-center">
+                <div class="header-page__greeting">
+                    <!-- <i class="bi bi-brightness-alt-high-fill"></i> BUENOS DÍAS-->
+                    <!-- <i class="bi bi-cloud-sun-fill"></i> BUENAS TARDES-->
+                    <h2 class="header-page__title"><i class="bi bi-cloud-moon-fill"></i>Buenas Noches</h2>
                 </div>
-            </article>
-        </section>
-    </main>
-
-    <footer class="footer footer--visible"></footer>
-
-    <script src="./src/js/script.js"></script>
-</body>
-
+                <div class="header-page__search">
+                    <form class="form-search">
+                        <input type="search" class="form-search__search" placeholder="Buscar...">
+                        <i class="bi bi-search"></i>
+                    </form>
+                </div>
+                <div class="header-page__theme">
+                    <!-- <i class="bi bi-moon"></i> -->
+                    <i class="bi bi-brightness-high-fill"></i>
+                </div>
+            </header>
+            <main>
+                <!-- CONTENEDOR PRINCIPAL DEL MAIN -->
+                <div class="container-main c-flex jc-center">
+                    <!--NAVEGACION ASIDE  -->
+                    <aside class="aside-nav ai-center aside-nav--visible">
+                        <div class="logo c-flex ai-center jc-center">
+                            <h3>MB</h3>
+                        </div>
+                        <nav class="nav">
+                            <ul class="nav-list nav-list--direction c-flex jc-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="nav-icon bi bi-house-door-fill"></i>Inicio
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="nav-icon bi bi-bag-fill"></i>Productos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="nav-icon bi bi-person-fill"></i>Contacto
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </aside>
+                    <nav class="nav nav--position nav--visible">
+                        <ul class="nav-list nav-list--direction c-flex jc-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <i class="nav-icon bi bi-house-door-fill"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <i class="nav-icon bi bi-bag-fill"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <i class="nav-icon bi bi-person-fill"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- CONTENEDOR  PRINCIPAL DE INFORMACIÓN DE PÁGINA-->
+                    <div class="container-info-page">
+                        <!-- BANNER -->
+                        <div id="banner" class="banner c-flex">
+                            <hr class="banner__divisor">
+                        </div>
+                        <!-- SLIDE -->
+                        <div class="slide c-flex ai-center">
+                            <div class="slide__show c-flex ai-center">
+                                <i class="bi bi-arrow-left-circle-fill"></i>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="Supermercado MB" />
+                                </figure>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="Supermercado MB" />
+                                </figure>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="Supermercado MB" />
+                                </figure>
+                                <figure class="slide__fig">
+                                    <img class="slide__img" src="./src/assets/images/shopping-cart.jpg" alt="Supermercado MB" />
+                                </figure>
+                                <i class="bi bi-arrow-right-circle-fill"></i>
+                            </div>
+                        </div>
+                        <!-- TARJETAS CON INFO -->
+                        <section class="section-cards">
+                            <article class="card">
+                                <div class="card__image-wrapper">
+                                    <img class="card__image" src="./src/assets/images/shopping-cart.jpg" alt="Historia del Supermercado"/>
+                                </div>
+                                <div class="card__content">
+                                    <div class="card__body">
+                                        <h2 class="card__title">Nuestra Historia</h2>
+                                        <p class="card__description">
+                                            Fundado en 1990 por Juan Pérez, nuestro supermercado ha crecido de una pequeña tienda a una cadena con múltiples sucursales. Nos dedicamos a ofrecer productos frescos y de calidad, manteniendo nuestros valores de sostenibilidad y servicio al cliente.
+                                        </p>
+                                        <div class="card__more">
+                                            <a class="card__link-more" href="#">Ver Más<i class="bi bi-chevron-double-right card__icon"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article> 
+                            <article class="card">
+                                <div class="card__image-wrapper">
+                                    <img class="card__image" src="./src/assets/images/shopping-cart.jpg" alt="Productos y Servicios"/>
+                                </div>
+                                <div class="card__content">
+                                    <div class="card__body">
+                                        <h2 class="card__title">Productos y Servicios</h2>
+                                        <p class="card__description">
+                                            Ofrecemos una amplia gama de productos, desde alimentos frescos y orgánicos hasta artículos de limpieza y productos para el hogar. Contamos con secciones especiales como productos gourmet, panadería artesanal y productos locales.
+                                        </p>
+                                        <div class="card__more">
+                                            <a class="card__link-more" href="#">Ver Más<i class="bi bi-chevron-double-right card__icon"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article> 
+                            <article class="card">
+                                <div class="card__image-wrapper">
+                                    <img class="card__image" src="./src/assets/images/shopping-cart.jpg" alt="Responsabilidad Social"/>
+                                </div>
+                                <div class="card__content">
+                                    <div class="card__body">
+                                        <h2 class="card__title">Responsabilidad Social</h2>
+                                        <p class="card__description">
+                                            Nos comprometemos con el medio ambiente mediante el uso de bolsas reciclables y prácticas sostenibles. Apoyamos a la comunidad local a través de donaciones a bancos de alimentos y participación en eventos comunitarios.
+                                        </p>
+                                        <div class="card__more">
+                                            <a class="card__link-more" href="#">Ver Más<i class="bi bi-chevron-double-right card__icon"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article> 
+                            <article class="card">
+                                <div class="card__image-wrapper">
+                                    <img class="card__image" src="./src/assets/images/shopping-cart.jpg" alt="Productos y Servicios"/>
+                                </div>
+                                <div class="card__content">
+                                    <div class="card__body">
+                                        <h2 class="card__title">Productos y Servicios</h2>
+                                        <p class="card__description">
+                                            Ofrecemos una amplia gama de productos, desde alimentos frescos y orgánicos hasta artículos de limpieza y productos para el hogar. Contamos con secciones especiales como productos gourmet, panadería artesanal y productos locales. 
+                                            ¡Ahorra hasta un 50% en productos seleccionados este mes! ¡Compra productos locales y apoya a nuestros agricultores!
+                                        </p>
+                                        <div class="card__more">
+                                            <a class="card__link-more" href="#">Ver Más<i class="bi bi-chevron-double-right card__icon"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article> 
+                            <article class="card">
+                                <div class="card__image-wrapper">
+                                    <img class="card__image" src="./src/assets/images/shopping-cart.jpg" alt="Nuevos Productos"/>
+                                </div>
+                                <div class="card__content">
+                                    <div class="card__body">
+                                        <h2 class="card__title">Nuevos Productos</h2>
+                                        <p class="card__description">
+                                            ¡Estamos emocionados de anunciar la llegada de nuevos productos a nuestro supermercado! Desde snacks saludables hasta bebidas premium, siempre estamos buscando maneras de sorprenderte. 
+                                            ¡Nuevos productos gourmet ahora disponibles! ¡Descubre nuestra nueva línea de productos orgánicos!
+                                        </p>
+                                        <div class="card__more">
+                                            <a class="card__link-more" href="#">Ver Más<i class="bi bi-chevron-double-right card__icon"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="card">
+                                <div class="card__image-wrapper">
+                                    <img class="card__image" src="./src/assets/images/shopping-cart.jpg" alt="Ofertas Especiales"/>
+                                </div>
+                                <div class="card__content">
+                                    <div class="card__body">
+                                        <h2 class="card__title">Ofertas Especiales</h2>
+                                        <p class="card__description">
+                                            No te pierdas nuestras ofertas exclusivas y promociones. Siempre tenemos algo especial para ti, desde descuentos en productos populares hasta regalos con tus compras. 
+                                            Ofertas exclusivas para miembros del club de fidelidad. ¡Únete hoy! Participa en nuestro sorteo de fin de año y gana una compra gratis.
+                                        </p>
+                                        <div class="card__more">
+                                            <a class="card__link-more" href="#">Ver Más<i class="bi bi-chevron-double-right card__icon"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+                    </div>
+                </div>
+            </main>
+            <!-- FOOTER -->
+            <footer class="footer footer--visible c-flex jc-center">
+                <div class="footer__container-social">
+                    <nav>
+                        <ul class="footer-social c-flex">
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/github.svg" alt="Logo de GitHub">
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/instagram.svg" alt="Logo de Instagram">
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/x.svg" alt="Logo de X ex Twitter">
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp">
+                                </a>
+                            </li>
+                            <li class="footer__list-item">
+                                <a class="footer__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <img class="footer-social__image" src="./src/assets/images/icons/linkedin.svg" alt="Logo de Linkedin">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__copyrigth">
+                    <p><i class="bi bi-c-circle"></i>Todos los derechos reservados. 2024</p>
+                </div>
+            </footer>
+        </div>
+        <script src="./src/js/script.js"></script>
+    </body>
 </html>
