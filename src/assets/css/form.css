@@ -1,2 +1,6 @@
 /* IMPORTO LOS ESTILOS DE EL STYLE CSS PARA TENER TODO RESETEADO Y LLAMO A LOS ICONOS DE BOOTSTRAP SOLO UNA VEZ */
 @import url("../css/styles.css");
+
+form {
+    background-color: blue;
+}

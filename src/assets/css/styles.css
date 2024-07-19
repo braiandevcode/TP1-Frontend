@@ -4,33 +4,40 @@
 /**************************************IMPORTACIÓN DE FUENTES DE GOOGLE**********************************************/
 
 /****************************RESETEO ****************************************************/
-*, ::before, ::after{
+*,
+::before,
+::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
+
 /* PARA TODO EL CUERPO */
 body {
     margin: 0;
     font-family: sans-serif;
     color: #FDFDFD;
 }
+
 /* PARA CUERPO Y PRINCIPAL "MAIN" */
 body,
-main{
+main {
     min-height: 80vh;
 }
+
 /* PARA TODAS LAS LISTAS DESORDENADAS */
 ul {
     padding-left: 0;
     list-style: none;
 }
+
 /* PARA TODOS LOS ENLACES */
 a {
     text-decoration: none;
     color: #FDFDFD;
 }
+
 /* PARA TODAS LA IMAGENES */
 img {
     object-fit: cover;
@@ -38,81 +45,87 @@ img {
 }
 
 /* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
-.bi{
+.bi {
     cursor: pointer;
 }
+
 /*************************CLASES PERSONALIZADAS CON ESTILOS POR DEFECTO********************************+*/
 /* CLASE PARA TODAS LAS CAJAS FLEXBOX */
-.c-flex{
+.d-flex {
     display: flex;
 }
+
 /* CLASE PARA ALINEACION CENTRADA */
-.ai-center{
+.ai-center {
     align-items: center;
 }
+
 /* CLASE PARA CONTENIDO JUSTIFICADO */
-.jc-center{
+.jc-center {
     justify-content: center;
 }
 
 /*********************************CONTENEDOR PRINCIPAL DE TODA LA PÁGINA**********************************/
-.root-page{
-    max-width: 98%;
+.root-page {
+    /* max-width: 98%; */
     min-height: inherit;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
+
 /************************************CABECERA DE PÁGINA**********************************************************/
-.header-page{
-    height: 20vh;
+.header-page {
+    height: 10vh;
     justify-content: space-between;
     padding: .5rem;
-    margin-bottom: 1rem;
-    background-color: #23192e;
+    background-color: #f55c0a;
+
 }
 
 /* ICONOS DEL HEADER */
-.bi-cloud-moon-fill{
+.bi-cloud-moon-fill {
     margin-right: .5rem;
     cursor: initial;
 }
 
 /*************************CONTENEDOR PRINCIPAL DEL MAIN****************************/
-.container-main{
+.container-main {
     padding-bottom: 2rem;
 }
 
 /*********************************ASIDE NAVEGACIÓN***********************************/
 /* LOGO */
-.logo{
+.logo {
     width: 75px;
-    height:75px;
+    height: 75px;
     margin: .7rem 0;
     border-radius: 50%;
-    background-color: hsl(340, 91%, 47%);
-    color: #FFF;
+    background-color: #fff;
+    color: #f55c0a;
+    font-size: large;
 }
 
-.aside-nav{
+.aside-nav {
     color: #FDFDFD;
-    background-color: #1c1229;
+    background-color: #d14900;
     position: relative;
     flex-basis: 200px;
 }
-.nav-icon{
+
+.nav-icon {
     margin-right: .7rem;
 }
 
-.aside-nav--visible{
+.aside-nav--visible {
     display: none;
 }
 
-.nav{
+.nav {
     width: 100%;
     font-size: 1.2rem;
 }
 
 
-.nav--position{
+.nav--position {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -120,12 +133,12 @@ img {
     background-color: #1c1229;
 }
 
-.nav-list{
+.nav-list {
     gap: 1rem;
 }
 
 /**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
-.container-info-page{
+.container-info-page {
     width: 100%;
     overflow-y: hidden;
 }
@@ -137,44 +150,47 @@ img {
     background-image: url(../images/shopping-cart.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size:cover;
+    background-size: cover;
     position: relative;
     overflow: hidden;
     justify-content: center;
+    flex-direction: column;
 }
-.banner__divisor{
+
+.banner__divisor {
     height: 3px;
     background-color: #FDFDFD;
-    width: 90%;
+    width: 85%;
     position: absolute;
     z-index: 1;
     top: 50%;
+    align-self: center;
 }
+
 .banner::before,
-.banner::after{
+.banner::after {
     width: 100%;
-    position: absolute;
     font-weight: bold;
     padding: .8rem;
-    background-color: rgba(213, 19, 90, 0.438);
-    display: inherit;
+    background-color: rgba(168, 40, 1, 0.438);
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
 
-.banner::before{
+.banner::before {
     content: "¡Ahorra hasta un 50% en productos seleccionados este mes!";
-    font-size: 1.8rem;
-    height:50%;
+    font-size: 1.3rem;
+    height: 50%;
     color: #FFF;
 }
-.banner::after{
+
+.banner::after {
     content: "Ofertas exclusivas para miembros del club de fidelidad. ¡Únete hoy!";
-    font-size: 1.6rem;
-    height:50%;
-    bottom: 0;
+    font-size: 1.2rem;
+    height: 50%;
     color: #dfdfdf;
 }
 
@@ -185,30 +201,37 @@ img {
     position: relative;
     padding: .5rem;
     margin-bottom: 1rem;
-    background: rgba(16, 14, 35, 0.789);
+    /* background: rgba(16, 14, 35, 0.789); */
 }
+
+.slide__show {
+    gap: 1rem;
+}
+
 .bi-arrow-left-circle-fill,
-.bi-arrow-right-circle-fill{
+.bi-arrow-right-circle-fill {
     color: rgba(39, 38, 42, 0.765);
     font-size: 2rem;
     right: 1rem;
     position: absolute;
 }
-.bi-arrow-left-circle-fill{ 
+
+.bi-arrow-left-circle-fill {
     left: 1rem;
 }
 
 /* SECCION TARJETAS */
-.section-cards{
-   gap: 1rem;
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-   background-color: brown;
-   color: #FFF;
+.section-cards {
+    /* gap: 1rem; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    /* background-color: brown; */
+    color: #FFF;
 }
+
 /* tarjeta */
-.card{
-    background: #6818be; 
+.card {
+    /* background: #ff6122; */
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -224,41 +247,42 @@ img {
 }
 
 /* contenedor de imagen */
-.card__image-wrapper{
+.card__image-wrapper {
     width: 100%;
     /* background-color: aqua; */
 }
 
-.card__title{
+.card__title {
     font-size: .8rem;
     text-align: center;
 }
-.card__description{
+
+.card__description {
     text-wrap: nowrap;
     text-overflow: ellipsis;
     font-size: .8rem;
 }
-.card__more-info{
+
+.card__more-info {
     font-size: .8rem;
     color: #FFDD;
 }
 
 
-.card__body{
+.card__body {
     display: flex;
     flex-direction: column;
     gap: 3rem;
 }
 
 
-.card__footer{
+.card__footer {
     align-self: center;
 }
 
-.card__image{
+.card__image {}
 
-}
-.card__link-more{
+.card__link-more {
     transition: all .5s ease-in-out;
 }
 
@@ -268,10 +292,11 @@ img {
     width: 100%;
     display: none;
     height: 20vh;
-    background-color: rgba(18, 24, 24, 0.931);
+    background-color: #f55c0a;
     flex-direction: column;
 }
-.footer__copyrigth{
+
+.footer__copyrigth {
     background-color: chocolate;
     text-align: center;
 }
@@ -282,8 +307,8 @@ img {
 
 
 /******************HOVERS***************************/
-@media(hover: hover){
-    .card__link-more:hover{
+@media(hover: hover) {
+    .card__link-more:hover {
         color: orange;
     }
 }
@@ -291,19 +316,36 @@ img {
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
 @media screen and (min-width: 520px) {
+    .container-main {
+        padding-bottom: 0;
+    }
+
     .footer--visible {
         display: block;
     }
 
-    .nav--position{
-       display: none;
+    .nav--position {
+        display: none;
     }
 
-    .nav-list--direction{
+    .nav-list--direction {
         flex-direction: column;
     }
-    .aside-nav--visible{
+
+    .aside-nav--visible {
         display: flex;
         flex-direction: column;
+    }
+}
+
+/***************************MEDIAQUERYS A PARTIR DE LOS 920PX***********************************/
+@media screen and (min-width: 920px) {
+
+    .banner::before {
+        font-size: 1.8rem;
+    }
+
+    .banner::after {
+        font-size: 1.5rem;
     }
 }
