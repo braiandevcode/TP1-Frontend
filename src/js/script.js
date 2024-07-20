@@ -8,25 +8,25 @@ const createListProducts = ()=>{
 };
 /*
 <div class="card-product d-flex"> 
-            <div class="card-product__main d-flex jc-spaceB">
-                <div class="card-product__body">
-                    <img class="card-product__image" src="./pan.jpg" alt="Imagen de pan">
-                </div>
-                <div class="card-product__description">
-                    <h3 class="card-product__product">Pan</h3>
-                    <p class="card-product__price">$1000<sup>99</sup></p>
-                </div>
-                <div class="card-product__footer">
-                    <form class="card-product__form">
-                        <div class="card-product__quantity">
-                            <label for="quantity-product-id-1">Cantidad</label>
-                            <input id="quantity-product-id-1" type="text" name="quantity-product-id-1" placeholder="Cantidad a comprar">
-                        </div>
-                        <button type="button" class="card-product__btn">Comprar</button>
-                    </form>
-                </div>
-            </div>
+    <div class="card-product__main d-flex jc-spaceB">
+        <div class="card-product__body">
+            <img class="card-product__image" src="./pan.jpg" alt="Imagen de pan">
         </div>
+        <div class="card-product__footer">
+            <div class="card-product__description">
+                <h3 class="card-product__product">Pan</h3>
+                <p class="card-product__price">$1000<sup>99</sup></p>
+            </div>
+            <form class="card-product__form">
+                <div class="card-product__quantity">
+                    <label for="quantity-product-id-1">Cantidad</label>
+                    <input id="quantity-product-id-1" type="text" name="quantity-product-id-1" placeholder="Cantidad a comprar">
+                </div>
+                <button type="button" class="card-product__btn">Comprar</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 */ 
 // *********************SALUDO DEL HOME***************************************************
