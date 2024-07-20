@@ -2,6 +2,8 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 /**************************************IMPORTACIÓN DE FUENTES DE GOOGLE**********************************************/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 
 /****************************RESETEO ****************************************************/
 *,
@@ -16,7 +18,7 @@
 /* PARA TODO EL CUERPO */
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: "Roboto", sans-serif;
     color: #FDFDFD;
 }
 
@@ -65,6 +67,11 @@ img {
     justify-content: center;
 }
 
+/* CLASE PARA CONTENIDO SPACE-BETWEEN */
+.jc-spaceB {
+    justify-content: space-between;
+}
+
 /*********************************CONTENEDOR PRINCIPAL DE TODA LA PÁGINA**********************************/
 .root-page {
     /* max-width: 98%; */
@@ -74,11 +81,33 @@ img {
 
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page {
-    height: 10vh;
+    /* height: 10vh; */
     justify-content: space-between;
-    padding: .5rem;
+    padding: .7rem;
     background-color: #f55c0a;
+}
 
+.header-page__up,
+.header-page__down {
+    padding: .2rem;
+}
+
+.header-page__logo {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.form-search__search {
+    width: 7rem;
+    height: 1.4rem;
+    border-radius: 50px;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.form-search__search:focus {
+    border: 3px solid #d14900;
 }
 
 /* ICONOS DEL HEADER */
@@ -95,24 +124,25 @@ img {
 /*********************************ASIDE NAVEGACIÓN***********************************/
 /* LOGO */
 .logo {
-    width: 75px;
-    height: 75px;
-    margin: .7rem 0;
-    border-radius: 50%;
-    background-color: #fff;
-    color: #f55c0a;
-    font-size: large;
+    /* width: 75px;
+    height: 75px; */
+    margin: .4rem 0;
+    /* border-radius: 50%; */
+    /* background-color: #fff; */
+    /* color: #fff; */
+    font-size: xxx-large;
 }
 
 .aside-nav {
-    color: #FDFDFD;
+    /* color: #873ce2aa; */
     background-color: #d14900;
     position: relative;
     flex-basis: 200px;
+    gap: 1rem;
 }
 
 .nav-icon {
-    margin-right: .7rem;
+    margin: 0 .7rem;
 }
 
 .aside-nav--visible {
@@ -124,16 +154,17 @@ img {
     font-size: 1.2rem;
 }
 
-
 .nav--position {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #1c1229;
+    height: 4vh;
+    background-color: #f55c0a;
 }
 
 .nav-list {
+    height: 100%;
     gap: 1rem;
 }
 
@@ -145,7 +176,7 @@ img {
 
 /* BANNER */
 .banner {
-    height: 50vh;
+    height: 25vh;
     margin-bottom: 1rem;
     background-image: url(../images/shopping-cart.jpg);
     background-repeat: no-repeat;
@@ -290,39 +321,42 @@ img {
 /*********************************FOOTER******************************************************/
 .footer {
     width: 100%;
-    display: none;
-    height: 20vh;
-    background-color: #f55c0a;
+    gap: .5rem;
+    /* display: none; */
+    align-items: center;
+    height: 15vh;
+    background-color: #d14900;
     flex-direction: column;
+    color: #f8d9c8;
 }
 
-.footer__copyrigth {
-    background-color: chocolate;
-    text-align: center;
+.footer-social {
+    gap: 1rem;
+    font-size: 1.3rem;
+    padding-top: 5px;
 }
 
-/* .footer-social__image{
-   
-} */
-
+.footer-social__list-up {
+    transition: transform 0.3s ease;
+}
 
 /******************HOVERS***************************/
 @media(hover: hover) {
     .card__link-more:hover {
         color: orange;
     }
+
+    .footer-social__list-up:hover {
+        transform: translateY(-5px);
+    }
 }
 
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
 @media screen and (min-width: 520px) {
-    .container-main {
-        padding-bottom: 0;
-    }
-
-    .footer--visible {
+    /* .footer--visible {
         display: block;
-    }
+    } */
 
     .nav--position {
         display: none;
@@ -336,10 +370,27 @@ img {
         display: flex;
         flex-direction: column;
     }
+
+    .container-main {
+        padding-bottom: 0;
+    }
+
+    .banner {
+        height: 30vh;
+    }
+
+    .footer {
+        background-color: #f55c0a;
+    }
+
 }
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 920PX***********************************/
 @media screen and (min-width: 920px) {
+
+    .banner {
+        height: 50vh;
+    }
 
     .banner::before {
         font-size: 1.8rem;

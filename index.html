@@ -44,7 +44,7 @@
                     </nav>
                 </aside>
                 <nav class="nav nav--position nav--visible">
-                    <ul class="nav-list nav-list--direction d-flex jc-center">
+                    <ul class="nav-list nav-list--direction d-flex jc-center ai-center">
                         <li class="nav-item">
                             <a class="nav-link" href="">
                                 <i class="nav-icon bi bi-house-door-fill"></i>
@@ -66,22 +66,28 @@
                 <div class="container-info-page">
 
                     <!-- CABECERA DE PÁGINA -->
-                    <header class="header-page d-flex ai-center">
-                        <div class="header-page__greeting">
-                            <!-- <i class="bi bi-brightness-alt-high-fill"></i> BUENOS DÍAS-->
-                            <!-- <i class="bi bi-cloud-sun-fill"></i> BUENAS TARDES-->
-                            <h2 class="header-page__title"><i class="bi bi-cloud-moon-fill"></i>Buenas Noches</h2>
+                    <header class="header-page ">
+                        <div class="header-page__up d-flex jc-spaceB">
+                            <h2 class="header-page__logo">MB Supermercados</h2>
+                            <div class="header-page__theme">
+                                <!-- <i class="bi bi-moon"></i> -->
+                                <i class="bi bi-brightness-high-fill"></i>
+                            </div>
                         </div>
-                        <div class="header-page__search">
-                            <form class="form-search">
-                                <input type="search" class="form-search__search" placeholder="Buscar...">
-                                <i class="bi bi-search"></i>
-                            </form>
+                        <div class="header-page__down d-flex jc-spaceB">
+                            <div class="header-page__greeting">
+                                <!-- <i class="bi bi-brightness-alt-high-fill"></i> BUENOS DÍAS-->
+                                <!-- <i class="bi bi-cloud-sun-fill"></i> BUENAS TARDES-->
+                                <h3 class="header-page__title"><i class="bi bi-cloud-moon-fill"></i>Buenas Noches</h3>
+                            </div>
+                            <div class="header-page__search">
+                                <form class="form-search">
+                                    <input type="search" class="form-search__search" placeholder="Buscar...">
+                                    <i class="bi bi-search"></i>
+                                </form>
+                            </div>
                         </div>
-                        <div class="header-page__theme">
-                            <!-- <i class="bi bi-moon"></i> -->
-                            <i class="bi bi-brightness-high-fill"></i>
-                        </div>
+
                     </header>
 
                     <!-- BANNER -->
@@ -243,30 +249,33 @@
                     </section>
 
                     <!-- FOOTER -->
-                    <footer class="footer footer--visible d-flex jc-center">
+                    <footer class="footer d-flex jc-center">
                         <div class="footer__container-social">
                             <nav>
                                 <ul class="footer-social d-flex">
 
-                                    <li class="footer-social__list-item">
+                                    <li class="footer-social__list-item footer-social__list-up">
                                         <a class="footer-social__link" href="#" target="_blank"
                                             rel="noopener noreferrer">
-                                            <img class="footer-social__image"
-                                                src="./src/assets/images/icons/instagram.svg" alt="Logo de Instagram">
+                                            <!-- <img class="footer-social__image"
+                                                src="./src/assets/images/icons/instagram.svg" alt="Logo de Instagram"> --><i
+                                                class="bi bi-instagram bi-social"></i>
                                         </a>
                                     </li>
-                                    <li class="footer-social__list-item">
+                                    <li class="footer-social__list-item
+                                    footer-social__list-up">
                                         <a class="footer-social__link" href="#" target="_blank"
                                             rel="noopener noreferrer">
-                                            <img class="footer-social__image" src="./src/assets/images/icons/x.svg"
-                                                alt="Logo de X ex Twitter">
+                                            <!-- <img class="footer-social__image" src="./src/assets/images/icons/x.svg"
+                                                alt="Logo de X ex Twitter"> --><i class="bi bi-twitter-x "></i>
                                         </a>
                                     </li>
-                                    <li class="footer-social__list-item">
+                                    <li class="footer-social__list-item footer-social__list-up ">
                                         <a class="footer-social__link" href="#" target="_blank"
                                             rel="noopener noreferrer">
-                                            <img class="footer-social__image"
-                                                src="./src/assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp">
+                                            <!-- <img class="footer-social__image"
+                                                src="./src/assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp"> --><i
+                                                class="bi bi-whatsapp"></i>
                                         </a>
                                     </li>
 
@@ -274,7 +283,7 @@
                             </nav>
                         </div>
                         <div class="footer__copyrigth">
-                            <p><i class="bi bi-c-circle"></i>Todos los derechos reservados. 2024</p>
+                            <p>©Todos los derechos reservados. 2024</p>
                         </div>
                     </footer>
 
