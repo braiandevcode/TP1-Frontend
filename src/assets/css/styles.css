@@ -25,7 +25,7 @@ body {
 /* PARA CUERPO Y PRINCIPAL "MAIN" */
 body,
 main {
-    min-height: 80vh;
+    min-height: 50vh;
 }
 
 /* PARA TODAS LAS LISTAS DESORDENADAS */
@@ -44,6 +44,7 @@ a {
 img {
     object-fit: cover;
     max-width: 100%;
+    display: block;
 }
 
 /* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
@@ -72,17 +73,8 @@ img {
     justify-content: space-between;
 }
 
-/*********************************CONTENEDOR PRINCIPAL DE TODA LA PÁGINA**********************************/
-.root-page {
-    /* max-width: 98%; */
-    min-height: inherit;
-    /* margin: 0 auto; */
-}
-
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page {
-    /* height: 10vh; */
-    justify-content: space-between;
     padding: .7rem;
     background-color: #f55c0a;
 }
@@ -111,15 +103,14 @@ img {
 }
 
 /* ICONOS DEL HEADER */
-.bi-cloud-moon-fill {
+.bi-cloud-moon-fill,
+.bi-cloud-sun-fill,
+.bi-brightness-alt-high-fill {
     margin-right: .5rem;
+    font-size: 1.5rem;
     cursor: initial;
 }
 
-/*************************CONTENEDOR PRINCIPAL DEL MAIN****************************/
-.container-main {
-    padding-bottom: 2rem;
-}
 
 /*********************************ASIDE NAVEGACIÓN***********************************/
 /* LOGO */
@@ -134,11 +125,9 @@ img {
 }
 
 .aside-nav {
-    /* color: #873ce2aa; */
     background-color: #d14900;
     position: relative;
     flex-basis: 200px;
-    gap: 1rem;
 }
 
 .nav-icon {
@@ -159,14 +148,11 @@ img {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 4vh;
     background-color: #f55c0a;
 }
 
-.nav-list {
-    height: 100%;
-    gap: 1rem;
-}
+/* .nav-list {
+} */
 
 /**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
 .container-info-page {
@@ -200,7 +186,7 @@ img {
 
 .banner::before,
 .banner::after {
-    width: 100%;
+    min-height: inherit;
     font-weight: bold;
     padding: .8rem;
     background-color: rgba(168, 40, 1, 0.438);
@@ -209,7 +195,6 @@ img {
     align-items: center;
     text-align: center;
 }
-
 
 .banner::before {
     content: "¡Ahorra hasta un 50% en productos seleccionados este mes!";
@@ -228,16 +213,13 @@ img {
 /* SLIDE DE IMAGENES */
 .slide {
     height: min-content;
-    width: 100%;
     position: relative;
     padding: .5rem;
     margin-bottom: 1rem;
-    /* background: rgba(16, 14, 35, 0.789); */
 }
 
-.slide__show {
-    gap: 1rem;
-}
+/* .slide__show {
+} */
 
 .bi-arrow-left-circle-fill,
 .bi-arrow-right-circle-fill {
@@ -253,34 +235,31 @@ img {
 
 /* SECCION TARJETAS */
 .section-cards {
-    /* gap: 1rem; */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    /* background-color: brown; */
     color: #FFF;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 /* tarjeta */
 .card {
-    /* background: #ff6122; */
     padding: 1rem;
-    display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
-    overflow: hidden;
+    align-self: start;
+    flex: 1 1 200px;
 }
-
 
 /* contenedor de informacion de tarjeta */
 .card__content {
-    background-color: palevioletred;
+    background-color: #3b63d1;
     padding: 1rem;
+    flex: 1 1 350px;
+    text-align: center;
 }
 
 /* contenedor de imagen */
 .card__image-wrapper {
-    width: 100%;
-    /* background-color: aqua; */
+    flex: 1 1 350px;
 }
 
 .card__title {
@@ -311,7 +290,6 @@ img {
     align-self: center;
 }
 
-.card__image {}
 
 .card__link-more {
     transition: all .5s ease-in-out;
@@ -320,18 +298,15 @@ img {
 
 /*********************************FOOTER******************************************************/
 .footer {
-    width: 100%;
     gap: .5rem;
     /* display: none; */
-    align-items: center;
-    height: 15vh;
+    height: 10vh;
     background-color: #d14900;
     flex-direction: column;
     color: #f8d9c8;
 }
 
 .footer-social {
-    gap: 1rem;
     font-size: 1.3rem;
     padding-top: 5px;
 }
@@ -339,6 +314,16 @@ img {
 .footer-social__list-up {
     transition: transform 0.3s ease;
 }
+
+
+/* PARA TODAS LAS CLASES CON GAP DE 1 REM */
+.footer-social,
+.aside-nav,
+.nav-list,
+.slide__show{
+    gap: 1rem;
+}
+
 
 /******************HOVERS***************************/
 @media(hover: hover) {
@@ -350,7 +335,6 @@ img {
         transform: translateY(-5px);
     }
 }
-
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
 @media screen and (min-width: 520px) {
@@ -371,27 +355,18 @@ img {
         flex-direction: column;
     }
 
-    .container-main {
-        padding-bottom: 0;
-    }
-
-    .banner {
-        height: 30vh;
-    }
-
     .footer {
         background-color: #f55c0a;
+    }
+
+    .banner{
+        height: 30vh;
     }
 
 }
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 920PX***********************************/
 @media screen and (min-width: 920px) {
-
-    .banner {
-        height: 50vh;
-    }
-
     .banner::before {
         font-size: 1.8rem;
     }
@@ -399,4 +374,9 @@ img {
     .banner::after {
         font-size: 1.5rem;
     }
+    .banner{
+        height: 50vh;
+    }
 }
+
+

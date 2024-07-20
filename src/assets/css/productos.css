@@ -1,0 +1,49 @@
+@import url("./styles.css");
+
+h1{
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.products{
+    width: 95%;
+    margin: 0 auto;
+    padding: .8rem;
+    min-height: inherit;
+    color: #181722;
+    text-align: center;
+    flex-wrap: wrap;
+    align-content: start;
+    gap: 1rem;
+}
+
+.card-product{
+    background-color: #ececec;
+    border-radius: 10px;
+    padding: 1.3rem;
+}
+
+.card-product__main {
+    width: 200px;
+    color: #181722;
+    flex-direction: column;
+}
+
+.card-product__body {
+    height: 200px;
+}
+.card-product__image{
+    max-height: 100%;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.card-product__btn{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+    .card-product__main{
+     flex: 1;
+    }
+}
