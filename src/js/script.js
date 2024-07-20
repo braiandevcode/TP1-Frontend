@@ -59,7 +59,6 @@ const updateClass= (el, classAdd, ...removeClass)=>{
 
 if(hours >= 20){
     createText(welcome, "¡Buenas Noches!");
-    iconWelcome.classList.add();
     updateClass(iconWelcome, "bi-cloud-moon-fill", "bi-cloud-sun-fill", "bi-brightness-alt-high-fill");
 }else if(hours < 20 && hours >= 13){
     createText(welcome,"¡Buenas Tardes!");
