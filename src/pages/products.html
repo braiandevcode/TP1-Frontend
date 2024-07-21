@@ -8,7 +8,31 @@
 </head>
 <body>
     <h1>Lista de Productos</h1>
-    <section id="products" class="products d-flex jc-spaceB"></section>
-    <script src="../js/script.js"></script>
+    <section id="products" class="products d-flex jc-center"></section>
+
+    <!-- TEMPLATE PRODUCTOS -->
+    <template id="product-template">
+        <div class="card-product d-flex jc-center">
+            <div class="card-product__main d-flex">
+                <div class="card-product__body">
+                    <img>
+                </div>
+                <div class="card-product__footer">
+                    <div class="card-product__description">
+                        <h3 class="card-product__name"></h3>
+                        <p class="card-product__price"><sup></sup></p>
+                    </div>
+                    <form class="card-product__form">
+                        <div class="card-product__quantity">
+                            <label></label>
+                            <input placeholder="Cantidad a comprar">
+                        </div>
+                        <button type="button" class="card-product__btn">Comprar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script src="../js/products.js"></script>
 </body>
 </html>

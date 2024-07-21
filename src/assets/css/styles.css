@@ -20,6 +20,7 @@ body {
     margin: 0;
     font-family: "Roboto", sans-serif;
     color: #FDFDFD;
+    background-color: #f55c0a;
 }
 
 /* PARA CUERPO Y PRINCIPAL "MAIN" */
@@ -71,6 +72,10 @@ img {
 /* CLASE PARA CONTENIDO SPACE-BETWEEN */
 .jc-spaceB {
     justify-content: space-between;
+}
+
+.container-main{
+    padding-bottom: 2rem;
 }
 
 /************************************CABECERA DE PÁGINA**********************************************************/
@@ -139,7 +144,6 @@ img {
 }
 
 .nav {
-    width: 100%;
     font-size: 1.2rem;
 }
 
@@ -314,6 +318,10 @@ img {
 .footer-social__list-up {
     transition: transform 0.3s ease;
 }
+.footer__copyrigth{
+    text-align: center;
+    font-size: .6rem;
+}
 
 
 /* PARA TODAS LAS CLASES CON GAP DE 1 REM */
@@ -361,6 +369,13 @@ img {
 
     .banner{
         height: 30vh;
+    }
+    .container-main{
+        padding-bottom: 0;
+    }
+
+    .footer__copyrigth{
+        font-size: .9rem;
     }
 
 }

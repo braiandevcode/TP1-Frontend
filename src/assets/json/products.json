@@ -1,20 +1,20 @@
 [
     {
-        "image_product":"./pan.jpg",
+        "image_product":"../assets/images/pan.jpg",
         "name_product":"Pan",
         "stock_product": 20,
         "price_product": 1000,
         "id_product":1
     },
     {
-        "image_product":"./cerveza.jpg",
+        "image_product":"../assets/images/cerveza.jpg",
         "name_product":"Cerveza",
         "stock_product": 8,
         "price_product": 1500,
         "id_product":2
     },
     {
-        "image_product":"./pan.jpg",
+        "image_product":"../assets/images/pan.jpg",
         "name_product":"Otro Pan",
         "stock_product": 60,
         "price_product": 1300,

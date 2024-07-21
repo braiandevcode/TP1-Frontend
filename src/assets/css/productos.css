@@ -12,8 +12,8 @@ h1{
     min-height: inherit;
     color: #181722;
     text-align: center;
+    align-content: flex-start;
     flex-wrap: wrap;
-    align-content: start;
     gap: 1rem;
 }
 
@@ -21,17 +21,15 @@ h1{
     background-color: #ececec;
     border-radius: 10px;
     padding: 1.3rem;
+    flex: 1;
 }
 
 .card-product__main {
-    width: 200px;
     color: #181722;
+    justify-content: space-around;
     flex-direction: column;
 }
 
-.card-product__body {
-    height: 200px;
-}
 .card-product__image{
     max-height: 100%;
     margin: 0 auto;
