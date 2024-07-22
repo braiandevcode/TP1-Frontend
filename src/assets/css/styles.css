@@ -304,7 +304,6 @@ img {
 .footer {
     gap: .5rem;
     /* display: none; */
-    height: 10vh;
     background-color: #d14900;
     flex-direction: column;
     color: #f8d9c8;
@@ -321,6 +320,7 @@ img {
 .footer__copyrigth{
     text-align: center;
     font-size: .6rem;
+    padding: .5rem;
 }
 
 
