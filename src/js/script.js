@@ -28,12 +28,12 @@ const updateClass = (el, classAdd, ...removeClass) => {
 
 if (hours >= 5 && hours <= 12) {
     createText(welcome, "¡Buenos Días!");
-    updateClass(iconWelcome, "bi-brightness-alt-high-fill", ["bi-cloud-sun-fill", "bi-cloud-moon-fill"]);
+    updateClass(iconWelcome, "bi-brightness-alt-high-fill", ("bi-cloud-sun-fill", "bi-cloud-moon-fill"));
 } else if (hours >= 13 && hours <= 19) {
     createText(welcome, "¡Buenas Tardes!");
-    updateClass(iconWelcome, "bi-cloud-sun-fill", ["bi-cloud-moon-fill", "bi-brightness-alt-high-fill"]);
+    updateClass(iconWelcome, "bi-cloud-sun-fill", ("bi-cloud-moon-fill", "bi-brightness-alt-high-fill"));
 } else {
     createText(welcome, "¡Buenas Noches!");
-    updateClass(iconWelcome, "bi-cloud-moon-fill", ["bi-brightness-alt-high-fill", "bi-cloud-sun-fill"]);
+    updateClass(iconWelcome, "bi-cloud-moon-fill", ("bi-brightness-alt-high-fill", "bi-cloud-sun-fill"));
 };
 
