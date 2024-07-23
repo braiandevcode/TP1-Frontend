@@ -1,46 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/form.css">
-    <title>Contacto</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Trabajo practico de la carrera fullstack de la institucion CEPIT" />
+    <meta name="keywords" content="HTML, CSS, JAVASCRIPT, TYPESCRIPT" />
+    <link rel="stylesheet" href="/src/assets/css/form.css">
+    <title>Supermercado MB</title>
 </head>
+
 <body>
-    <div class="contact">
-        <!-- DATOS DE CONTACTO -->
-        <div class="section-contact">
-            <h2>Supermercado MB</h2>
-            <ul class="section-contact">
-                <li><i class="bi bi-geo-alt-fill"></i>Calle Dorrego 123, Tapalque, Argentina</li>
-                <li><i class="bi bi-telephone-fill"></i> +123 456 789</li>
-                <li><i class="bi bi-envelope-at-fill"></i>contacto@supermercadomb.com</li>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="container-main d-flex jc-center">
+
+        <!--NAVEGACION ASIDE  -->
+        <aside class="aside-nav ai-center aside-nav--visible">
+            <div class="logo d-flex ai-center jc-center">
+                <h3>MB</h3>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list nav-list--direction d-flex jc-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">
+                            <i class="nav-icon bi bi-house-door-fill"></i>Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./products.html">
+                            <i class="nav-icon bi bi-bag-fill"></i>Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./form.html">
+                            <i class="nav-icon bi bi-person-fill"></i>Contacto
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <nav class="nav nav--position nav--visible">
+            <ul class="nav-list nav-list--direction d-flex jc-center ai-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <i class="nav-icon bi bi-house-door-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./src/pages/products.html">
+                        <i class="nav-icon bi bi-bag-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <i class="nav-icon bi bi-person-fill"></i>
+                    </a>
+                </li>
             </ul>
+        </nav>
+        <!-- CONTENEDOR  PRINCIPAL DE INFORMACIÓN DE PÁGINA-->
+        <div class="container-info-page">
+
+            <!-- CABECERA DE PÁGINA -->
+            <header class="header-page jc-spaceB">
+                <div class="header-page__up d-flex jc-spaceB">
+                    <h2 class="header-page__logo">MB Supermercados</h2>
+                    <div class="header-page__theme">
+                        <!-- <i class="bi bi-moon"></i> -->
+                        <i class="bi bi-brightness-high-fill"></i>
+                    </div>
+                </div>
+                <div class="header-page__down d-flex jc-spaceB">
+                    <div class="header-page__greeting">
+                        <!-- <i class="bi bi-brightness-alt-high-fill"></i> BUENOS DÍAS-->
+                        <!-- <i class="bi bi-cloud-sun-fill"></i> BUENAS TARDES-->
+                        <h3 class="header-page__title"><i class="header-page__welcome bi-cloud-moon-fill"></i>
+                        </h3>
+                    </div>
+                    <div class="header-page__search">
+                        <form class="form-search">
+                            <input type="search" class="form-search__search" placeholder="Buscar...">
+                            <i class="bi bi-search"></i>
+                        </form>
+                    </div>
+                </div>
+
+            </header>
+
+            <div class="contact">
+                <!-- DATOS DE CONTACTO -->
+                <div class="section-contact">
+                    <h2>Supermercado MB</h2>
+                    <ul class="section-contact">
+                        <li><i class="bi bi-geo-alt-fill"></i>Calle Dorrego 123, Tapalque, Argentina</li>
+                        <li><i class="bi bi-telephone-fill"></i> +123 456 789</li>
+                    </ul>
+                </div>
+                <div class="section-form">
+                    <form class="form">
+                        <p class="form__p">Completa el formulario y contáctanos.</p>
+                        <div class="d-flex jc-center">
+
+                            <!-- <label for="name">Nombre:</label> -->
+                            <input class="form__input" type="text" id="name" name="name" placeholder="Nombre" required
+                                focus>
+
+
+                            <!-- <label for="surname">Apellido:</label> -->
+                            <input class="form__input" type="text" id="surname" name="surname" placeholder="Apellido"
+                                required>
+
+                        </div>
+
+                        <!-- <label for="email">Correo Electrónico:</label> -->
+                        <input class="form__input" type="email" id="email" name="email" placeholder="Email" required>
+
+
+                        <!-- <label for="phone">Telefono</label> -->
+                        <input class="form__input" type="tel" id="tel" name="tel" placeholder="Teléfono" required>
+
+
+                        <textarea class="form__textarea" id="text" name="box" placeholder="Comentario..."></textarea>
+
+                        <button id="btnSubmit" type="button">Enviar</button>
+
+                    </form>
+                </div>
+            </div>
+            <!-- FOOTER -->
+            <footer class="footer d-flex jc-center ai-center">
+                <div class="footer__container-social">
+                    <nav>
+                        <ul class="footer-social d-flex">
+
+                            <li class="footer-social__list-item footer-social__list-up">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-instagram bi-social"></i>
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item
+                footer-social__list-up">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-twitter-x "></i>
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item footer-social__list-up ">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__copyrigth">
+                    <p>©Todos los derechos reservados. 2024</p>
+                </div>
+            </footer>
+
         </div>
-        <div class="section-form">
-            <form class="form">
-                <div class="form__label">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" placeholder="Ingrese su nombre" required>
-                </div>
-                <div class="form__label">
-                    <label for="surname">Apellido:</label>
-                    <input type="text" id="surname" name="surname" placeholder="Ingrese su apellido" required>
-                </div>
-                <div class="form__label">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" placeholder="Ingrese su correo" required>
-                </div>
-                <div class="form__label">
-                    <label for="phone">Telefono</label>
-                    <input type="tel" id="email" name="email" placeholder="Ingrese su telefono" required>
-                </div>
-                <div class="form__label">
-                    <textarea name="box" placeholder="Comentario..."></textarea>
-                </div>
-                <input type="submit" value="Enviar">
-            </form>
-        </div>
+
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/form.js"></script>
 </body>
+
 </html>

@@ -20,7 +20,7 @@ body {
     margin: 0;
     font-family: "Roboto", sans-serif;
     color: #FDFDFD;
-    background-color: #f55c0a;
+    background-color: #f3f3f3;
 }
 
 /* PARA CUERPO Y PRINCIPAL "MAIN" */
@@ -38,7 +38,7 @@ ul {
 /* PARA TODOS LOS ENLACES */
 a {
     text-decoration: none;
-    color: #FDFDFD;
+    color: #f2861b;
 }
 
 /* PARA TODAS LA IMAGENES */
@@ -74,14 +74,14 @@ img {
     justify-content: space-between;
 }
 
-.container-main{
+/* .container-main {
     padding-bottom: 2rem;
-}
+} */
 
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page {
     padding: .7rem;
-    background-color: #f55c0a;
+    background-color: #f2861b;
 }
 
 .header-page__up,
@@ -130,7 +130,8 @@ img {
 }
 
 .aside-nav {
-    background-color: #d14900;
+    background-color: #302727;
+    color: #f2861b;
     position: relative;
     flex-basis: 200px;
 }
@@ -304,9 +305,10 @@ img {
 .footer {
     gap: .5rem;
     /* display: none; */
-    background-color: #d14900;
+    background-color: #f2861b;
     flex-direction: column;
     color: #f8d9c8;
+    padding-bottom: 1.3rem;
 }
 
 .footer-social {
@@ -317,7 +319,8 @@ img {
 .footer-social__list-up {
     transition: transform 0.3s ease;
 }
-.footer__copyrigth{
+
+.footer__copyrigth {
     text-align: center;
     font-size: .6rem;
     padding: .5rem;
@@ -328,13 +331,17 @@ img {
 .footer-social,
 .aside-nav,
 .nav-list,
-.slide__show{
+.slide__show {
     gap: 1rem;
 }
 
 
 /******************HOVERS***************************/
 @media(hover: hover) {
+    a:hover {
+        color: #fff;
+    }
+
     .card__link-more:hover {
         color: orange;
     }
@@ -365,16 +372,18 @@ img {
 
     .footer {
         background-color: #f55c0a;
-    }
-
-    .banner{
-        height: 30vh;
-    }
-    .container-main{
         padding-bottom: 0;
     }
 
-    .footer__copyrigth{
+    .banner {
+        height: 30vh;
+    }
+
+    .container-main {
+        padding-bottom: 0;
+    }
+
+    .footer__copyrigth {
         font-size: .9rem;
     }
 
@@ -389,9 +398,8 @@ img {
     .banner::after {
         font-size: 1.5rem;
     }
-    .banner{
+
+    .banner {
         height: 50vh;
     }
 }
-
-
