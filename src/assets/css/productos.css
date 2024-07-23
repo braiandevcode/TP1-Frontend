@@ -1,11 +1,12 @@
-@import url("./styles.css");
+/* IMPORTO LOS ESTILOS DE EL STYLE CSS PARA TENER TODO RESETEADO Y LLAMO A LOS ICONOS DE BOOTSTRAP SOLO UNA VEZ */
+@import url("../css/styles.css");
 
-h1{
+h1 {
     text-align: center;
     margin: 2rem 0;
 }
 
-.products{
+.products {
     width: 95%;
     margin: 0 auto;
     padding: .8rem;
@@ -17,7 +18,7 @@ h1{
     gap: 1rem;
 }
 
-.card-product{
+.card-product {
     background-color: #ececec;
     border-radius: 10px;
     padding: 1.3rem;
@@ -30,18 +31,18 @@ h1{
     flex-direction: column;
 }
 
-.card-product__image{
+.card-product__image {
     max-height: 100%;
     margin: 0 auto;
     border-radius: 5px;
 }
 
-.card-product__btn{
+.card-product__btn {
     cursor: pointer;
 }
 
-@media screen and (max-width: 768px){
-    .card-product__main{
-     flex: 1;
+@media screen and (max-width: 768px) {
+    .card-product__main {
+        flex: 1;
     }
 }

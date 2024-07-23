@@ -26,7 +26,7 @@ body {
 /* PARA CUERPO Y PRINCIPAL "MAIN" */
 body,
 main {
-    min-height: 50vh;
+    min-height: 100vh;
 }
 
 /* PARA TODAS LAS LISTAS DESORDENADAS */
@@ -38,7 +38,7 @@ ul {
 /* PARA TODOS LOS ENLACES */
 a {
     text-decoration: none;
-    /* color: #f2861b; */
+    color: #fff;
 }
 
 /* PARA TODAS LA IMAGENES */
@@ -80,9 +80,9 @@ img {
 
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page {
-    height: 6rem;
+    height: 5rem;
     padding: .3rem .7rem;
-    background-color: #f2861b;
+    background-color: #f99400;
 }
 
 .header-page__up,
@@ -132,7 +132,7 @@ img {
 
 .aside-nav {
     background-color: #302727;
-    color: #f2861b;
+    color: #f99400;
     position: relative;
     flex-basis: 200px;
 }
@@ -154,7 +154,7 @@ img {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #f55c0a;
+    background-color: #302727;
 }
 
 /* .nav-list {
@@ -163,7 +163,7 @@ img {
 /**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
 .container-info-page {
     width: 100%;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 /* BANNER */
@@ -304,8 +304,8 @@ img {
 
 /*********************************FOOTER******************************************************/
 .footer {
-    height: 6rem;
-    background-color: #f2861b;
+    height: 5rem;
+    background-color: #f99400;
     display: block;
     color: #f8d9c8;
     padding-bottom: 1.3rem;
@@ -341,11 +341,11 @@ img {
 /******************HOVERS***************************/
 @media(hover: hover) {
     a:hover {
-        color: #fff;
+        color: #f99400;
     }
 
     .card__link-more:hover {
-        color: orange;
+        color: #f99400;
     }
 
     .footer-social__list-up:hover {
@@ -377,7 +377,7 @@ img {
     }
 
     .footer {
-        background-color: #f55c0a;
+        background-color: #f99400;
         padding-bottom: 0;
     }
 
