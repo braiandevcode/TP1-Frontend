@@ -60,10 +60,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     if (e.target.matches(".card-product__btn")) {
       e.preventDefault();
       // Mediante el id del atributo data podemos pasar el id correspondiente y asi acceder al valor de cada campo
-      let inputElement = document.getElementById(`${e.target.dataset.id_product}`);
+      let inputElement = document.getElementById(`${e.target.dataset.id}`);
       let inputValue = parseInt(inputElement.value);
    
-      let product = productsJson.find((productId) => productId.id_product == e.target.dataset.id_product);
+      let product = productsJson.find((productId) => productId.id_product == e.target.dataset.id);
       let stock = product.stock_product;
       let price = product.price_product;
       // aseguramos que lo que ingresen sea un numero
