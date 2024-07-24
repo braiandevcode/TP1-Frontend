@@ -56,9 +56,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
   renderProducts();
   // EVENTO DE CLICK...
   document.addEventListener("click", (e) => {
-    e.preventDefault();
     // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA
     if (e.target.matches(".card-product__btn")) {
+      e.preventDefault();
       // Mediante el id del atributo data podemos pasar el id correspondiente y asi acceder al valor de cada campo
       let inputElement = document.getElementById(`${e.target.dataset.id_product}`);
       let inputValue = parseInt(inputElement.value);

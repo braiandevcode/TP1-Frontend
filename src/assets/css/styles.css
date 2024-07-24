@@ -26,7 +26,7 @@ body {
 /* PARA CUERPO Y PRINCIPAL "MAIN" */
 body,
 main {
-    min-height: 100vh;
+    min-height: 50vh;
 }
 
 /* PARA TODAS LAS LISTAS DESORDENADAS */
@@ -38,7 +38,7 @@ ul {
 /* PARA TODOS LOS ENLACES */
 a {
     text-decoration: none;
-    color: #fff;
+    color: #dfdfdf;
 }
 
 /* PARA TODAS LA IMAGENES */
@@ -74,15 +74,11 @@ img {
     justify-content: space-between;
 }
 
-/* .container-main {
-    padding-bottom: 2rem;
-} */
-
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page {
-    height: 5rem;
+    height: 6rem;
     padding: .3rem .7rem;
-    background-color: #f99400;
+    background-color: #f2861b;
 }
 
 .header-page__up,
@@ -121,18 +117,13 @@ img {
 /*********************************ASIDE NAVEGACIÓN***********************************/
 /* LOGO */
 .logo {
-    /* width: 75px;
-    height: 75px; */
     margin: .4rem 0;
-    /* border-radius: 50%; */
-    /* background-color: #fff; */
-    /* color: #fff; */
     font-size: xxx-large;
 }
 
 .aside-nav {
     background-color: #302727;
-    color: #f99400;
+    color: #f2861b;
     position: relative;
     flex-basis: 200px;
 }
@@ -154,16 +145,13 @@ img {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #302727;
+    background-color: #f55c0a;
 }
-
-/* .nav-list {
-} */
 
 /**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
 .container-info-page {
     width: 100%;
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
 }
 
 /* BANNER */
@@ -224,9 +212,6 @@ img {
     margin-bottom: 1rem;
 }
 
-/* .slide__show {
-} */
-
 .bi-arrow-left-circle-fill,
 .bi-arrow-right-circle-fill {
     color: rgba(39, 38, 42, 0.765);
@@ -286,7 +271,6 @@ img {
 
 
 .card__body {
-    display: flex;
     flex-direction: column;
     gap: 3rem;
 }
@@ -304,18 +288,16 @@ img {
 
 /*********************************FOOTER******************************************************/
 .footer {
-    height: 5rem;
-    background-color: #f99400;
-    display: block;
+    height: 6rem;
+    background-color: #f2861b;
+    display: flex;
+    flex-direction: column;
     color: #f8d9c8;
-    padding-bottom: 1.3rem;
 }
 
 .footer-social {
     font-size: 1.3rem;
     padding-top: 5px;
-    display: flex;
-    justify-content: center;
 }
 
 .footer-social__list-up {
@@ -341,11 +323,11 @@ img {
 /******************HOVERS***************************/
 @media(hover: hover) {
     a:hover {
-        color: #f99400;
+        color: #fff;
     }
 
     .card__link-more:hover {
-        color: #f99400;
+        color: orange;
     }
 
     .footer-social__list-up:hover {
@@ -377,7 +359,7 @@ img {
     }
 
     .footer {
-        background-color: #f99400;
+        background-color: #f55c0a;
         padding-bottom: 0;
     }
 
