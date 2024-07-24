@@ -5,7 +5,8 @@ const welcome = document.querySelector(".header-page__title");
 const iconWelcome = document.querySelector(".header-page__welcome");
 
 // variables
-let hours = new Date().getHours();
+let hours = new Date().getHours(); // Objeto date instancia que nos provee js
+console.log(hours);
 let textNode;
 
 // funcion auxiliar para crear nodo de texto.
@@ -34,3 +35,10 @@ if (hours >= 5 && hours <= 12) {
     welcome.classList.remove("bi-cloud-sun-fill");
 };
 
+
+document.querySelector(".form-search__search").addEventListener("focus", ()=>{
+    document.querySelector(".form-search").classList.add("form-search--focus");
+});
+document.querySelector(".form-search__search").addEventListener("blur", ()=>{
+    document.querySelector(".form-search").classList.remove("form-search--focus");
+});

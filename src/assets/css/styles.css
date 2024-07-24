@@ -20,13 +20,15 @@ body {
     margin: 0;
     font-family: "Roboto", sans-serif;
     color: #FDFDFD;
-    background-color: #f3f3f3;
+    /* background-color: #f3f3f3; */
 }
 
-/* PARA CUERPO Y PRINCIPAL "MAIN" */
+/* PARA TODO EL ALTO DEL VH*/
 body,
-main {
-    min-height: 50vh;
+main ,
+.root-page,
+.container-main{
+    min-height: 100vh;
 }
 
 /* PARA TODAS LAS LISTAS DESORDENADAS */
@@ -46,6 +48,9 @@ img {
     object-fit: cover;
     max-width: 100%;
     display: block;
+}
+button{
+    cursor: pointer;
 }
 
 /* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
@@ -76,32 +81,63 @@ img {
 
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page {
-    height: 6rem;
-    padding: .3rem .7rem;
+    /* height: 6rem; */
+    /* padding: .3rem .7rem; */
+    padding: 1rem;
     background-color: #f2861b;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    gap: 2rem;
 }
 
 .header-page__up,
 .header-page__down {
-    padding: .2rem;
+    /* padding: .2rem; */
+    width: 100%;
+    gap: 1.5rem;
+}
+.header-page__down{
+    flex-direction: column;
+    justify-content: center;
 }
 
+.header-page__search,
+.header-page__greeting{   
+    justify-content: end;
+}
+
+.header-page__greeting{
+    justify-content: start;
+}
 .header-page__logo {
     font-size: 1rem;
     font-weight: 300;
 }
+.form-search{
+    width: 100%;
+    position: relative;
+    border-radius: 50px;
+    background:#FFF;
+    display: flex;
+    align-items: center;
+    transition: border .2s ease-in-out; 
+}
 
 .form-search__search {
-    width: 7rem;
-    height: 1.4rem;
-    border-radius: 50px;
-    padding: 10px;
+    width: calc(100% - 1.2rem);
+    padding: .5rem;
     border: none;
     outline: none;
 }
 
-.form-search__search:focus {
-    border: 3px solid #d14900;
+.form-search--focus{
+    border: 3px solid #e46612;
+}
+.bi-search{
+    position: absolute;
+    right: .7rem;
+    z-index: 100;
+    color: #d10000;
 }
 
 /* ICONOS DEL HEADER */
@@ -112,7 +148,6 @@ img {
     font-size: 1.5rem;
     cursor: initial;
 }
-
 
 /*********************************ASIDE NAVEGACIÓN***********************************/
 /* LOGO */
@@ -151,12 +186,13 @@ img {
 /**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
 .container-info-page {
     width: 100%;
-    overflow-y: hidden;
+    flex-direction: column;
+    min-height: inherit;
 }
 
 /* BANNER */
 .banner {
-    height: 25vh;
+    height: 50vh;
     margin-bottom: 1rem;
     background-image: url(../images/shopping-cart.jpg);
     background-repeat: no-repeat;
@@ -164,7 +200,6 @@ img {
     background-size: cover;
     position: relative;
     overflow: hidden;
-    justify-content: center;
     flex-direction: column;
 }
 
@@ -182,7 +217,6 @@ img {
 .banner::after {
     min-height: inherit;
     font-weight: bold;
-    padding: .8rem;
     background-color: rgba(168, 40, 1, 0.438);
     display: flex;
     justify-content: center;
@@ -290,9 +324,9 @@ img {
 .footer {
     height: 6rem;
     background-color: #f2861b;
-    display: flex;
     flex-direction: column;
     color: #f8d9c8;
+    margin-top: auto;
 }
 
 .footer-social {
@@ -309,7 +343,9 @@ img {
     font-size: .6rem;
     padding: .5rem;
 }
-
+.nav-list{
+    background-color: #302727;
+}
 
 /* PARA TODAS LAS CLASES CON GAP DE 1 REM */
 .footer-social,
@@ -337,6 +373,28 @@ img {
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
 @media screen and (min-width: 520px) {
+    .banner {
+        height: 30vh;
+    }
+
+    .footer__copyrigth {
+        font-size: .9rem;
+    }
+    .header-page{
+        flex-direction: column;
+    }
+
+    .header-page__down{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .header-page__greeting{
+       justify-content: start;
+    }
+}
+
+/***************************MEDIAQUERYS A PARTIR DE LOS 768PX***********************************/
+@media screen and (min-width: 768px) {
     .nav--position {
         display: none;
     }
@@ -349,24 +407,6 @@ img {
         display: flex;
         flex-direction: column;
     }
-
-    .banner {
-        height: 30vh;
-    }
-
-    .container-main {
-        padding-bottom: 0;
-    }
-
-    .footer {
-        background-color: #f55c0a;
-        padding-bottom: 0;
-    }
-
-    .footer__copyrigth {
-        font-size: .9rem;
-    }
-
 }
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 920PX***********************************/

@@ -17,12 +17,15 @@ h1 {
     flex-wrap: wrap;
     gap: 1rem;
 }
-
+.container-main__title{
+    color: orangered;
+}
 .card-product {
-    background-color: #ececec;
+    background-color: #107081bd;
     border-radius: 10px;
     padding: 1.3rem;
     flex: 1;
+    box-shadow: -2px -2px 8px #3a3938, 2px 2px 8px #3a3938;
 }
 
 .card-product__main {

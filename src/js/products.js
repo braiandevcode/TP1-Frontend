@@ -51,7 +51,6 @@ const renderProducts = () => {
   }
 };
 
-
 document.addEventListener("DOMContentLoaded", ()=>{
   renderProducts();
   // EVENTO DE CLICK...
