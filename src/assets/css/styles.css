@@ -81,8 +81,6 @@ button{
 
 /************************************CABECERA DE PÁGINA**********************************************************/
 .header-page {
-    /* height: 6rem; */
-    /* padding: .3rem .7rem; */
     padding: 1rem;
     background-color: #f2861b;
     flex-direction: column-reverse;
@@ -92,7 +90,6 @@ button{
 
 .header-page__up,
 .header-page__down {
-    /* padding: .2rem; */
     width: 100%;
     gap: 1.5rem;
 }
@@ -118,8 +115,6 @@ button{
     position: relative;
     border-radius: 50px;
     background:#FFF;
-    display: flex;
-    align-items: center;
     transition: border .2s ease-in-out; 
 }
 
@@ -131,7 +126,7 @@ button{
 }
 
 .form-search--focus{
-    border: 3px solid #e46612;
+    border: 2px double #e46612;
 }
 .bi-search{
     position: absolute;
