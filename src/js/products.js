@@ -7,25 +7,74 @@ const products = document.getElementById("products");
 
 const productsJson = [
   {
-    "image_product":"../assets/images/pan.jpg",
-    "name_product":"Pan",
+    "image_product": "../assets/images/harina.jpg",
+    "name_product": "Harina",
     "stock_product": 20,
     "price_product": 1000,
-    "id_product":"product_1"
+    "id_product": "product_1"
   },
   {
-    "image_product":"../assets/images/cerveza.jpg",
-    "name_product":"Cerveza",
+    "image_product": "../assets/images/cerveza.jpg",
+    "name_product": "Cerveza",
     "stock_product": 8,
     "price_product": 1500,
-    "id_product":"product_2"
+    "id_product": "product_2"
   },
   {
-    "image_product":"../assets/images/pan.jpg",
-    "name_product":"Otro Pan",
+    "image_product": "../assets/images/fideos.jpg",
+    "name_product": "Fideos",
     "stock_product": 60,
     "price_product": 1300,
-    "id_product":"product_3"
+    "id_product": "product_3"
+  },
+  {
+    "image_product": "../assets/images/arroz.jpg",
+    "name_product": "Arroz",
+    "stock_product": 10,
+    "price_product": 1400,
+    "id_product": "product_4"
+  },
+  {
+    "image_product": "../assets/images/carne.jpg",
+    "name_product": "Carne",
+    "stock_product": 8,
+    "price_product": 4500,
+    "id_product": "product_5"
+  },
+  {
+    "image_product": "../assets/images/leche.jpg",
+    "name_product": "Leche",
+    "stock_product": 8,
+    "price_product": 1500,
+    "id_product": "product_6"
+  },
+  {
+    "image_product": "../assets/images/polenta.jpg",
+    "name_product": "Polenta",
+    "stock_product": 9,
+    "price_product": 1200,
+    "id_product": "product_7"
+  },
+  {
+    "image_product": "../assets/images/gaseosa.jpg",
+    "name_product": "Gaseosa",
+    "stock_product": 12,
+    "price_product": 1800,
+    "id_product": "product_8"
+  },
+  {
+    "image_product": "../assets/images/aceite.jpg",
+    "name_product": "Aceite",
+    "stock_product": 8,
+    "price_product": 2000,
+    "id_product": "product_9"
+  },
+  {
+    "image_product": "../assets/images/lentejas.jpg",
+    "name_product": "Lentejas",
+    "stock_product": 8,
+    "price_product": 1000,
+    "id_product": "product_10"
   }
 ];
 
@@ -40,7 +89,7 @@ const renderProducts = () => {
       clone.querySelector("img").setAttribute("src", `${product.image_product}`);
       clone.querySelector("img").setAttribute("alt", `${product.name_product}`);
       clone.querySelector(".card-product__name").textContent = product.name_product;
-      clone.querySelector(".card-product__price").textContent = product.price_product;
+      clone.querySelector(".card-product__price").textContent = `$${product.price_product}`;
       clone.querySelector("label").setAttribute("for", `${product.id_product}`);
       clone.querySelector("input").setAttribute("id", `${product.id_product}`);
       clone.querySelector(".card-product__btn").setAttribute("data-id", `${product.id_product}`);
@@ -51,7 +100,7 @@ const renderProducts = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   // EVENTO DE CLICK...
   document.addEventListener("click", (e) => {
@@ -61,7 +110,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       // Mediante el id del atributo data podemos pasar el id correspondiente y asi acceder al valor de cada campo
       let inputElement = document.getElementById(`${e.target.dataset.id}`);
       let inputValue = parseInt(inputElement.value);
-   
+
       let product = productsJson.find((productId) => productId.id_product == e.target.dataset.id);
       let stock = product.stock_product;
       let price = product.price_product;
@@ -72,7 +121,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
           alert("No hay Stock para esa cantidad");
         } else {
           let total = inputValue * price; //opercaion
-          alert(`El total de la compra de este producto es de: ${total}`);
+          alert(`El total de la compra de este producto es de: $${total}`);
         }
       } else {
         alert("El valor debe ser solo numérico");
@@ -80,6 +129,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
       inputElement.value = ""; // despues del evento limiamos los campos
     }
     // Evento al formulario
-    
+
   });
 });

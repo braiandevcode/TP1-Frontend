@@ -80,34 +80,39 @@
                         </form>
                     </div>
                 </div>
-
             </header>
+
             <h1 class="container-main__title">Lista de Productos</h1>
-            <section id="products" class="products d-flex jc-center"></section>
+            <section id="products" class="products d-flex jc-center">
+            </section>
 
             <!-- TEMPLATE PRODUCTOS -->
             <template id="product-template">
                 <div class="card-product d-flex jc-center">
                     <div class="card-product__main d-flex">
                         <div class="card-product__body">
-                            <img>
+                            <img class="card-product__image">
                         </div>
                         <div class="card-product__footer">
-                            <div class="card-product__description">
-                                <h3 class="card-product__name"></h3>
-                                <p class="card-product__price"></p>
-                            </div>
                             <form class="card-product__form">
-                                <div class="card-product__quantity">
-                                    <label></label>
-                                    <input placeholder="Cantidad a comprar">
+                                <div class="card-product__description">
+                                    <h3 class="card-product__name"></h3>
+                                    <div class="card-product__quantity">
+                                        <label></label>
+                                        <input class="card-product__input-quantity" placeholder="Cantidad a comprar"
+                                            type="number" min="0">
+                                    </div>
                                 </div>
-                                <button type="button" class="card-product__btn">Comprar</button>
+                                <div class="card-product__buy d-flex jc-spaceB ai-center">
+                                    <p class="card-product__price"></p>
+                                    <button type="button" class="card-product__btn">Comprar</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </template>
+
             <!-- FOOTER -->
             <footer class="footer d-flex jc-center ai-center">
                 <div class="footer__container-social d-flex ai-center jc-center">

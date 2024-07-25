@@ -11,41 +11,91 @@ h1 {
     margin: 0 auto;
     padding: .8rem;
     min-height: inherit;
-    color: #181722;
-    text-align: center;
-    align-content: flex-start;
+    color: #302727;
+    /* text-align: center; */
+    display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: .5rem;
 }
-.container-main__title{
-    color: orangered;
+
+.container-main__title {
+    color: #f2861b;
 }
+
 .card-product {
-    background-color: #107081bd;
-    border-radius: 10px;
-    padding: 1.3rem;
-    flex: 1;
-    box-shadow: -2px -2px 8px #3a3938, 2px 2px 8px #3a3938;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: .7rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.36);
+    flex: 1 1 45%;
 }
 
 .card-product__main {
-    color: #181722;
     justify-content: space-around;
     flex-direction: column;
 }
 
-.card-product__image {
-    max-height: 100%;
+.card-product__body {
+    max-height: 6rem;
     margin: 0 auto;
     border-radius: 5px;
 }
 
-.card-product__btn {
-    cursor: pointer;
+.card-product__image {
+    max-height: 100%;
 }
 
-@media screen and (max-width: 768px) {
-    .card-product__main {
-        flex: 1;
+.card-product__description {
+    padding-bottom: .5rem;
+}
+
+.card-product__buy {
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.card-product__price {
+    font-weight: bold;
+}
+
+.card-product__input-quantity {
+    border: 1px solid #f2861b;
+    outline: none;
+    max-width: 100%;
+}
+
+.card-product__btn {
+    font-family: inherit;
+    font-size: inherit;
+    color: #302727;
+    background-color: #f2861b;
+    cursor: pointer;
+    border: 1px solid #302727;
+    display: flex;
+    padding: .3em;
+    border-radius: 50px;
+    transition: .3s ease-in-out;
+}
+
+.card-product__btn:hover {
+    border: 1px solid #f2861b;
+    background-color: #f2861b;
+    color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+    .products {
+        gap: 1rem;
+    }
+
+    .card-product {
+        padding: 1.3rem;
+        flex: 1 1 15rem;
+        /* Si saco el max-width, si un producto queda solo debajo de todo se ensancha a la totalidad del contenedor*/
+        max-width: 15rem;
+    }
+
+    .card-product__body {
+        max-height: 10rem;
     }
 }
