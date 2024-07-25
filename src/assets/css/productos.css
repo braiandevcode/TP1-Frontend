@@ -77,12 +77,18 @@ h1 {
     transition: .3s ease-in-out;
 }
 
-.card-product__btn:hover {
-    border: 1px solid #f2861b;
-    background-color: #f2861b;
-    color: #fff;
+
+/* ******************HOVERS****************** */
+@media (hover: hover) {
+    .card-product__btn:hover {
+        border: 1px solid #f2861b;
+        background-color: #f2861b;
+        color: #fff;
+    }
 }
 
+
+/*************MEDIAQUERYS A PARTIR DE LOS 768PX*******************/
 @media screen and (min-width: 768px) {
     .products {
         gap: 1rem;
