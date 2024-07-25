@@ -1,10 +1,10 @@
 //***************************LISTA PRODUCTOS************************************//
-// GLOBALES
 "use strict";
+
+// GLOBALES
 const products = document.getElementById("products");
 
-// SE HACEN VARIAS LLAMADAS AL MISMO ARCHIVO, SE PODR´ÍA CREAR FUNCION REUTILIZABLE....
-
+// ARREGLO DE PRODUCTOS
 const productsJson = [
   {
     "image_product": "../assets/images/harina.jpg",
@@ -100,35 +100,49 @@ const renderProducts = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderProducts();
-  // EVENTO DE CLICK...
-  document.addEventListener("click", (e) => {
-    // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA
-    if (e.target.matches(".card-product__btn")) {
-      e.preventDefault();
-      // Mediante el id del atributo data podemos pasar el id correspondiente y asi acceder al valor de cada campo
-      let inputElement = document.getElementById(`${e.target.dataset.id}`);
-      let inputValue = parseInt(inputElement.value);
 
-      let product = productsJson.find((productId) => productId.id_product == e.target.dataset.id);
-      let stock = product.stock_product;
-      let price = product.price_product;
-      // aseguramos que lo que ingresen sea un numero
-      if (!isNaN(inputValue)) {
-        //si el valor del input es mayor al stock o menor o igual a cero no es posible.
-        if (inputValue > stock || inputValue <= 0) {
-          alert("No hay Stock para esa cantidad");
-        } else {
-          let total = inputValue * price; //opercaion
-          alert(`El total de la compra de este producto es de: $${total}`);
-        }
-      } else {
-        alert("El valor debe ser solo numérico");
-      }
-      inputElement.value = ""; // despues del evento limiamos los campos
+// FUNCION QUE SE ENCARGA DE LA LOGICA DE OPERACIONES DE COMPRA DE PRODUCTOS
+const validateDataProducts = (e)=>{
+  // Mediante el id del atributo data podemos pasar el id correspondiente y asi acceder al valor de cada campo
+  let inputElement = document.getElementById(`${e.target.dataset.id}`);
+  let inputValue = parseInt(inputElement.value);
+
+  let product = productsJson.find((productId) => productId.id_product == e.target.dataset.id);
+  let stock = product.stock_product;
+  let price = product.price_product;
+  // aseguramos que lo que ingresen sea un numero
+  if (!isNaN(inputValue)) {
+    //si el valor del input es mayor al stock o menor o igual a cero no es posible.
+    if (inputValue > stock || inputValue <= 0) {
+      alert("No hay Stock para esa cantidad");
+    } else {
+      let total = inputValue * price; //opercaion
+      alert(`El total de la compra de este producto es de: $${total}`);
     }
-    // Evento al formulario
+  } else {
+    alert("El valor debe ser solo numérico");
+  }
+  inputElement.value = ""; // despues del evento limiamos los campos
+}
 
-  });
+// VALIDAR TARGET DE EVENTO
+const validateTargetEvent = (e)=>{
+  // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA
+  if (e.target.matches(".card-product__btn")) {
+    e.preventDefault();
+    validateDataProducts(e)
+  }    
+}
+
+// VENTOS DE CLICK
+const clickEvents = ()=>{
+  document.addEventListener("click", validateTargetEvent);
+}
+
+// EVENTO DE CARGA DE LA PAGINA
+document.addEventListener("DOMContentLoaded", () => {
+  // RENDERIZA LISTA DE PRODUCTOS.
+  renderProducts();
+  // EVENTO DE CLICK.
+  clickEvents();
 });
