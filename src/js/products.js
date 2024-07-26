@@ -90,6 +90,7 @@ const renderProducts = () => {
       clone.querySelector("img").setAttribute("src", `${product.image_product}`);
       clone.querySelector("img").setAttribute("alt", `Imagen de ${product.name_product}`);
       clone.querySelector(".card-product__name").textContent = product.name_product;
+      clone.querySelector(".card-product__stock").textContent = `Stock: ${product.stock_product}`;
       clone.querySelector(".card-product__price").textContent = `$${product.price_product}`;
       clone.querySelector("label").setAttribute("for", `${product.id_product}`);
       clone.querySelector("input").setAttribute("id", `${product.id_product}`);

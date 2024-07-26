@@ -49,6 +49,11 @@ h1 {
     padding-bottom: .5rem;
 }
 
+.card-product__stock {
+    font-weight: 500;
+    color: #444;
+}
+
 .card-product__buy {
     padding-top: 1rem;
     border-top: 1px solid #ddd;
