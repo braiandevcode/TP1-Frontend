@@ -28,8 +28,6 @@ form.addEventListener("submit", (e) => {
     let phone = information[3];
 
     let isValidate = true;
-
-    console.log(isValidate);
     //Recorremos los carácteres del contenido del input telefóno
     for (let i = 0; i < phone.length; i++) {
         //¿Incluye los carácteres?
@@ -40,15 +38,12 @@ form.addEventListener("submit", (e) => {
 
     }
 
-    console.log(isValidate);
-
     if (isValidate) {
         console.log("Se descarga")
         //Libreria FileServer.js
         saveAs(blob, "contact.txt");
         //Le quitamos el valor al final, para limpiar
-        inputs.forEach(input => input.value = "");
-
+        form.reset();
         return true;
     }
 
