@@ -83,16 +83,17 @@ const renderProducts = () => {
   const fragment = document.createDocumentFragment();
   const template = document.getElementById("product-template").content;
   console.log(template);
+  // Pregunto primero si hay productos
   if (productsJson.length > 0) {
     productsJson.forEach((product) => {
       const clone = template.cloneNode(true);
       clone.querySelector("img").setAttribute("src", `${product.image_product}`);
-      clone.querySelector("img").setAttribute("alt", `${product.name_product}`);
+      clone.querySelector("img").setAttribute("alt", `Imagen de ${product.name_product}`);
       clone.querySelector(".card-product__name").textContent = product.name_product;
       clone.querySelector(".card-product__price").textContent = `$${product.price_product}`;
       clone.querySelector("label").setAttribute("for", `${product.id_product}`);
       clone.querySelector("input").setAttribute("id", `${product.id_product}`);
-      clone.querySelector(".card-product__btn").setAttribute("data-id", `${product.id_product}`);
+      clone.querySelector(".card-product__btn").setAttribute("data-idproduct", `${product.id_product}`);
       fragment.append(clone);
     });
 
@@ -102,12 +103,12 @@ const renderProducts = () => {
 
 
 // FUNCION QUE SE ENCARGA DE LA LOGICA DE OPERACIONES DE COMPRA DE PRODUCTOS
-const validateDataProducts = (e)=>{
+const validateDataProducts = (e) => {
   // Mediante el id del atributo data podemos pasar el id correspondiente y asi acceder al valor de cada campo
-  let inputElement = document.getElementById(`${e.target.dataset.id}`);
+  let inputElement = document.getElementById(`${e.target.dataset.idproduct}`);
   let inputValue = parseInt(inputElement.value);
 
-  let product = productsJson.find((productId) => productId.id_product == e.target.dataset.id);
+  let product = productsJson.find((productId) => productId.id_product == e.target.dataset.idproduct); console.log(product);
   let stock = product.stock_product;
   let price = product.price_product;
   // aseguramos que lo que ingresen sea un numero
@@ -126,16 +127,16 @@ const validateDataProducts = (e)=>{
 }
 
 // VALIDAR TARGET DE EVENTO
-const validateTargetEvent = (e)=>{
+const validateTargetEvent = (e) => {
   // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA
   if (e.target.matches(".card-product__btn")) {
     e.preventDefault();
     validateDataProducts(e)
-  }    
+  }
 }
 
 // VENTOS DE CLICK
-const clickEvents = ()=>{
+const clickEvents = () => {
   document.addEventListener("click", validateTargetEvent);
 }
 
@@ -146,3 +147,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // EVENTO DE CLICK.
   clickEvents();
 });
+

@@ -84,10 +84,12 @@
             <!-- SECCION FORMULARIO -->
             <div class="contact d-flex ai-center jc-center">
                 <div class="contact__container d-flex">
-                    <form class="form d-flex jc-spaceB">
+                    <form id="form-contact" class="form d-flex jc-spaceB">
                         <!-- DATOS DE CONTACTO -->
                         <ul class="section-contact d-flex">
-                            <li><h2>Supermercado MB</h2></li>
+                            <li>
+                                <h2>Supermercado MB</h2>
+                            </li>
                             <li><i class="bi bi-geo-alt-fill"></i>Calle Dorrego 123, Tapalque, Argentina</li>
                             <li><i class="bi bi-telephone-fill"></i> +123 456 789</li>
                         </ul>
@@ -106,9 +108,11 @@
 
                         <input class="form__input" type="tel" id="tel" name="tel" placeholder="Teléfono" required>
 
-                        <textarea class="form__input" id="text" name="box" placeholder="Comentario..."></textarea>
+                        <textarea class="form__input" id="text" name="box" placeholder="Comentario..."
+                            required></textarea>
 
-                        <button class="btnSubmit d-flex ai-center jc-center" id="btnSubmit" type="button">Enviar</button>
+                        <button class="btnSubmit d-flex ai-center jc-center" id="btnSubmit"
+                            type="submit">Enviar</button>
 
                     </form>
                     <div class="form__img">
@@ -150,7 +154,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../js/event.js"></script>
+    <script src="../js/form.js"></script>
 </body>
 
 </html>

@@ -25,9 +25,9 @@ body {
 
 /* PARA TODO EL ALTO DEL VH*/
 body,
-main ,
+main,
 .root-page,
-.container-main{
+.container-main {
     min-height: 100vh;
 }
 
@@ -49,7 +49,8 @@ img {
     max-width: 100%;
     display: block;
 }
-button{
+
+button {
     cursor: pointer;
 }
 
@@ -93,29 +94,33 @@ button{
     width: 100%;
     gap: 1.5rem;
 }
-.header-page__down{
+
+.header-page__down {
     flex-direction: column;
     justify-content: center;
 }
 
 .header-page__search,
-.header-page__greeting{   
+.header-page__greeting {
     justify-content: end;
 }
 
-.header-page__greeting{
+.header-page__greeting {
     justify-content: start;
 }
+
 .header-page__logo {
     font-size: 1rem;
     font-weight: 300;
 }
-.form-search{
+
+.form-search {
     width: 100%;
     position: relative;
     border-radius: 50px;
-    background:#FFF;
-    transition: border .2s ease-in-out; 
+    background: #FFF;
+    transition: border .2s ease-in-out;
+    border: 2px solid transparent;
 }
 
 .form-search__search {
@@ -125,10 +130,11 @@ button{
     outline: none;
 }
 
-.form-search--focus{
-    border: 2px double #e46612;
+.form-search--focus {
+    border: 2px solid #e46612;
 }
-.bi-search{
+
+.bi-search {
     position: absolute;
     right: .7rem;
     z-index: 100;
@@ -338,7 +344,8 @@ button{
     font-size: .6rem;
     padding: .5rem;
 }
-.nav-list{
+
+.nav-list {
     background-color: #302727;
 }
 
@@ -375,16 +382,18 @@ button{
     .footer__copyrigth {
         font-size: .9rem;
     }
-    .header-page{
+
+    .header-page {
         flex-direction: column;
     }
 
-    .header-page__down{
+    .header-page__down {
         flex-direction: row;
         justify-content: space-between;
     }
-    .header-page__greeting{
-       justify-content: start;
+
+    .header-page__greeting {
+        justify-content: start;
     }
 }
 
