@@ -72,23 +72,99 @@ h1 {
 .card-product__btn {
     font-family: inherit;
     font-size: inherit;
-    color: #302727;
-    background-color: #f2861b;
+    color: #f0ecec;
+    background-color: #19924f;
     cursor: pointer;
-    border: 1px solid #302727;
-    display: flex;
-    padding: .3em;
-    border-radius: 50px;
-    transition: .3s ease-in-out;
+    border: 2px solid currentColor;
+    padding: .3rem .5em;
+    border-radius: 8px;
+    transition: all .5s ease-in-out;
+}
+
+.card-product__btn--disabled{
+    background-color: #ec2424;
+    opacity: .5;
+    cursor:  not-allowed;
+} 
+
+.modal{
+    position: fixed;
+    top: 0;
+    transform: translateY(0);
+    left: calc(50% - 300px);
+    inset: 0;
+    transform: scale(1);
+    transition: transform .5s ease-in-out;
+    background: transparent;
+}
+
+.modal--hidden{
+    transform: scale(0);
+}
+
+.modal__body{
+    padding: 2rem;
+    background-color: #e0d9d9;
+    color: #444;
+    line-height: 35px;
+    border-radius: 10px;
+}
+.modal__info{
+    flex-direction: column;
+}
+
+.modal__icon{
+    padding: .2rem;
+}
+
+.modal__icon--error{
+    color: #e9cc29;
+    cursor:initial;
+}
+
+.modal__btn-action{
+    background-color: #0f4b99;
+    color: #FFF;
+    padding: .6rem 1rem;
+    border-radius: 5px;
+}
+
+.modal__btn-action--hidden{
+    display: none;
+}
+
+.modal__image{
+    width: 180px;
+    height: 220px;
+    flex: 1;
+
+}
+
+.modal__image > img{
+    max-height: 100%;
+    border-radius: 7px;
+}
+
+.modal__btn-confirm,
+.modal__btn-cancel{
+    padding: .4rem .6rem;
+    color: #FFF;
+}
+
+.modal__btn-cancel{
+    background-color: #bb1b1b;
+}
+
+.modal__btn-confirm{
+    background-color: hsl(115, 70%, 32%);
 }
 
 
 /* ******************HOVERS****************** */
 @media (hover: hover) {
     .card-product__btn:hover {
-        border: 1px solid #f2861b;
-        background-color: #f2861b;
-        color: #fff;
+        background-color: #FFF;
+        color: #19924f;
     }
 }
 

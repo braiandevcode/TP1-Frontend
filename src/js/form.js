@@ -35,7 +35,6 @@ form.addEventListener("submit", (e) => {
             isValidate = false;
             break;
         }
-
     }
 
     if (isValidate) {

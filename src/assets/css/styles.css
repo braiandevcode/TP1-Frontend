@@ -6,6 +6,10 @@
 
 
 /****************************RESETEO ****************************************************/
+:root{
+    --translate-slide:0;
+    --transition-slide:transform .3s ease-out;
+}
 *,
 ::before,
 ::after {
@@ -13,6 +17,7 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    user-select: none;
 }
 
 /* PARA TODO EL CUERPO */
@@ -51,6 +56,7 @@ img {
 }
 
 button {
+    border: none;
     cursor: pointer;
 }
 
@@ -239,24 +245,56 @@ button {
     color: #dfdfdf;
 }
 
-/* SLIDE DE IMAGENES */
-.slide {
-    height: min-content;
+/* SLIDER DE IMAGENES */
+.slider{
     position: relative;
-    padding: .5rem;
-    margin-bottom: 1rem;
 }
 
+.slide {
+    margin-bottom: 1rem;
+}
+.slide,
+.slide__fig{
+    padding: .5rem;
+}
+
+.slide__fig{
+    flex: 1 0 100%;
+}
+
+.slide__img{
+    border-radius: 5px;
+}
+
+.slide--translate{
+    transform: translateX(var(--translate-slide));
+}
+.slide--transition{
+    transition: var(--transition-slide);
+}
+
+/*volver a la posición inicial */
+.slide--reset {
+    transition: var(--transition-slide);
+    transform: translateX(var(--translate-slide));
+}
+  
 .bi-arrow-left-circle-fill,
 .bi-arrow-right-circle-fill {
-    color: rgba(39, 38, 42, 0.765);
-    font-size: 2rem;
-    right: 1rem;
     position: absolute;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 2.5rem;
+    right: 2rem;
+    color: rgba(23, 22, 24, 0.765);
+    opacity: .8;
+    transition: opacity .5s ease-in-out, transform .5s ease-in-out;
+    font-weight: bold;
 }
 
 .bi-arrow-left-circle-fill {
-    left: 1rem;
+    left: 2rem;
 }
 
 /* SECCION TARJETAS */
@@ -359,7 +397,7 @@ button {
 
 
 /******************HOVERS***************************/
-@media(hover: hover) {
+@media(hover: hover) and (pointer: fine){
     a:hover {
         color: #fff;
     }
@@ -370,6 +408,11 @@ button {
 
     .footer-social__list-up:hover {
         transform: translateY(-5px);
+    }
+    .bi-arrow-left-circle-fill:hover,
+    .bi-arrow-right-circle-fill:hover{
+        opacity: 1;
+        transform: scale(1.1);
     }
 }
 
@@ -395,6 +438,10 @@ button {
     .header-page__greeting {
         justify-content: start;
     }
+
+    .slide__fig{
+        flex-basis: 50%;
+    }
 }
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 768PX***********************************/
@@ -411,6 +458,11 @@ button {
         display: flex;
         flex-direction: column;
     }
+
+    .slide__fig{
+        flex-basis:33.3%;
+    }
+
 }
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 920PX***********************************/
@@ -425,5 +477,9 @@ button {
 
     .banner {
         height: 50vh;
+    }
+    
+    .slide__fig{
+        flex-basis: 25%;
     }
 }
