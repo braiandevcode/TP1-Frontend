@@ -7,6 +7,12 @@ const products = document.getElementById("products");
 const slideShow = document.querySelector(".slide");
 const rootHtml =document.documentElement; //HTML
 
+// MODAL
+const modalContainer = document.querySelector('.modal');
+const modalBody = document.querySelector('.modal__body');
+const modalInfo = document.querySelector('.modal__info');
+const actionButton = document.querySelector('.modal__btn-action');
+
 
 // VARIABLES GLOBALES
 let hours = new Date().getHours(); // Objeto date instancia que nos provee js
@@ -157,27 +163,22 @@ const productsJson = [
 const contentInfoModal = [
     {
         "title":" Entrada invalida",
-        "description": "El valor debe ser mayor o igual que cero. Por favor, ingrese un número positivo.",
+        "description": "El valor debe ser mayor que cero. Por favor, ingrese un número positivo.",
         "icon": "bi-info-square-fill"
     },
     {
         "title":"Stock Insuficiente",
-        "description": "No hay suficiente stock disponible para este producto.",
+        "description": "No hay suficiente stock disponible para este producto.Por favor ingrese un rango valido al stock del producto.",
         "icon": "bi-exclamation-square-fill"
+    },
+    {
+        "title": "Compra Confirmada",
+        "description": "El producto se ha añadido al carrito exitosamente.",
+        "icon": "bi-check-circle-fill"
     },
 ]
 
-const modalContainer = document.querySelector('.modal');
-const modalBody = document.querySelector('.modal__body');
-const modalInfo = document.querySelector('.modal__info');
-const actionButton = document.querySelector('.modal__btn-action');
-
-// // FUNCION REUTILIZABLE PARA CREAR LOS MODALS
-// function showModal(content, actionText = "OK") {
-//     modalInfo.innerHTML = content;
-//     actionButton.textContent = actionText;
-// };
-  
+// MODAL MENSAJE DE ERROR DE VALORES NO VALIDOS
 function showInvalidInputModal() {
     const templateModal = document.getElementById("template-modal-error").content;
     const clone = templateModal.cloneNode(true);
@@ -195,7 +196,8 @@ function showInvalidInputModal() {
     modalInfo.append(clone);
     removeClass(modalContainer, "modal--hidden");
 };
-  
+
+// MODAL MENSAJE DE ERROR DE INSUFICIENCIA DE STOCK
 function showInsufficientStockModal() {
     const templateModal = document.getElementById("template-modal-error").content;
     const clone = templateModal.cloneNode(true);
@@ -214,7 +216,8 @@ function showInsufficientStockModal() {
     removeClass(modalContainer, "modal--hidden");
 
 }
-  
+
+// MODAL CASO SATISFACTORIO
 function showSuccessModal(product, quantity, total) {
     const templateModal = document.getElementById("template-modal-success").content;
     const clone = templateModal.cloneNode(true);
@@ -226,10 +229,10 @@ function showSuccessModal(product, quantity, total) {
     createText(clone.querySelector(".modal__subtitle-quantity"), "Cantidad");
     createText(clone.querySelector(".modal__subtitle-total"), "Total");
     
-    // Asignar los textos a los elementos p que contienen los strong
+
     createText(clone.querySelector(".modal__product"), `: ${product.name_product}`);
     createText(clone.querySelector(".modal__quantity"), `: ${quantity}`);
-    createText(clone.querySelector(".modal__total"), `: ${total}`);
+    createText(clone.querySelector(".modal__total"), `: $${total}`);
 
     while(modalInfo.firstElementChild) {
         modalInfo.removeChild(modalInfo.firstElementChild);
@@ -238,6 +241,26 @@ function showSuccessModal(product, quantity, total) {
     modalInfo.append(clone);
     removeClass(modalContainer, "modal--hidden");
 };
+
+// MODAL DE CONFRMACIÓN
+function showIsConfirmModal() {
+    const templateModal = document.getElementById("template-modal-error").content;
+    const clone = templateModal.cloneNode(true);
+    const infoModal = contentInfoModal[2];
+
+    createText(clone.querySelector("h3"), infoModal.title);
+    addClass(clone.querySelector("i"), infoModal.icon);
+
+    clone.querySelector("p").textContent = infoModal.description;
+
+    while(modalInfo.firstElementChild) {
+        modalInfo.removeChild(modalInfo.firstElementChild);
+    }
+
+    modalInfo.append(clone);
+    removeClass(modalContainer, "modal--hidden");
+
+}
 
 // FUNCION QUE SE ENCARGA DE PINTAR LA LISTA DE PRODUCTOS
 const renderProducts = () => {
@@ -264,15 +287,15 @@ const renderProducts = () => {
 
 // FUNCION QUE SE ENCARGA DE LA LOGICA DE OPERACIONES DE COMPRA DE PRODUCTOS
 const validateDataProducts = (e) => {
-    // VENTANA MODAL
+    let dataAttributeId = e.target.dataset.idproduct;
 
     // Mediante el id del atributo data en el boton "comprar" hacemos referencia al id del input de forma dinamica.
-    let inputElement = document.getElementById(`${e.target.dataset.idproduct}`);
-    let cardReferenceId = document.querySelector(`[data-idproduct="${e.target.dataset.idproduct}"]`);
+    let inputElement = document.getElementById(`${dataAttributeId}`);
+    let cardReferenceId = document.querySelector(`[data-idproduct="${dataAttributeId}"]`);
     let titleStock = cardReferenceId.parentElement.previousElementSibling.lastElementChild.firstElementChild;
     let inputValue = parseInt(inputElement.value);
   
-    let product = productsJson.find((productId) => productId.id_product == e.target.dataset.idproduct); 
+    let product = productsJson.find((productId) => productId.id_product == dataAttributeId); 
 
     let stock = product.stock_product;
     let price = product.price_product;
@@ -282,46 +305,45 @@ const validateDataProducts = (e) => {
         // aseguramos que lo que ingresen sea un numero
         if (!isNaN(inputValue)) {
             //si el valor del input es mayor al stock o menor o igual a cero no es posible.
-            if (inputValue < 0){
+            if (inputValue <= 0){
                showInvalidInputModal();
                removeClass(actionButton, "modal__btn-action--hidden");
-            }else if(inputValue <= stock){ 
+            }else if(inputValue > stock || stock < 0){
+                showInsufficientStockModal();
+                removeClass(actionButton, "modal__btn-action--hidden");
+            }else{
+                localStorage.setItem("diference", inputValue);
+                let total = inputValue * price; //operacion
                 stock-= inputValue;
                 product.stock_product = stock;
                 localStorage.setItem("stock", product.stock_product);
-                localStorage.getItem("stock", product.stock_product);
+                localStorage.setItem("idproduct", product.id_product);
 
-                if(stock < 0){
-                    showInsufficientStockModal();
-                    removeClass(actionButton, "modal__btn-action--hidden");
-                }else{
-                    let total = inputValue * price; //operacion
-                    console.log(`El total es de: $${total}`);
-                    titleStock.textContent = `Stock: ${stock}`;
 
-                   addClass(actionButton, "modal__btn-action--hidden");
+                console.log(`El total es de: $${total}`);
+                titleStock.textContent = `Stock: ${stock}`;
 
-                    // MODAL EN CASO SATISFACTORIO
-                    showSuccessModal(product, inputValue, total);
-    
-                    // DESABILITO BOTON SI NO HAY STOCK
-                    if (stock === 0) {
-                        e.target.setAttribute("disabled", "true");
-                        addClass(e.target, "card-product__btn--disabled");
-                        e.target.textContent="Sin Stock";
-                    }
+                addClass(actionButton, "modal__btn-action--hidden");
+
+                // MODAL EN CASO SATISFACTORIO
+                showSuccessModal(product, inputValue, total);
+
+                // DESABILITO BOTON SI NO HAY STOCK
+                if (stock === 0) {
+                    e.target.setAttribute("disabled", "true");
+                    addClass(e.target, "card-product__btn--disabled");
+                    e.target.textContent="Sin Stock";
                 }
             }
-
             inputElement.value = ""; // despues del evento limiamos los campos
+
             return true;
         } 
         return false;
     }
 }
 
-
-//**********************************************FUNCIONALIDAD DE SLIDE*************************************************//
+//*************************************FUNCIONALIDAD DE SLIDE*****************************************//
 
 // FUNCION REUTILIZABLE PARA USO DE TRANSICION EN SLIDE
 const handleSlideTransition = (insertMethod) => {
@@ -388,7 +410,6 @@ const handlePrev = () => {
 };
 
 /*****************************************EVENTOS Y FUNCIONES PARA TODA LA PÁGINA*****************************************/
-
 // VALIDAR TARGET DE EVENTO CLICK
 const validateTargetEventClick = (e) => {
     // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA EJECUTAR LO CORRESPONDIENTE.
@@ -405,10 +426,32 @@ const validateTargetEventClick = (e) => {
         handleNext();
     }
 
-    if(e.target.matches(".modal__btn-action") || e.target.matches(".modal__btn-cancel")){
+    if(e.target.matches(".modal__btn-action")){
         addClass(modalContainer, "modal--hidden");
     }
 
+    if (e.target.matches(".modal__btn-cancel")) {
+        const inputValue = document.getElementById(`${localStorage.getItem("idproduct")}`);
+        const button = document.querySelector(`[data-idproduct="${localStorage.getItem("idproduct")}"]`);
+        const contentStock= inputValue.parentElement.firstElementChild;
+        let product = productsJson.find(objectProduct => objectProduct.id_product == localStorage.getItem("idproduct"));
+        product.stock_product += parseInt(localStorage.getItem("diference")); 
+
+        contentStock.textContent = `Stock: ${product.stock_product}`;
+
+        // ASEGURAMOS QUE EN CASO DE QUEDAR SIN STOCK Y CANCELAR NO SE APLIQUE EL DISABLED DEL BOTON.
+        button.removeAttribute("disabled");
+        removeClass(button, "card-product__btn--disabled");
+        button.textContent= "Agregar";
+
+        addClass(modalContainer, "modal--hidden");
+    }
+    
+
+    if(e.target.matches(".modal__btn-confirm")){
+        showIsConfirmModal();
+        removeClass(actionButton, "modal__btn-action--hidden");
+    }
 
     // SLIDE ATRAS
     if(e.target.matches(".bi-arrow-left-circle-fill")){
@@ -440,5 +483,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if(location.pathname === "/src/pages/products.html"){
         renderProducts();
     }
+
+    localStorage.removeItem("idproduct");
+    localStorage.removeItem("diference");
+    localStorage.removeItem("stock");
 });
 
