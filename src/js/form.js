@@ -1,6 +1,6 @@
 //Referencias a selectores HTML
-const inputs = document.querySelectorAll(".form__input");
-const form = document.getElementById("form-contact");
+const inputs = d.querySelectorAll(".form__input");
+const form = d.getElementById("form-contact");
 
 //Carácteres para validar
 const minCharacter = "abcdefghijklmnñopqrstuvwxyz";

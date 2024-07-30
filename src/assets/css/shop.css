@@ -1,0 +1,11 @@
+@import url("/src/assets/css/styles.css");
+
+
+.cart{
+    min-height: inherit;
+    color: red;
+}
+
+.cart__title{
+    color: orange;
+}
