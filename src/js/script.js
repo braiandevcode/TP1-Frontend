@@ -568,11 +568,11 @@ const initPage = ()=>{
     clickEvents();
  
     // RENDERIZA LISTA DE PRODUCTOS SOLO CUANDO EL PATH SEA EL CORRESPONDIENTE.
-    if(location.pathname === "/src/pages/products.html"){
+    if(location.pathname === "/TP1-Frontend/src/pages/products.html"){
         renderProducts();
     }
  
-    if(location.pathname === "/src/pages/shop.html"){
+    if(location.pathname === "/TP1-Frontend/src/pages/shop.html"){
         renderCartItems();
     }
 }
