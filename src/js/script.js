@@ -193,7 +193,6 @@ const showModalsError = (info)=>{
     removeClass(modalContainer, "modal--hidden");
 };
 
-
 // MODAL CASO SATISFACTORIO
 const showSuccessModal=(product, quantity, total)=> {
     const templateModal = d.getElementById("template-modal-success").content;
@@ -281,7 +280,7 @@ const renderCartItems = () => {
     if(cartItemsStorage.length > 0){
         cartItemsStorage.forEach(item => {
             const listItem = d.createElement("li");
-            listItem.textContent = `${item.product} - Cantidad: ${item.quantity} - Total: $${item.total}`;
+            listItem.textContent = `Producto: ${item.name} - Cantidad: ${item.quantity} - Total: $${item.total}`;
             fragment.appendChild(listItem);
         });
         cartItemList.append(fragment);
@@ -314,6 +313,7 @@ const validateDataProducts = (e) => {
     let idProduct = product.id_product;
     
     // CREAMOS CLAVE-VALOR EN EL ALMACENAMIENTO LOCAL PARA EL STOCK Y EL ID DEL PRODUCTO.
+    // const infoProduct = JSON.parse(localStorage.getItem("info")) || [];
     localStorage.setItem("stock", `${stock}`);
     localStorage.setItem("idproduct", `${idProduct}`);
     
@@ -342,13 +342,6 @@ const validateDataProducts = (e) => {
         product.stock_product =stock;
         localStorage.setItem("stock", product.stock_product);
 
-        let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
-        if (stock === 0) outOfStockProducts.push({ idProduct: idProduct });
-
-       
-        localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
-
-
         titleStock.textContent = `Stok: ${localStorage.getItem("stock")}`;
         titleStock.dataset.stock = localStorage.getItem("stock");
         
@@ -359,8 +352,14 @@ const validateDataProducts = (e) => {
 
         // DESABILITO BOTON
         buttonDisabled(e.target, stock);
-        // VACIAMOS CAMPO
-        inputElement.value = ""; 
+
+    //     infoProduct.push({ stock, price, idProduct });
+
+    //     infoProduct.forEach(p =>{
+    //         console.log(p.price);
+    //     })
+
+    //    localStorage.setItem("info", JSON.stringify(infoProduct));
         return true;
     }
 
@@ -435,17 +434,17 @@ const handlePrev = () => {
 };
 
 // FUNCION QUE SE ENCARGA DE ACTUALIZAR EL CARRITO
-const updateCart = (product, inputValue, total) => {
+const updateCart = (name, productStock, inputValue, total) => {
     // LEER LOS VALORES DEL CARRITO Y CONVERTIRLOS A FORMATO JSON O ARREGLO VACÍO
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
     // ACTUALIZAR EL STOCK DEL PRODUCTO
-    product.stock_product -= inputValue;
-    localStorage.setItem("stock", product.stock_product);
+    productStock - inputValue;
+    localStorage.setItem("stock", productStock);
 
     // ACTUALIZAR EL ARREGLO DEL CARRITO CON EL NUEVO PRODUCTO
     cartItems.push({
-        product: product.name_product,
+        name:name,
+        product: productStock,
         quantity: inputValue,
         total: total
     });
@@ -486,9 +485,9 @@ const validateTargetEventClick = (e) => {
     if (e.target.matches(".modal__btn-cancel")) {
         let getItemIdProduct = localStorage.getItem("idproduct");
 
-        const inputValue = d.getElementById(`${getItemIdProduct}`);
+        const inputElment = d.getElementById(`${getItemIdProduct}`);
         const button = d.querySelector(`[data-idproduct="${getItemIdProduct}"]`);
-        const contentStock= inputValue.parentElement.firstElementChild;
+        const contentStock= inputElment.parentElement.firstElementChild;
         let product = productsJson.find(objectProduct => objectProduct.id_product == getItemIdProduct);
 
         // VOLVEMOS A AGREGAR EL VALOR DEL INPUT AL STOCK
@@ -508,49 +507,58 @@ const validateTargetEventClick = (e) => {
         addClass(modalContainer, "modal--hidden");
         removeClass(actionButton, "modal__btn-action--hidden");
         showModalsError(contentInfoModal[4]);
+        // VACIAMOS CAMPO
+        inputElment.value = ""; 
     }
     
     // EVENTO AL DAR AL CONFIRMAR COMPRA
     if(e.target.matches(".modal__btn-confirm")){
-        let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
-
+        e.preventDefault()
         // // OBTENEMOS LOS DATOS DESDE EL ALMACENAMIENTO LOCAL.
         const idProduct = localStorage.getItem("idproduct");
         const stock = parseInt(localStorage.getItem("stock"));
-        const inputValue = parseInt(localStorage.getItem("diference"));
+        const inputElement = d.getElementById(`${idProduct}`);
+        console.log(inputElement);
+        const inputValue = parseInt(inputElement.value);
+        console.log(typeof inputValue);
+        console.log(inputValue);
+
+        // const inputValue = parseInt(localStorage.getItem("diference"));
 
         const product = productsJson.find((product) => product.id_product == idProduct);
         const total = inputValue * product.price_product;
 
+        console.log(inputValue, total, "evento");
+        
         const textStock = d.querySelectorAll(`[data-stock="${product.id_product}"]`);
-
+        
         textStock.textContent= localStorage.getItem("stock");
-
+        
         // ACTUALIZAR CARRO
-        updateCart(product, inputValue, total);
+        updateCart(product.name_product, product.stock_product, inputValue, total);
 
         // VERIFICAR SI EL STOCK ES CERO
         if (parseInt(localStorage.getItem("stock")) == 0) {
+            let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
             outOfStockProducts.push({
                 idProduct:idProduct,
                 stock: stock
             });
             // Almacena el array actualizado en el localStorage
             localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
-        }
-        
-        localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
 
-        for (let i = 0; i < outOfStockProducts.length; i++) {
-            const cardId = d.querySelector(`[data-card="${outOfStockProducts[i].idProduct}"]`);
-            const btnIdproduct = d.querySelector(`[data-idproduct="${outOfStockProducts[i].idProduct}"]`);
-            cardId.querySelector("h5").textContent= "Sin Stock";
-            cardId.querySelector("h5").dataset.stock=0;
-            buttonDisabled(btnIdproduct, 0);
+            for (let i = 0; i < outOfStockProducts.length; i++) {
+                const cardId = d.querySelector(`[data-card="${outOfStockProducts[i].idProduct}"]`);
+                const btnIdproduct = d.querySelector(`[data-idproduct="${outOfStockProducts[i].idProduct}"]`);
+                cardId.querySelector("h5").textContent= "Sin Stock";
+                cardId.querySelector("h5").dataset.stock=0;
+                buttonDisabled(btnIdproduct, 0);
+            };
         };
-
         showModalsError(contentInfoModal[3]);
         removeClass(actionButton, "modal__btn-action--hidden");
+        // VACIAMOS CAMPO
+        inputElement.value = ""; 
     }
 }
 
@@ -567,7 +575,7 @@ const initPage = ()=>{
     // EVENTO DE CLICK.
     clickEvents();
  
-    // RENDERIZA LISTA DE PRODUCTOS SOLO CUANDO EL PATH SEA EL CORRESPONDIENTE.
+    // RENDERIZA LISTA DE PRODUCTOS SOLO CUANDO EL PATH SEA EL CORRESPONDIENTE.(COMENTARLA SI ESTAS PROBANDO)
     if(location.pathname === "/TP1-Frontend/src/pages/products.html"){
         renderProducts();
     }
@@ -575,6 +583,15 @@ const initPage = ()=>{
     if(location.pathname === "/TP1-Frontend/src/pages/shop.html"){
         renderCartItems();
     }
+
+    // DESCOMENTAR ESTAS LINEAS PARA EL DESARROLLO LOCAL.
+    // if(location.pathname === "/src/pages/products.html"){
+    //     renderProducts();
+    // }
+ 
+    // if(location.pathname === "/src/pages/shop.html"){
+    //     renderCartItems();
+    // }
 }
 
 //*****************************EVENTO DE CARGA DE LA PAGINA********************************
