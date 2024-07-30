@@ -275,6 +275,7 @@ const renderCartItems = () => {
     const cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
     const cartItemList = d.querySelector(".cart-items");
 
+    // LIMPIAR CARRITO 
     cartItemList.innerHTML="";
     // RECORRERMOS LOS ELEMENTOS DE LA LISTA
     if(cartItemsStorage.length > 0){
@@ -312,16 +313,18 @@ const validateDataProducts = (e) => {
     let price = product.price_product;
     let idProduct = product.id_product;
     
-    // CREAMOS CLAVE-VALOR EN EL ALMACENAMIENTO LOCAL PARA EL STOCK Y EL ID DEL PRODUCTO.
     // const infoProduct = JSON.parse(localStorage.getItem("info")) || [];
+
+    // CREAMOS CLAVE-VALOR EN EL ALMACENAMIENTO LOCAL PARA EL STOCK Y EL ID DEL PRODUCTO.
     localStorage.setItem("stock", `${stock}`);
     localStorage.setItem("idproduct", `${idProduct}`);
     
-    //QUE EFECTIVAMENTE SEA UN NUMERO.
+    // SI ES CERO O EL CAMPO ESTA VACIO
     if(inputElement.value == 0 || inputElement.value == "") return;
-
+    
+    //QUE EFECTIVAMENTE SEA UN NUMERO.
     if (!isNaN(inputValue)) {
-        //SI EL VALOR ES MENOR O IGUAL A 0
+        //SI EL VALOR ES MENOR A 0
         if (inputValue < 0){
             showModalsError(contentInfoModal[0]);
             removeClass(actionButton, "modal__btn-action--hidden");
