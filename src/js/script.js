@@ -269,20 +269,21 @@ const renderProducts = () => {
 };
 
 // FUNCION AUXILIAR PARA CALCULAR EL TOTAL DE COMPRA EN CARRITO.
-const operateAmountTotal = (countAmount) => {
+const operateAmountTotal = (amount) => {
     // LEER LOS VALORES DEL CARRITO Y CONVERTIRLOS A FORMATO JSON O ARREGLO VACÍO
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     // SUMAMOS EL TOTAL DE LA COMPRA
     cartItems.forEach(sum => {
-        countAmount += sum.total;
+        amount += sum.total;
     });
-    return countAmount;
+    return amount;
 }
 
 //***RENDERIZADO DE LA LISTA DE PRODUCTOS AGREGADOS****
 const renderCartItems = () => {
     const fragment = d.createDocumentFragment();
     const cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
+    
     const cartItemList = d.querySelector(".cart-items");
     const totalAmount = d.createElement("div");
     const titleAmount = d.createElement("h5");
@@ -297,15 +298,16 @@ const renderCartItems = () => {
     // RECORRERMOS LOS ELEMENTOS DE LA LISTA
     if (cartItemsStorage.length > 0) {
         cartItemsStorage.forEach(item => {
-            const listItem = d.createElement("li");
-            listItem.textContent = `Producto: ${item.name} - Cantidad: ${item.quantity} - Total: $${item.total}`;
+            const listItem = d.createElement("div");
+            const p =d.createElement("p");
+            p.textContent = `Producto: ${item.name} - Cantidad: ${item.quantity} - Total: $${item.total}`;
+
+            listItem.appendChild(p);
             fragment.appendChild(listItem);
         });
         cartItemList.append(fragment);
         cartItemList.append(totalAmount);
-    }
-
-    countAmount = 0;
+    };
 };
 
 // FUNCION AUXILIAR PARA VALIDAR ID EN LOCALSTORAGE
@@ -533,13 +535,13 @@ const validateTargetEventClick = (e) => {
 
     // EVENTO A BOTON CANCELAR
     if (e.target.matches(".modal__btn-cancel")) {
+        e.preventDefault();
         const targetId = e.target.dataset.id;
         const product = productsJson.find(product => product.id_product == targetId);
         const infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
 
         const inputElment = d.getElementById(`${targetId}`);
         const button = d.querySelector(`[data-idproduct="${targetId}"]`);
-        const icon = button.previousElementSibling;
         const contentStock = inputElment.parentElement.firstElementChild;
 
         // INVOCAR FUNCION PARA DEVOLVER VALOR AL STOCK AL CANCELAR.
@@ -568,7 +570,6 @@ const validateTargetEventClick = (e) => {
     // EVENTO AL DAR AL CONFIRMAR COMPRA
     if (e.target.matches(".modal__btn-confirm")) {
         e.preventDefault();
-
         //OBTENEMOS LOS DATOS DESDE EL ALMACENAMIENTO LOCAL.
         let infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
         const targetId = e.target.dataset.id;
@@ -618,8 +619,6 @@ const validateTargetEventClick = (e) => {
     }
 
 
-
-
     if (e.target.matches(".mision-section h2")) {
         const content = e.target.nextElementSibling;
 
@@ -628,23 +627,24 @@ const validateTargetEventClick = (e) => {
         } else {
             content.style.display = "none";
         }
-
     }
 }
-
-
 
 // FUNCION PARA EVENTOS DE CLICKS
 const clickEvents = () => d.addEventListener("click", validateTargetEventClick);
 
-const media = window.matchMedia("(max-width: 768px)");
-if (media.matches == true) {
-    clickEvents();
-}
+const validateMedia = (sizeDisplay)=>{
+    const media = window.matchMedia(sizeDisplay);
+    if (media.matches == true) {
+        clickEvents();
+    }
+};
 
 const initPage = () => {
     //OBTENER DATOS ACTUALES DEL ALMACENAMIENTO
     loadStockFromLocalStorage();
+
+    validateMedia("(max-width:768px)");
 
     // SALUDAMOS
     grettWelcome();

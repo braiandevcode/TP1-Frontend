@@ -201,8 +201,6 @@ h1 {
     opacity: 1;
 }
 
-
-
 /* ******************HOVERS****************** */
 @media (hover: hover) {
     .card-product__btn:hover {
@@ -218,7 +216,6 @@ h1 {
         background-color: #148a24;
     }
 }
-
 
 /*************MEDIAQUERYS A PARTIR DE LOS 768PX*******************/
 @media screen and (min-width: 768px) {
