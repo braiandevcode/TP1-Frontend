@@ -71,14 +71,20 @@ h1 {
 
 .card-product__btn {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 1rem;
+    text-align: center;
     color: #f0ecec;
     background-color: #19924f;
     cursor: pointer;
     border: 2px solid currentColor;
-    padding: .3rem .5em;
+    padding: .3rem .5rem;
     border-radius: 8px;
     transition: all .5s ease-in-out;
+    display: inline-block;
+}
+
+.bi-bag-plus-fill{
+    font-size: 1.2rem;
 }
 
 .card-product__btn--disabled{

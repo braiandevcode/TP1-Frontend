@@ -1,23 +1,22 @@
 "use strict";
 
-const d = document;
+const d = document,
 // LOCALIZACION DE SELECTORES HTML
-const welcome = d.querySelector(".header-page__title");
-const iconWelcome = d.querySelector(".header-page__welcome");
-const products = d.getElementById("products");
-const slideShow = d.querySelector(".slide");
-const rootHtml = d.documentElement;
-
-// MODAL
-const modalContainer = d.querySelector('.modal');
-const modalInfo = d.querySelector('.modal__info');
-const actionButton = d.querySelector('.modal__btn-action');
+welcome = d.querySelector(".header-page__title"),
+iconWelcome = d.querySelector(".header-page__welcome"),
+products = d.getElementById("products"),
+slideShow = d.querySelector(".slide"),
+rootHtml = d.documentElement,
+modalContainer = d.querySelector('.modal'),  //SELECTORES DE MODALES
+modalInfo = d.querySelector('.modal__info'),
+actionButton = d.querySelector('.modal__btn-action');
 
 // VARIABLES GLOBALES
-let hours = new Date().getHours(); // Objeto date instancia que nos provee js
+let hours = new Date().getHours(), 
+decrementStock=0,
+countAmount=0;
 
 //***ARREGLO DE OBJETOS JSON GLOBALMENTE***//
-
 // ARREGLO DE PRODUCTOS
 const productsJson = [
     {
@@ -146,7 +145,6 @@ const eventFocus = (elEvent, classTargetElement, classNameModified) => {
 };
 
 // ***************************FUNCIONALIDAD DE SALUDO DE BIENVENIDA*************************//
-
 // FUNCION QUE VALIDA LA HORA LOCAL DEL USUARIO
 const validationHours = () => {
     if (hours >= 5 && hours <= 12) {
@@ -174,38 +172,39 @@ const grettWelcome = () => {
 
 //*********************************FUNCIONALIDAD PARA LISTA DE PRODUCTOS*****************************************//
 
-// FUNCION REUTILIZABLE PARA MODAL DE MENSAJES
-const showModalsError = (info) => {
+// CONFIGURACION PARA CREAR MODALES
+const configureModal =(info)=>{
     const templateModal = d.getElementById("template-modal-alerts").content;
     const clone = templateModal.cloneNode(true);
-    const infoModal = info;
-
-    createText(clone.querySelector("h3"), infoModal.title);
-    addClass(clone.querySelector("i"), infoModal.icon);
-
-    clone.querySelector("p").textContent = infoModal.description;
+    createText(clone.querySelector("h3"), info.title);
+    addClass(clone.querySelector("i"), info.icon);
+    clone.querySelector("p").textContent = info.description;
 
     while (modalInfo.firstElementChild) {
         modalInfo.removeChild(modalInfo.firstElementChild);
-    }
+    };
 
     modalInfo.append(clone);
+}
+
+// FUNCION PARA MODAL DE MENSAJES
+const showModalsError = (indexMessage) => {
+    const infoModal = contentInfoModal[indexMessage];
+    configureModal(infoModal);
     removeClass(modalContainer, "modal--hidden");
 };
 
-// MODAL CASO SATISFACTORIO
-const showSuccessModal = (product, quantity, total) => {
+// FUNCION PARA MODAL DE INFORMACION DE COMPRA.
+const showInfoPurchModal = (product, quantity, total) => {
     const templateModal = d.getElementById("template-modal-success").content;
     const clone = templateModal.cloneNode(true);
-
     clone.querySelector("img").src = product.image_product;
     clone.querySelector("img").alt = product.name_product;
-
+    clone.querySelector(".modal__btn-cancel").setAttribute("data-id", product.id_product);
+    clone.querySelector(".modal__btn-confirm").setAttribute("data-id", product.id_product);
     createText(clone.querySelector(".modal__subtitle-product"), "Producto");
     createText(clone.querySelector(".modal__subtitle-quantity"), "Cantidad");
     createText(clone.querySelector(".modal__subtitle-total"), "Total");
-
-
     createText(clone.querySelector(".modal__product"), `: ${product.name_product}`);
     createText(clone.querySelector(".modal__quantity"), `: ${quantity}`);
     createText(clone.querySelector(".modal__total"), `: $${total}`);
@@ -235,7 +234,7 @@ const buttonDisabled = (btn, comparation) => {
 const renderProducts = () => {
     const fragment = d.createDocumentFragment();
     const template = d.getElementById("product-template").content;
-    // Pregunto primero si hay productos
+    // PREGUNTO PRIMERO SI HAY
     if (productsJson.length > 0) {
         productsJson.forEach((product) => {
             const clone = template.cloneNode(true);
@@ -255,8 +254,8 @@ const renderProducts = () => {
 
         products.append(fragment);
     }
-    let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
 
+    let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
     // PRODUCTOS SIN STOCK.
     outOfStockProducts.forEach(outOfStockProduct => {
         const cardElement = d.querySelector(`[data-card="${outOfStockProduct.idProduct}"]`);
@@ -269,11 +268,29 @@ const renderProducts = () => {
     });
 };
 
-// ***RENDERIZADO DE LA LISTA DE PRODUCTOS AGREGADOS****
+// FUNCION AUXILIAR PARA CALCULAR EL TOTAL DE COMPRA EN CARRITO.
+const operateAmountTotal = (countAmount)=>{
+    // LEER LOS VALORES DEL CARRITO Y CONVERTIRLOS A FORMATO JSON O ARREGLO VACÍO
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    // SUMAMOS EL TOTAL DE LA COMPRA
+    cartItems.forEach(sum =>{
+        countAmount += sum.total;
+    });
+    return countAmount;
+}
+
+//***RENDERIZADO DE LA LISTA DE PRODUCTOS AGREGADOS****
 const renderCartItems = () => {
     const fragment = d.createDocumentFragment();
     const cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
     const cartItemList = d.querySelector(".cart-items");
+    const totalAmount = d.createElement("div");
+    const titleAmount = d.createElement("h5");
+    addClass(totalAmount, "cart__content-amount");
+    addClass(titleAmount, "cart__amount");
+
+    titleAmount.textContent= `Total: $${operateAmountTotal(countAmount)}`;
+    totalAmount.append(titleAmount);
 
     // LIMPIAR CARRITO 
     cartItemList.innerHTML = "";
@@ -285,7 +302,25 @@ const renderCartItems = () => {
             fragment.appendChild(listItem);
         });
         cartItemList.append(fragment);
+        cartItemList.append(totalAmount);
     }
+
+    countAmount=0;
+};
+
+// FUNCION AUXILIAR PARA VALIDAR ID EN LOCALSTORAGE
+const validateExistProduct= (infoArr, data, prop, condition)=>{
+    // BUSCO EL INDICE DEL OBJETO
+    let storedProductIndex = infoArr.findIndex(p => p[prop] == condition);
+    // SI ES ENCONTRADO MODIFICAR VALORES SINO AGREGAR NUEVO OBJETO DE CARRITO.
+    storedProductIndex !== -1 ? infoArr[storedProductIndex] = data
+    : infoArr.push(data);
+}
+
+// GUARDAR EL ESTADO ACTUAL DE LOS PRODUCTOS.
+const saveStockToLocalStorage = () => {
+    // AGREGAR DATOS DE PRODUCTOS EN FORMATO TEXTO PLANO
+    localStorage.setItem("productsStock", JSON.stringify(productsJson));
 };
 
 // FUNCION QUE SE ENCARGA DE LA LOGICA DE OPERACIONES DE COMPRA DE PRODUCTOS
@@ -313,11 +348,7 @@ const validateDataProducts = (e) => {
     let price = product.price_product;
     let idProduct = product.id_product;
 
-    // const infoProduct = JSON.parse(localStorage.getItem("info")) || [];
-
-    // CREAMOS CLAVE-VALOR EN EL ALMACENAMIENTO LOCAL PARA EL STOCK Y EL ID DEL PRODUCTO.
-    localStorage.setItem("stock", `${stock}`);
-    localStorage.setItem("idproduct", `${idProduct}`);
+    const infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
 
     // SI ES CERO O EL CAMPO ESTA VACIO
     if (inputElement.value == 0 || inputElement.value == "") return;
@@ -326,50 +357,48 @@ const validateDataProducts = (e) => {
     if (!isNaN(inputValue)) {
         //SI EL VALOR ES MENOR A 0
         if (inputValue < 0) {
-            showModalsError(contentInfoModal[0]);
+            showModalsError(0);
             removeClass(actionButton, "modal__btn-action--hidden");
             return;
         }
 
         // SI VALOR DE INPUT ES MAYOR AL STOCK
         if (inputValue > stock) {
-            showModalsError(contentInfoModal[2]);
+            showModalsError(2);
             removeClass(actionButton, "modal__btn-action--hidden");
             return
         }
 
-        // GUARDAMOS EN LOCALSTORAGE EL VALOR DEL INPUT PARA PODER OPERAR MAS TARDE.
-        localStorage.setItem("diference", inputValue);
+        // GUARDAMOS EN VARIABLE GLOBAL PARA OPERAR MAS TARDE.
+        decrementStock = inputValue;
         let total = inputValue * price;
         stock -= inputValue;
         product.stock_product = stock;
-        localStorage.setItem("stock", product.stock_product);
-
-        titleStock.textContent = `Stok: ${localStorage.getItem("stock")}`;
-        titleStock.dataset.stock = localStorage.getItem("stock");
+    
+        titleStock.textContent = `Stock: ${product.stock_product}`;
+        titleStock.dataset.stock = product.stock_product;
 
         addClass(actionButton, "modal__btn-action--hidden");
 
         // MODAL EN CASO SATISFACTORIO
-        showSuccessModal(product, inputValue, total);
+        showInfoPurchModal(product, inputValue, total);
 
         // DESABILITO BOTON
         buttonDisabled(e.target, stock);
 
-        //     infoProduct.push({ stock, price, idProduct });
+        // INVOCO FUNCION PARA VERIFICAR SI EXISTE EL ID.
+        validateExistProduct(infoProductStorage, { stock, price, idProduct }, "idProduct", idProduct);
+       
+        localStorage.setItem("info", JSON.stringify(infoProductStorage));
 
-        //     infoProduct.forEach(p =>{
-        //         console.log(p.price);
-        //     })
-
-        //    localStorage.setItem("info", JSON.stringify(infoProduct));
+        // INVOCO PARA CARGAR DATOS ACTUALES HASTA AQUI LUEGO DE VALIDAR.
+        saveStockToLocalStorage();
         return true;
     }
 
-    showModalsError(contentInfoModal[1]);
+    showModalsError(1);
     return false;
 }
-
 //*************************************FUNCIONALIDAD DE SLIDE*****************************************//
 
 // FUNCION REUTILIZABLE PARA USO DE TRANSICION EN SLIDE
@@ -437,31 +466,49 @@ const handlePrev = () => {
 };
 
 // FUNCION QUE SE ENCARGA DE ACTUALIZAR EL CARRITO
-const updateCart = (name, productStock, inputValue, total) => {
+const updateCart = (name, inputValue, total) => {
     // LEER LOS VALORES DEL CARRITO Y CONVERTIRLOS A FORMATO JSON O ARREGLO VACÍO
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    // ACTUALIZAR EL STOCK DEL PRODUCTO
-    productStock - inputValue;
-    localStorage.setItem("stock", productStock);
 
-    // ACTUALIZAR EL ARREGLO DEL CARRITO CON EL NUEVO PRODUCTO
-    cartItems.push({
-        name: name,
-        product: productStock,
-        quantity: inputValue,
-        total: total
-    });
+    let storedProductCart = cartItems.find(prod => prod.name == name);
+    if(storedProductCart){
+        storedProductCart.quantity += inputValue;
+        storedProductCart.total += total;
+    }else{
+        validateExistProduct(cartItems, { name:name, quantity:inputValue , total:total }, "name", name);
+    };
 
     // GUARDAR EL CARRITO ACTUALIZADO EN EL LOCALSTORAGE
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
+// FUNCION PARA CARGAR LOS PRODUCTOS EN ALMACENAMIENTO LOCAL.
+const loadStockFromLocalStorage = () => {
+    //OBTENER Y CONVERTIR A OBJETO JSON
+    const storedProducts = JSON.parse(localStorage.getItem("info"));
+    if (storedProducts) {
+        storedProducts.forEach((storedProduct) => {
+            const product = productsJson.find(p => p.id_product === storedProduct.idProduct);
+            if (product) product.stock_product = storedProduct.stock;
+        });
+    }
+};
+
+// FUNCION QUE SE ENCARGA DE OPERAR Y DEVOLVER LOS VALORES QUITADOS AL STOCK (SOLO CUANDO SE CANCELA).
+const refoundStock = (product, contentStock)=>{
+    // VOLVEMOS A AGREGAR EL VALOR DEL INPUT AL STOCK
+    product.stock_product+= decrementStock;    
+    contentStock.textContent = `Stock: ${product.stock_product}`;
+    decrementStock -= product.stock_product;
+    if(decrementStock < 0) decrementStock=0;
+}
+ 
 /*****************************************EVENTOS Y FUNCIONES PARA TODA LA PÁGINA*****************************************/
 // VALIDAR TARGET DE EVENTO CLICK
 const validateTargetEventClick = (e) => {
     // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA EJECUTAR LO CORRESPONDIENTE.
-
-    // EVENTO A BOTON COMPRAR
+    console.log(e.target);
+    // EVENTO A BOTON AGREGAR
     if (e.target.matches(".card-product__btn")) {
         e.preventDefault();
         validateDataProducts(e);
@@ -486,79 +533,87 @@ const validateTargetEventClick = (e) => {
 
     // EVENTO A BOTON CANCELAR
     if (e.target.matches(".modal__btn-cancel")) {
-        let getItemIdProduct = localStorage.getItem("idproduct");
+        const targetId = e.target.dataset.id;
+        const product = productsJson.find(product => product.id_product == targetId);
+        const infoProductStorage= JSON.parse(localStorage.getItem("info")) || [];
 
-        const inputElment = d.getElementById(`${getItemIdProduct}`);
-        const button = d.querySelector(`[data-idproduct="${getItemIdProduct}"]`);
+        const inputElment = d.getElementById(`${targetId}`);
+        const button = d.querySelector(`[data-idproduct="${targetId}"]`);
+        const icon= button.previousElementSibling;
         const contentStock = inputElment.parentElement.firstElementChild;
-        let product = productsJson.find(objectProduct => objectProduct.id_product == getItemIdProduct);
 
-        // VOLVEMOS A AGREGAR EL VALOR DEL INPUT AL STOCK
-        product.stock_product += parseInt(localStorage.getItem("diference"));
+        // INVOCAR FUNCION PARA DEVOLVER VALOR AL STOCK AL CANCELAR.
+        refoundStock(product, contentStock);
+       
+        // BUSCO PRODUCTO EN ALMACENAMIENTO... POR SU ID
+        let storedProduct = infoProductStorage.find(prod => prod.idProduct == targetId);
 
-        contentStock.textContent = `Stock: ${product.stock_product}`;
-
-        localStorage.setItem("diference", (parseInt(localStorage.getItem("diference")) - product.stock_product));
-        localStorage.setItem("stock", product.stock_product);
-
+        storedProduct ? storedProduct.stock = product.stock_product 
+        :  validateExistProduct(infoProductStorage, { stock, price, idProduct: product.price_product }, "idProduct", targetId);
+       
+        localStorage.setItem("info", JSON.stringify(infoProductStorage));
 
         // ASEGURAMOS QUE EN CASO DE QUEDAR SIN STOCK Y CANCELAR NO SE APLIQUE EL DISABLED DEL BOTON.
         button.removeAttribute("disabled");
         removeClass(button, "card-product__btn--disabled");
+        addClass(icon, "bi-bag-plus-fill");
         button.textContent = "Agregar";
+        button.append()
 
         addClass(modalContainer, "modal--hidden");
         removeClass(actionButton, "modal__btn-action--hidden");
-        showModalsError(contentInfoModal[4]);
+        showModalsError(4);
         // VACIAMOS CAMPO
         inputElment.value = "";
     }
 
     // EVENTO AL DAR AL CONFIRMAR COMPRA
     if (e.target.matches(".modal__btn-confirm")) {
-        e.preventDefault()
-        // // OBTENEMOS LOS DATOS DESDE EL ALMACENAMIENTO LOCAL.
-        const idProduct = localStorage.getItem("idproduct");
-        const stock = parseInt(localStorage.getItem("stock"));
-        const inputElement = d.getElementById(`${idProduct}`);
-        console.log(inputElement);
+        e.preventDefault();
+        
+        //OBTENEMOS LOS DATOS DESDE EL ALMACENAMIENTO LOCAL.
+        let infoProductStorage= JSON.parse(localStorage.getItem("info")) || [];
+        const targetId = e.target.dataset.id;
+        const product = productsJson.find((prod) => prod.id_product == targetId);
+    
+        const stock =product.stock_product;
+        const inputElement = d.getElementById(`${targetId}`);
         const inputValue = parseInt(inputElement.value);
-        console.log(typeof inputValue);
-        console.log(inputValue);
 
-        // const inputValue = parseInt(localStorage.getItem("diference"));
+        const addProductTotalCart = inputValue * product.price_product;
 
-        const product = productsJson.find((product) => product.id_product == idProduct);
-        const total = inputValue * product.price_product;
+        const textStock = d.querySelectorAll(`[data-stock="${targetId}"]`);
 
-        console.log(inputValue, total, "evento");
-
-        const textStock = d.querySelectorAll(`[data-stock="${product.id_product}"]`);
-
-        textStock.textContent = localStorage.getItem("stock");
+        textStock.textContent = stock;
 
         // ACTUALIZAR CARRO
-        updateCart(product.name_product, product.stock_product, inputValue, total);
+        updateCart(product.name_product, inputValue, addProductTotalCart);
 
         // VERIFICAR SI EL STOCK ES CERO
-        if (parseInt(localStorage.getItem("stock")) == 0) {
+        if (stock == 0) {
             let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
             outOfStockProducts.push({
-                idProduct: idProduct,
+                idProduct: targetId,
                 stock: stock
             });
-            // Almacena el array actualizado en el localStorage
+            
+            // GUARDAR DATO ACTUAL EN LOCALSTORAGE
             localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
 
+            // RECORRER ARREGLO PARA ASIGNAR SIN STOCK A LO ELEMENTOS SEGUN DATOS EN LOCALSTORAGE
             for (let i = 0; i < outOfStockProducts.length; i++) {
                 const cardId = d.querySelector(`[data-card="${outOfStockProducts[i].idProduct}"]`);
                 const btnIdproduct = d.querySelector(`[data-idproduct="${outOfStockProducts[i].idProduct}"]`);
-                cardId.querySelector("h5").textContent = "Sin Stock";
-                cardId.querySelector("h5").dataset.stock = 0;
+                const textStock = cardId.querySelector("h5");
+                textStock.textContent = "Sin Stock";
+                textStock.dataset.stock = 0;
                 buttonDisabled(btnIdproduct, 0);
             };
         };
-        showModalsError(contentInfoModal[3]);
+
+        // ASIGNAR LOS NUEVOS VALORES AL CONFIRMAR.
+        localStorage.setItem("info", JSON.stringify(infoProductStorage));
+        showModalsError(3);
         removeClass(actionButton, "modal__btn-action--hidden");
         // VACIAMOS CAMPO
         inputElement.value = "";
@@ -569,6 +624,9 @@ const validateTargetEventClick = (e) => {
 const clickEvents = () => d.addEventListener("click", validateTargetEventClick);
 
 const initPage = () => {
+    //OBTENER DATOS ACTUALES DEL ALMACENAMIENTO
+    loadStockFromLocalStorage();
+
     // SALUDAMOS
     grettWelcome();
 
@@ -578,29 +636,18 @@ const initPage = () => {
     // EVENTO DE CLICK.
     clickEvents();
 
-    // RENDERIZA LISTA DE PRODUCTOS SOLO CUANDO EL PATH SEA EL CORRESPONDIENTE.(COMENTARLA SI ESTAS PROBANDO)
-    if (location.pathname === "/TP1-Frontend/src/pages/products.html") {
+    // DESCOMENTAR ESTAS LINEAS PARA EL DESARROLLO LOCAL.
+    if(location.pathname === "/src/pages/products.html"  || location.pathname === "/TP1-Frontend/src/pages/products.html"){
         renderProducts();
     }
 
-    if (location.pathname === "/TP1-Frontend/src/pages/shop.html") {
+    if(location.pathname === "/src/pages/shop.html" || location.pathname === "/TP1-Frontend/src/pages/shop.html"){
         renderCartItems();
     }
-
-    // DESCOMENTAR ESTAS LINEAS PARA EL DESARROLLO LOCAL.
-    // if(location.pathname === "/src/pages/products.html"){
-    //     renderProducts();
-    // }
-
-    // if(location.pathname === "/src/pages/shop.html"){
-    //     renderCartItems();
-    // }
 }
 
 //*****************************EVENTO DE CARGA DE LA PAGINA********************************
 d.addEventListener("DOMContentLoaded", initPage);
-
-
 
 // ***********************SECCIÓN MISION ACORDEÓN*************************
 

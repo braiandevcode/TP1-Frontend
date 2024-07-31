@@ -307,8 +307,10 @@ button {
 /* **********************SECCIÓN MISION*************************** */
 
 .mision-container {
-    display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    color: #555;
+    border-top: 2px solid #ddd;
 }
 
 .mision-section {
@@ -316,7 +318,6 @@ button {
     border-bottom: 1px solid #ddd;
     padding: 10px;
     margin: 10px 10px 1rem 10px;
-    box-sizing: border-box;
 }
 
 .mision-section h2 {
@@ -337,31 +338,6 @@ button {
 .mision-section-content a {
     color: #555;
 }
-
-/* ********************************************************************* */
-@media (min-width: 768px) {
-    .mision-container {
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        color: #555;
-        border-top: 2px solid #ddd;
-    }
-
-    .mision-section {
-        width: 30%;
-    }
-
-    .mision-section h2 {
-        color: #f2861b;
-    }
-
-    .mision-section-content {
-        display: block;
-        /* Oculto por defecto en pantallas pequeñas */
-    }
-}
-
 
 /*********************************FOOTER******************************************************/
 .footer {
@@ -474,6 +450,23 @@ button {
 
     .slide__fig {
         flex-basis: 33.3%;
+    }
+
+    .mision-container {
+        flex-direction: row;
+    }
+
+    .mision-section {
+        width: 30%;
+    }
+
+    .mision-section h2 {
+        color: #f2861b;
+    }
+
+    .mision-section-content {
+        display: block;
+        /* Oculto por defecto en pantallas pequeñas */
     }
 
 }
