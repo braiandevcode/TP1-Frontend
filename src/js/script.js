@@ -6,7 +6,7 @@ const welcome = d.querySelector(".header-page__title");
 const iconWelcome = d.querySelector(".header-page__welcome");
 const products = d.getElementById("products");
 const slideShow = d.querySelector(".slide");
-const rootHtml =d.documentElement;
+const rootHtml = d.documentElement;
 
 // MODAL
 const modalContainer = d.querySelector('.modal');
@@ -21,91 +21,91 @@ let hours = new Date().getHours(); // Objeto date instancia que nos provee js
 // ARREGLO DE PRODUCTOS
 const productsJson = [
     {
-      "image_product": "../assets/images/harina.jpg",
-      "name_product": "Harina",
-      "stock_product": 20,
-      "price_product": 1000,
-      "id_product": "product_1"
+        "image_product": "../assets/images/harina.jpg",
+        "name_product": "Harina",
+        "stock_product": 20,
+        "price_product": 1000,
+        "id_product": "product_1"
     },
     {
-      "image_product": "../assets/images/cerveza.jpg",
-      "name_product": "Cerveza",
-      "stock_product": 8,
-      "price_product": 1500,
-      "id_product": "product_2"
+        "image_product": "../assets/images/cerveza.jpg",
+        "name_product": "Cerveza",
+        "stock_product": 8,
+        "price_product": 1500,
+        "id_product": "product_2"
     },
     {
-      "image_product": "../assets/images/fideos.jpg",
-      "name_product": "Fideos",
-      "stock_product": 60,
-      "price_product": 1300,
-      "id_product": "product_3"
+        "image_product": "../assets/images/fideos.jpg",
+        "name_product": "Fideos",
+        "stock_product": 60,
+        "price_product": 1300,
+        "id_product": "product_3"
     },
     {
-      "image_product": "../assets/images/arroz.jpg",
-      "name_product": "Arroz",
-      "stock_product": 10,
-      "price_product": 1400,
-      "id_product": "product_4"
+        "image_product": "../assets/images/arroz.jpg",
+        "name_product": "Arroz",
+        "stock_product": 10,
+        "price_product": 1400,
+        "id_product": "product_4"
     },
     {
-      "image_product": "../assets/images/carne.jpg",
-      "name_product": "Carne",
-      "stock_product": 8,
-      "price_product": 4500,
-      "id_product": "product_5"
+        "image_product": "../assets/images/carne.jpg",
+        "name_product": "Carne",
+        "stock_product": 8,
+        "price_product": 4500,
+        "id_product": "product_5"
     },
     {
-      "image_product": "../assets/images/leche.jpg",
-      "name_product": "Leche",
-      "stock_product": 8,
-      "price_product": 1500,
-      "id_product": "product_6"
+        "image_product": "../assets/images/leche.jpg",
+        "name_product": "Leche",
+        "stock_product": 8,
+        "price_product": 1500,
+        "id_product": "product_6"
     },
     {
-      "image_product": "../assets/images/polenta.jpg",
-      "name_product": "Polenta",
-      "stock_product": 9,
-      "price_product": 1200,
-      "id_product": "product_7"
+        "image_product": "../assets/images/polenta.jpg",
+        "name_product": "Polenta",
+        "stock_product": 9,
+        "price_product": 1200,
+        "id_product": "product_7"
     },
     {
-      "image_product": "../assets/images/gaseosa.jpg",
-      "name_product": "Gaseosa",
-      "stock_product": 12,
-      "price_product": 1800,
-      "id_product": "product_8"
+        "image_product": "../assets/images/gaseosa.jpg",
+        "name_product": "Gaseosa",
+        "stock_product": 12,
+        "price_product": 1800,
+        "id_product": "product_8"
     },
     {
-      "image_product": "../assets/images/aceite.jpg",
-      "name_product": "Aceite",
-      "stock_product": 8,
-      "price_product": 2000,
-      "id_product": "product_9"
+        "image_product": "../assets/images/aceite.jpg",
+        "name_product": "Aceite",
+        "stock_product": 8,
+        "price_product": 2000,
+        "id_product": "product_9"
     },
     {
-      "image_product": "../assets/images/lentejas.jpg",
-      "name_product": "Lentejas",
-      "stock_product": 8,
-      "price_product": 1000,
-      "id_product": "product_10"
+        "image_product": "../assets/images/lentejas.jpg",
+        "name_product": "Lentejas",
+        "stock_product": 8,
+        "price_product": 1000,
+        "id_product": "product_10"
     }
 ];
-  
+
 // ARREGLO DE MENSAJES PARA MODAL
 const contentInfoModal = [
     {
-        "title":"Entrada invalida",
+        "title": "Entrada invalida",
         "description": "El valor debe ser mayor que cero, Por favor, ingrese un número mayor que cero.",
         "icon": "bi-info-square-fill"
     },
     {
-        "title":"Caracteres invalidos",
+        "title": "Caracteres invalidos",
         "description": "Solo se admiten números, Por favor, ingrese un valor valido.",
         "icon": "bi-dash-circle-fill"
     },
     {
-        "title":"Stock Insuficiente",
+        "title": "Stock Insuficiente",
         "description": "No hay suficiente stock disponible para este producto.Por favor ingrese un rango valido al stock del producto.",
         "icon": "bi-exclamation-square-fill"
     },
@@ -131,24 +131,24 @@ const createText = (el, text) => {
 }
 
 // FUNCION AUXILIAR PARA AÑADIR CLASES
-const addClass = (element, classAdd)=> element.classList.add(classAdd);
+const addClass = (element, classAdd) => element.classList.add(classAdd);
 
 // FUNCION AUXILIAR PARA REMOVER CLASES
-const removeClass = (element,classRemove)=>element.classList.remove(classRemove);
+const removeClass = (element, classRemove) => element.classList.remove(classRemove);
 
 // FUNCION REUTILIZABLE PARA EVENTOS DE FOCO
-const eventFocus = (elEvent, classTargetElement, classNameModified)=>{
+const eventFocus = (elEvent, classTargetElement, classNameModified) => {
     const referenceElementEvent = d.querySelector(elEvent);
-    const referenceElementModified= d.querySelector(classTargetElement);
+    const referenceElementModified = d.querySelector(classTargetElement);
 
-    referenceElementEvent.addEventListener("focus", ()=> addClass(referenceElementModified, classNameModified));
-    referenceElementEvent.addEventListener("blur", ()=>removeClass(referenceElementModified, classNameModified));
+    referenceElementEvent.addEventListener("focus", () => addClass(referenceElementModified, classNameModified));
+    referenceElementEvent.addEventListener("blur", () => removeClass(referenceElementModified, classNameModified));
 };
 
 // ***************************FUNCIONALIDAD DE SALUDO DE BIENVENIDA*************************//
 
 // FUNCION QUE VALIDA LA HORA LOCAL DEL USUARIO
-const validationHours = ()=>{
+const validationHours = () => {
     if (hours >= 5 && hours <= 12) {
         createText(welcome, "¡Buenos Días!");
         addClass(welcome, "bi-brightness-alt-high-fill");
@@ -168,14 +168,14 @@ const validationHours = ()=>{
 }
 
 //SALUDO DE BIENVENIDA
-const grettWelcome = ()=>{
-   validationHours();
+const grettWelcome = () => {
+    validationHours();
 }
 
 //*********************************FUNCIONALIDAD PARA LISTA DE PRODUCTOS*****************************************//
 
 // FUNCION REUTILIZABLE PARA MODAL DE MENSAJES
-const showModalsError = (info)=>{
+const showModalsError = (info) => {
     const templateModal = d.getElementById("template-modal-alerts").content;
     const clone = templateModal.cloneNode(true);
     const infoModal = info;
@@ -185,7 +185,7 @@ const showModalsError = (info)=>{
 
     clone.querySelector("p").textContent = infoModal.description;
 
-    while(modalInfo.firstElementChild) {
+    while (modalInfo.firstElementChild) {
         modalInfo.removeChild(modalInfo.firstElementChild);
     }
 
@@ -194,23 +194,23 @@ const showModalsError = (info)=>{
 };
 
 // MODAL CASO SATISFACTORIO
-const showSuccessModal=(product, quantity, total)=> {
+const showSuccessModal = (product, quantity, total) => {
     const templateModal = d.getElementById("template-modal-success").content;
     const clone = templateModal.cloneNode(true);
-    
+
     clone.querySelector("img").src = product.image_product;
     clone.querySelector("img").alt = product.name_product;
-    
-    createText(clone.querySelector(".modal__subtitle-product"),"Producto");
-    createText(clone.querySelector(".modal__subtitle-quantity"),"Cantidad");
+
+    createText(clone.querySelector(".modal__subtitle-product"), "Producto");
+    createText(clone.querySelector(".modal__subtitle-quantity"), "Cantidad");
     createText(clone.querySelector(".modal__subtitle-total"), "Total");
-    
+
 
     createText(clone.querySelector(".modal__product"), `: ${product.name_product}`);
     createText(clone.querySelector(".modal__quantity"), `: ${quantity}`);
     createText(clone.querySelector(".modal__total"), `: $${total}`);
 
-    while(modalInfo.firstElementChild) {
+    while (modalInfo.firstElementChild) {
         modalInfo.removeChild(modalInfo.firstElementChild);
     }
 
@@ -219,12 +219,12 @@ const showSuccessModal=(product, quantity, total)=> {
 };
 
 // FUNCION AUX PARA DESABILITAR BOTON
-const buttonDisabled = (btn, comparation)=>{
-    if(typeof comparation == "number"){
+const buttonDisabled = (btn, comparation) => {
+    if (typeof comparation == "number") {
         if (comparation == 0) {
             btn.setAttribute("disabled", "true");
             addClass(btn, "card-product__btn--disabled");
-            btn.textContent="Sin Stock";
+            btn.textContent = "Sin Stock";
         }
         return true;
     }
@@ -256,7 +256,7 @@ const renderProducts = () => {
         products.append(fragment);
     }
     let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
-           
+
     // PRODUCTOS SIN STOCK.
     outOfStockProducts.forEach(outOfStockProduct => {
         const cardElement = d.querySelector(`[data-card="${outOfStockProduct.idProduct}"]`);
@@ -276,9 +276,9 @@ const renderCartItems = () => {
     const cartItemList = d.querySelector(".cart-items");
 
     // LIMPIAR CARRITO 
-    cartItemList.innerHTML="";
+    cartItemList.innerHTML = "";
     // RECORRERMOS LOS ELEMENTOS DE LA LISTA
-    if(cartItemsStorage.length > 0){
+    if (cartItemsStorage.length > 0) {
         cartItemsStorage.forEach(item => {
             const listItem = d.createElement("li");
             listItem.textContent = `Producto: ${item.name} - Cantidad: ${item.quantity} - Total: $${item.total}`;
@@ -304,35 +304,35 @@ const validateDataProducts = (e) => {
 
     // GUARDAMOS EN VARIABLE EL VALOR DEL INPUT Y CONVERTIOS A NUMERO.
     let inputValue = parseInt(inputElement.value);
-  
+
     // BUSCAMOS AL OBJETO QUE CUMPLA CON LA CONDICION DONDE EL ID DEL PRODUCTO DEBE SER IGUAL AL VALOR DEL ATRIBUTO DATA DEL ELEMENTO.
-    let product = productsJson.find((productId) => productId.id_product == dataAttributeId); 
+    let product = productsJson.find((productId) => productId.id_product == dataAttributeId);
 
     // GUARDAMOS EN VARIABLES LAS PROPIEDADES DE STOCK Y PRECIO DEL OBJETO EN CUESTIÓN.
     let stock = product.stock_product;
     let price = product.price_product;
     let idProduct = product.id_product;
-    
+
     // const infoProduct = JSON.parse(localStorage.getItem("info")) || [];
 
     // CREAMOS CLAVE-VALOR EN EL ALMACENAMIENTO LOCAL PARA EL STOCK Y EL ID DEL PRODUCTO.
     localStorage.setItem("stock", `${stock}`);
     localStorage.setItem("idproduct", `${idProduct}`);
-    
+
     // SI ES CERO O EL CAMPO ESTA VACIO
-    if(inputElement.value == 0 || inputElement.value == "") return;
-    
+    if (inputElement.value == 0 || inputElement.value == "") return;
+
     //QUE EFECTIVAMENTE SEA UN NUMERO.
     if (!isNaN(inputValue)) {
         //SI EL VALOR ES MENOR A 0
-        if (inputValue < 0){
+        if (inputValue < 0) {
             showModalsError(contentInfoModal[0]);
             removeClass(actionButton, "modal__btn-action--hidden");
             return;
         }
-        
+
         // SI VALOR DE INPUT ES MAYOR AL STOCK
-        if(inputValue > stock){
+        if (inputValue > stock) {
             showModalsError(contentInfoModal[2]);
             removeClass(actionButton, "modal__btn-action--hidden");
             return
@@ -340,14 +340,14 @@ const validateDataProducts = (e) => {
 
         // GUARDAMOS EN LOCALSTORAGE EL VALOR DEL INPUT PARA PODER OPERAR MAS TARDE.
         localStorage.setItem("diference", inputValue);
-        let total = inputValue * price; 
-        stock-= inputValue;
-        product.stock_product =stock;
+        let total = inputValue * price;
+        stock -= inputValue;
+        product.stock_product = stock;
         localStorage.setItem("stock", product.stock_product);
 
         titleStock.textContent = `Stok: ${localStorage.getItem("stock")}`;
         titleStock.dataset.stock = localStorage.getItem("stock");
-        
+
         addClass(actionButton, "modal__btn-action--hidden");
 
         // MODAL EN CASO SATISFACTORIO
@@ -356,13 +356,13 @@ const validateDataProducts = (e) => {
         // DESABILITO BOTON
         buttonDisabled(e.target, stock);
 
-    //     infoProduct.push({ stock, price, idProduct });
+        //     infoProduct.push({ stock, price, idProduct });
 
-    //     infoProduct.forEach(p =>{
-    //         console.log(p.price);
-    //     })
+        //     infoProduct.forEach(p =>{
+        //         console.log(p.price);
+        //     })
 
-    //    localStorage.setItem("info", JSON.stringify(infoProduct));
+        //    localStorage.setItem("info", JSON.stringify(infoProduct));
         return true;
     }
 
@@ -387,7 +387,7 @@ const handleSlideTransition = (insertMethod) => {
         rootHtml.style.setProperty("--transition-slide", "none");
         rootHtml.style.setProperty("--translate-slide", 0);
         addClass(slideShow, "slide--reset");
-        
+
         // FUNCION A EJECUTAR PARA AGREGAR ELEMENTOS HIJOS MEDIANTE UN METODO ESPECIFICO.
         insertMethod();
 
@@ -396,7 +396,7 @@ const handleSlideTransition = (insertMethod) => {
             rootHtml.style.setProperty("--transition-slide", "transform .3s ease-out");
             removeClass(slideShow, 'slide--reset');
         }, 10);
-        
+
         // SE REMUEVE EVENTO DE TRANSICION PARA PODER VOLVER A INICIALIZAR
         slideShow.removeEventListener('transitionend', transition);
     }
@@ -408,15 +408,15 @@ const handleSlideTransition = (insertMethod) => {
 // FUNCION SIGUIENTE
 const handleNext = () => {
     // tiene elementos hijos
-    if(slideShow.children.length > 0) {
+    if (slideShow.children.length > 0) {
         const firstChild = slideShow.firstElementChild;
-        const sizesSlide= firstChild.offsetWidth;
+        const sizesSlide = firstChild.offsetWidth;
         rootHtml.style.setProperty("--translate-slide", `-${sizesSlide}px`);
- 
+
         addClass(slideShow, 'slide--translate');
         addClass(slideShow, 'slide--transition');
 
-        handleSlideTransition(()=> slideShow.append(firstChild));
+        handleSlideTransition(() => slideShow.append(firstChild));
     }
 }
 // FUNCION ATRAS
@@ -426,13 +426,13 @@ const handlePrev = () => {
         const lastChild = slideShow.lastElementChild;
         const firstChild = slideShow.firstElementChild;
         const sizesSlide = firstChild.offsetWidth;
-       
+
         rootHtml.style.setProperty("--translate-slide", `${sizesSlide}px`);
- 
+
         addClass(slideShow, 'slide--translate');
         addClass(slideShow, 'slide--transition');
 
-        handleSlideTransition(()=> slideShow.insertBefore(lastChild, firstChild));
+        handleSlideTransition(() => slideShow.insertBefore(lastChild, firstChild));
     }
 };
 
@@ -446,7 +446,7 @@ const updateCart = (name, productStock, inputValue, total) => {
 
     // ACTUALIZAR EL ARREGLO DEL CARRITO CON EL NUEVO PRODUCTO
     cartItems.push({
-        name:name,
+        name: name,
         product: productStock,
         quantity: inputValue,
         total: total
@@ -468,19 +468,19 @@ const validateTargetEventClick = (e) => {
     }
 
     //EVENTO A BOTON SIGUIENTE
-    if(e.target.matches(".bi-arrow-right-circle-fill")){
+    if (e.target.matches(".bi-arrow-right-circle-fill")) {
         e.preventDefault();
         handleNext();
     }
 
     // EVENTO A BOTON ATRAS
-    if(e.target.matches(".bi-arrow-left-circle-fill")){
+    if (e.target.matches(".bi-arrow-left-circle-fill")) {
         e.preventDefault();
         handlePrev();
     }
 
     // EVENTO AL BOTON OK (CERRAR MODAL)
-    if(e.target.matches(".modal__btn-action")){
+    if (e.target.matches(".modal__btn-action")) {
         addClass(modalContainer, "modal--hidden");
     }
 
@@ -490,32 +490,32 @@ const validateTargetEventClick = (e) => {
 
         const inputElment = d.getElementById(`${getItemIdProduct}`);
         const button = d.querySelector(`[data-idproduct="${getItemIdProduct}"]`);
-        const contentStock= inputElment.parentElement.firstElementChild;
+        const contentStock = inputElment.parentElement.firstElementChild;
         let product = productsJson.find(objectProduct => objectProduct.id_product == getItemIdProduct);
 
         // VOLVEMOS A AGREGAR EL VALOR DEL INPUT AL STOCK
-        product.stock_product += parseInt(localStorage.getItem("diference")); 
-        
+        product.stock_product += parseInt(localStorage.getItem("diference"));
+
         contentStock.textContent = `Stock: ${product.stock_product}`;
 
         localStorage.setItem("diference", (parseInt(localStorage.getItem("diference")) - product.stock_product));
         localStorage.setItem("stock", product.stock_product);
-        
+
 
         // ASEGURAMOS QUE EN CASO DE QUEDAR SIN STOCK Y CANCELAR NO SE APLIQUE EL DISABLED DEL BOTON.
         button.removeAttribute("disabled");
-        removeClass(button, "card-product__btn--disabled"); 
-        button.textContent= "Agregar";
+        removeClass(button, "card-product__btn--disabled");
+        button.textContent = "Agregar";
 
         addClass(modalContainer, "modal--hidden");
         removeClass(actionButton, "modal__btn-action--hidden");
         showModalsError(contentInfoModal[4]);
         // VACIAMOS CAMPO
-        inputElment.value = ""; 
+        inputElment.value = "";
     }
-    
+
     // EVENTO AL DAR AL CONFIRMAR COMPRA
-    if(e.target.matches(".modal__btn-confirm")){
+    if (e.target.matches(".modal__btn-confirm")) {
         e.preventDefault()
         // // OBTENEMOS LOS DATOS DESDE EL ALMACENAMIENTO LOCAL.
         const idProduct = localStorage.getItem("idproduct");
@@ -532,11 +532,11 @@ const validateTargetEventClick = (e) => {
         const total = inputValue * product.price_product;
 
         console.log(inputValue, total, "evento");
-        
+
         const textStock = d.querySelectorAll(`[data-stock="${product.id_product}"]`);
-        
-        textStock.textContent= localStorage.getItem("stock");
-        
+
+        textStock.textContent = localStorage.getItem("stock");
+
         // ACTUALIZAR CARRO
         updateCart(product.name_product, product.stock_product, inputValue, total);
 
@@ -544,7 +544,7 @@ const validateTargetEventClick = (e) => {
         if (parseInt(localStorage.getItem("stock")) == 0) {
             let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
             outOfStockProducts.push({
-                idProduct:idProduct,
+                idProduct: idProduct,
                 stock: stock
             });
             // Almacena el array actualizado en el localStorage
@@ -553,37 +553,37 @@ const validateTargetEventClick = (e) => {
             for (let i = 0; i < outOfStockProducts.length; i++) {
                 const cardId = d.querySelector(`[data-card="${outOfStockProducts[i].idProduct}"]`);
                 const btnIdproduct = d.querySelector(`[data-idproduct="${outOfStockProducts[i].idProduct}"]`);
-                cardId.querySelector("h5").textContent= "Sin Stock";
-                cardId.querySelector("h5").dataset.stock=0;
+                cardId.querySelector("h5").textContent = "Sin Stock";
+                cardId.querySelector("h5").dataset.stock = 0;
                 buttonDisabled(btnIdproduct, 0);
             };
         };
         showModalsError(contentInfoModal[3]);
         removeClass(actionButton, "modal__btn-action--hidden");
         // VACIAMOS CAMPO
-        inputElement.value = ""; 
+        inputElement.value = "";
     }
 }
 
 // FUNCION PARA EVENTOS DE CLICKS
 const clickEvents = () => d.addEventListener("click", validateTargetEventClick);
 
-const initPage = ()=>{
+const initPage = () => {
     // SALUDAMOS
     grettWelcome();
 
     // UTILIZO FUNCION PARA EVENTO DE FOCO
     eventFocus(".form-search__search", ".form-search", "form-search--focus");
-     
+
     // EVENTO DE CLICK.
     clickEvents();
- 
+
     // RENDERIZA LISTA DE PRODUCTOS SOLO CUANDO EL PATH SEA EL CORRESPONDIENTE.(COMENTARLA SI ESTAS PROBANDO)
-    if(location.pathname === "/TP1-Frontend/src/pages/products.html"){
+    if (location.pathname === "/TP1-Frontend/src/pages/products.html") {
         renderProducts();
     }
- 
-    if(location.pathname === "/TP1-Frontend/src/pages/shop.html"){
+
+    if (location.pathname === "/TP1-Frontend/src/pages/shop.html") {
         renderCartItems();
     }
 
@@ -591,7 +591,7 @@ const initPage = ()=>{
     // if(location.pathname === "/src/pages/products.html"){
     //     renderProducts();
     // }
- 
+
     // if(location.pathname === "/src/pages/shop.html"){
     //     renderCartItems();
     // }
@@ -599,3 +599,24 @@ const initPage = ()=>{
 
 //*****************************EVENTO DE CARGA DE LA PAGINA********************************
 d.addEventListener("DOMContentLoaded", initPage);
+
+
+
+// ***********************SECCIÓN MISION ACORDEÓN*************************
+
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('.mision-section h2');
+
+    sections.forEach(section => {
+        section.addEventListener('click', function () {
+            if (window.innerWidth <= 768) {
+                const content = this.nextElementSibling;
+                if (content.style.display === "none" || content.style.display === "") {
+                    content.style.display = "block";
+                } else {
+                    content.style.display = "none";
+                }
+            }
+        });
+    });
+});

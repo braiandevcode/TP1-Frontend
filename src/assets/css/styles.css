@@ -192,7 +192,7 @@ button {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #f55c0a;
+    z-index: 1;
 }
 
 /**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
@@ -304,65 +304,62 @@ button {
     left: 2rem;
 }
 
-/* SECCION TARJETAS */
-.section-cards {
-    color: #FFF;
+/* **********************SECCIÓN MISION*************************** */
+
+.mision-container {
     display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-}
-
-/* tarjeta */
-.card {
-    padding: 1rem;
-    flex-wrap: wrap;
-    align-self: start;
-    flex: 1 1 200px;
-}
-
-/* contenedor de informacion de tarjeta */
-.card__content {
-    background-color: #3b63d1;
-    padding: 1rem;
-    flex: 1 1 350px;
-    text-align: center;
-}
-
-/* contenedor de imagen */
-.card__image-wrapper {
-    flex: 1 1 350px;
-}
-
-.card__title {
-    font-size: .8rem;
-    text-align: center;
-}
-
-.card__description {
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    font-size: .8rem;
-}
-
-.card__more-info {
-    font-size: .8rem;
-    color: #FFDD;
-}
-
-
-.card__body {
     flex-direction: column;
-    gap: 3rem;
 }
 
-
-.card__footer {
-    align-self: center;
+.mision-section {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 10px 1rem 10px;
+    box-sizing: border-box;
 }
 
+.mision-section h2 {
+    color: #156b20;
+}
 
-.card__link-more {
-    transition: all .5s ease-in-out;
+.mision-section-content {
+    display: none;
+    margin: 1rem 0 0;
+    /* Visible por defecto en pantallas grandes */
+}
+
+.mision-section-content li,
+.mision-section-content p {
+    margin: 0 0 1rem 1rem;
+}
+
+.mision-section-content a {
+    color: #555;
+}
+
+/* ********************************************************************* */
+@media (min-width: 768px) {
+    .mision-container {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        color: #555;
+        border-top: 2px solid #ddd;
+    }
+
+    .mision-section {
+        width: 30%;
+    }
+
+    .mision-section h2 {
+        color: #f2861b;
+    }
+
+    .mision-section-content {
+        display: block;
+        /* Oculto por defecto en pantallas pequeñas */
+    }
 }
 
 
@@ -425,6 +422,10 @@ button {
     .bi-arrow-right-circle-fill:hover {
         opacity: 1;
         transform: scale(1.1);
+    }
+
+    .mision-section-content a:hover {
+        color: #156b20;
     }
 }
 
