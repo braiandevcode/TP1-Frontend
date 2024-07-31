@@ -1,20 +1,20 @@
 "use strict";
 
 const d = document,
-// LOCALIZACION DE SELECTORES HTML
-welcome = d.querySelector(".header-page__title"),
-iconWelcome = d.querySelector(".header-page__welcome"),
-products = d.getElementById("products"),
-slideShow = d.querySelector(".slide"),
-rootHtml = d.documentElement,
-modalContainer = d.querySelector('.modal'),  //SELECTORES DE MODALES
-modalInfo = d.querySelector('.modal__info'),
-actionButton = d.querySelector('.modal__btn-action');
+    // LOCALIZACION DE SELECTORES HTML
+    welcome = d.querySelector(".header-page__title"),
+    iconWelcome = d.querySelector(".header-page__welcome"),
+    products = d.getElementById("products"),
+    slideShow = d.querySelector(".slide"),
+    rootHtml = d.documentElement,
+    modalContainer = d.querySelector('.modal'),  //SELECTORES DE MODALES
+    modalInfo = d.querySelector('.modal__info'),
+    actionButton = d.querySelector('.modal__btn-action');
 
 // VARIABLES GLOBALES
-let hours = new Date().getHours(), 
-decrementStock=0,
-countAmount=0;
+let hours = new Date().getHours(),
+    decrementStock = 0,
+    countAmount = 0;
 
 //***ARREGLO DE OBJETOS JSON GLOBALMENTE***//
 // ARREGLO DE PRODUCTOS
@@ -173,7 +173,7 @@ const grettWelcome = () => {
 //*********************************FUNCIONALIDAD PARA LISTA DE PRODUCTOS*****************************************//
 
 // CONFIGURACION PARA CREAR MODALES
-const configureModal =(info)=>{
+const configureModal = (info) => {
     const templateModal = d.getElementById("template-modal-alerts").content;
     const clone = templateModal.cloneNode(true);
     createText(clone.querySelector("h3"), info.title);
@@ -269,11 +269,11 @@ const renderProducts = () => {
 };
 
 // FUNCION AUXILIAR PARA CALCULAR EL TOTAL DE COMPRA EN CARRITO.
-const operateAmountTotal = (countAmount)=>{
+const operateAmountTotal = (countAmount) => {
     // LEER LOS VALORES DEL CARRITO Y CONVERTIRLOS A FORMATO JSON O ARREGLO VACÍO
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     // SUMAMOS EL TOTAL DE LA COMPRA
-    cartItems.forEach(sum =>{
+    cartItems.forEach(sum => {
         countAmount += sum.total;
     });
     return countAmount;
@@ -289,7 +289,7 @@ const renderCartItems = () => {
     addClass(totalAmount, "cart__content-amount");
     addClass(titleAmount, "cart__amount");
 
-    titleAmount.textContent= `Total: $${operateAmountTotal(countAmount)}`;
+    titleAmount.textContent = `Total: $${operateAmountTotal(countAmount)}`;
     totalAmount.append(titleAmount);
 
     // LIMPIAR CARRITO 
@@ -305,16 +305,16 @@ const renderCartItems = () => {
         cartItemList.append(totalAmount);
     }
 
-    countAmount=0;
+    countAmount = 0;
 };
 
 // FUNCION AUXILIAR PARA VALIDAR ID EN LOCALSTORAGE
-const validateExistProduct= (infoArr, data, prop, condition)=>{
+const validateExistProduct = (infoArr, data, prop, condition) => {
     // BUSCO EL INDICE DEL OBJETO
     let storedProductIndex = infoArr.findIndex(p => p[prop] == condition);
     // SI ES ENCONTRADO MODIFICAR VALORES SINO AGREGAR NUEVO OBJETO DE CARRITO.
     storedProductIndex !== -1 ? infoArr[storedProductIndex] = data
-    : infoArr.push(data);
+        : infoArr.push(data);
 }
 
 // GUARDAR EL ESTADO ACTUAL DE LOS PRODUCTOS.
@@ -374,7 +374,7 @@ const validateDataProducts = (e) => {
         let total = inputValue * price;
         stock -= inputValue;
         product.stock_product = stock;
-    
+
         titleStock.textContent = `Stock: ${product.stock_product}`;
         titleStock.dataset.stock = product.stock_product;
 
@@ -388,7 +388,7 @@ const validateDataProducts = (e) => {
 
         // INVOCO FUNCION PARA VERIFICAR SI EXISTE EL ID.
         validateExistProduct(infoProductStorage, { stock, price, idProduct }, "idProduct", idProduct);
-       
+
         localStorage.setItem("info", JSON.stringify(infoProductStorage));
 
         // INVOCO PARA CARGAR DATOS ACTUALES HASTA AQUI LUEGO DE VALIDAR.
@@ -471,11 +471,11 @@ const updateCart = (name, inputValue, total) => {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
     let storedProductCart = cartItems.find(prod => prod.name == name);
-    if(storedProductCart){
+    if (storedProductCart) {
         storedProductCart.quantity += inputValue;
         storedProductCart.total += total;
-    }else{
-        validateExistProduct(cartItems, { name:name, quantity:inputValue , total:total }, "name", name);
+    } else {
+        validateExistProduct(cartItems, { name: name, quantity: inputValue, total: total }, "name", name);
     };
 
     // GUARDAR EL CARRITO ACTUALIZADO EN EL LOCALSTORAGE
@@ -495,14 +495,14 @@ const loadStockFromLocalStorage = () => {
 };
 
 // FUNCION QUE SE ENCARGA DE OPERAR Y DEVOLVER LOS VALORES QUITADOS AL STOCK (SOLO CUANDO SE CANCELA).
-const refoundStock = (product, contentStock)=>{
+const refoundStock = (product, contentStock) => {
     // VOLVEMOS A AGREGAR EL VALOR DEL INPUT AL STOCK
-    product.stock_product+= decrementStock;    
+    product.stock_product += decrementStock;
     contentStock.textContent = `Stock: ${product.stock_product}`;
     decrementStock -= product.stock_product;
-    if(decrementStock < 0) decrementStock=0;
+    if (decrementStock < 0) decrementStock = 0;
 }
- 
+
 /*****************************************EVENTOS Y FUNCIONES PARA TODA LA PÁGINA*****************************************/
 // VALIDAR TARGET DE EVENTO CLICK
 const validateTargetEventClick = (e) => {
@@ -535,29 +535,27 @@ const validateTargetEventClick = (e) => {
     if (e.target.matches(".modal__btn-cancel")) {
         const targetId = e.target.dataset.id;
         const product = productsJson.find(product => product.id_product == targetId);
-        const infoProductStorage= JSON.parse(localStorage.getItem("info")) || [];
+        const infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
 
         const inputElment = d.getElementById(`${targetId}`);
         const button = d.querySelector(`[data-idproduct="${targetId}"]`);
-        const icon= button.previousElementSibling;
+        const icon = button.previousElementSibling;
         const contentStock = inputElment.parentElement.firstElementChild;
 
         // INVOCAR FUNCION PARA DEVOLVER VALOR AL STOCK AL CANCELAR.
         refoundStock(product, contentStock);
-       
+
         // BUSCO PRODUCTO EN ALMACENAMIENTO... POR SU ID
         let storedProduct = infoProductStorage.find(prod => prod.idProduct == targetId);
 
-        storedProduct ? storedProduct.stock = product.stock_product 
-        :  validateExistProduct(infoProductStorage, { stock, price, idProduct: product.price_product }, "idProduct", targetId);
-       
+        storedProduct ? storedProduct.stock = product.stock_product
+            : validateExistProduct(infoProductStorage, { stock, price, idProduct: product.price_product }, "idProduct", targetId);
+
         localStorage.setItem("info", JSON.stringify(infoProductStorage));
 
         // ASEGURAMOS QUE EN CASO DE QUEDAR SIN STOCK Y CANCELAR NO SE APLIQUE EL DISABLED DEL BOTON.
         button.removeAttribute("disabled");
         removeClass(button, "card-product__btn--disabled");
-        addClass(icon, "bi-bag-plus-fill");
-        button.textContent = "Agregar";
         button.append()
 
         addClass(modalContainer, "modal--hidden");
@@ -570,13 +568,13 @@ const validateTargetEventClick = (e) => {
     // EVENTO AL DAR AL CONFIRMAR COMPRA
     if (e.target.matches(".modal__btn-confirm")) {
         e.preventDefault();
-        
+
         //OBTENEMOS LOS DATOS DESDE EL ALMACENAMIENTO LOCAL.
-        let infoProductStorage= JSON.parse(localStorage.getItem("info")) || [];
+        let infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
         const targetId = e.target.dataset.id;
         const product = productsJson.find((prod) => prod.id_product == targetId);
-    
-        const stock =product.stock_product;
+
+        const stock = product.stock_product;
         const inputElement = d.getElementById(`${targetId}`);
         const inputValue = parseInt(inputElement.value);
 
@@ -596,7 +594,7 @@ const validateTargetEventClick = (e) => {
                 idProduct: targetId,
                 stock: stock
             });
-            
+
             // GUARDAR DATO ACTUAL EN LOCALSTORAGE
             localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
 
@@ -618,10 +616,31 @@ const validateTargetEventClick = (e) => {
         // VACIAMOS CAMPO
         inputElement.value = "";
     }
+
+
+
+
+    if (e.target.matches(".mision-section h2")) {
+        const content = e.target.nextElementSibling;
+
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "block";
+        } else {
+            content.style.display = "none";
+        }
+
+    }
 }
+
+
 
 // FUNCION PARA EVENTOS DE CLICKS
 const clickEvents = () => d.addEventListener("click", validateTargetEventClick);
+
+const media = window.matchMedia("(max-width: 768px)");
+if (media.matches == true) {
+    clickEvents();
+}
 
 const initPage = () => {
     //OBTENER DATOS ACTUALES DEL ALMACENAMIENTO
@@ -637,11 +656,11 @@ const initPage = () => {
     clickEvents();
 
     // DESCOMENTAR ESTAS LINEAS PARA EL DESARROLLO LOCAL.
-    if(location.pathname === "/src/pages/products.html"  || location.pathname === "/TP1-Frontend/src/pages/products.html"){
+    if (location.pathname === "/src/pages/products.html" || location.pathname === "/TP1-Frontend/src/pages/products.html") {
         renderProducts();
     }
 
-    if(location.pathname === "/src/pages/shop.html" || location.pathname === "/TP1-Frontend/src/pages/shop.html"){
+    if (location.pathname === "/src/pages/shop.html" || location.pathname === "/TP1-Frontend/src/pages/shop.html") {
         renderCartItems();
     }
 }
@@ -651,19 +670,3 @@ d.addEventListener("DOMContentLoaded", initPage);
 
 // ***********************SECCIÓN MISION ACORDEÓN*************************
 
-document.addEventListener('DOMContentLoaded', function () {
-    const sections = document.querySelectorAll('.mision-section h2');
-
-    sections.forEach(section => {
-        section.addEventListener('click', function () {
-            if (window.innerWidth <= 768) {
-                const content = this.nextElementSibling;
-                if (content.style.display === "none" || content.style.display === "") {
-                    content.style.display = "block";
-                } else {
-                    content.style.display = "none";
-                }
-            }
-        });
-    });
-});

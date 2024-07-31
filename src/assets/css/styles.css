@@ -63,6 +63,7 @@ img {
 button {
     border: none;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
 }
 
 /* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
@@ -327,7 +328,6 @@ button {
 .mision-section-content {
     display: none;
     margin: 1rem 0 0;
-    /* Visible por defecto en pantallas grandes */
 }
 
 .mision-section-content li,

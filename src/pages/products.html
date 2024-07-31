@@ -99,32 +99,33 @@
             <!-- MODAL -->
             <div class="modal modal--hidden d-flex ai-center jc-center">
                 <div class="modal__body">
-                    <div class="modal__info d-flex"></div >
+                    <div class="modal__info d-flex"></div>
                     <button class="modal__btn-action">OK</button>
                 </div>
             </div>
 
             <!-- TEMPLATE MODAL SATISFACTORIO-->
             <template id="template-modal-success">
-                    <div class="modal__image">
-                        <img>
-                    </div>
-                    <p class="modal__product"><strong class="modal__subtitle-product"></strong></p>
-                    <p class="modal__quantity"><strong class="modal__subtitle-quantity"></strong></p>
-                    <p class="modal__total"><strong class="modal__subtitle-total"></strong></p>
-                    <p>¿Deseas agregar al carrito?</p>
-                    <div>
-                        <button type="button" class="modal__btn-cancel">Cancelar</button>
-                        <button type="button" class="modal__btn-confirm">Confirmar</button>
-                    </div>
+                <div class="modal__image">
+                    <img>
+                </div>
+                <p class="modal__product"><strong class="modal__subtitle-product"></strong></p>
+                <p class="modal__quantity"><strong class="modal__subtitle-quantity"></strong></p>
+                <p class="modal__total"><strong class="modal__subtitle-total"></strong></p>
+                <p>¿Deseas agregar al carrito?</p>
+                <div class="modal__btns-container">
+                    <button type="button" class="modal__btn-cancel">Cancelar</button>
+                    <button type="button" class="modal__btn-confirm">Confirmar</button>
+                </div>
             </template>
 
             <!-- TEMPLATE MODAL ERROR -->
-             <template id="template-modal-alerts">
-                <h3 class="modal__title d-flex ai-center"><i class="modal__icon modal__icon--error d-flex ai-center jc-center bi"></i></h3>
+            <template id="template-modal-alerts">
+                <h3 class="modal__title d-flex ai-center"><i
+                        class="modal__icon modal__icon--error d-flex ai-center jc-center bi"></i></h3>
                 <p class="modal__description"></p>
-             </template>
- 
+            </template>
+
             <!-- TEMPLATE PRODUCTOS -->
             <template id="product-template">
                 <div class="card-product d-flex jc-center">
@@ -145,7 +146,7 @@
                                 </div>
                                 <div class="card-product__buy d-flex jc-spaceB ai-center">
                                     <p class="card-product__price"></p>
-                                    
+
                                     <button type="button" class="card-product__btn">Añadir</button>
 
                                 </div>
