@@ -281,42 +281,80 @@ const operateAmountTotal = (amount) => {
 
 //***RENDERIZADO DE LA LISTA DE PRODUCTOS AGREGADOS****
 const renderCartItems = () => {
-    const fragment = d.createDocumentFragment();
+    const fragment = document.createDocumentFragment();
     const cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
-    
-    const cartItemList = d.querySelector(".cart-items");
-    const totalAmount = d.createElement("div");
-    const titleAmount = d.createElement("h5");
-    addClass(totalAmount, "cart__content-amount");
-    addClass(titleAmount, "cart__amount");
 
-    titleAmount.textContent = `Total: $${operateAmountTotal(countAmount)}`;
+    const cartItemList = document.querySelector(".cart-body");
+
+    const totalAmount = document.createElement("div");
+    const titleAmount = document.createElement("h3");
+    addClass(totalAmount, "card-total");
+    addClass(titleAmount, "card-total__price");
+
+    const total = cartItemsStorage.reduce((acc, item) => acc + item.total, 0);
+    titleAmount.textContent = `Total: $${total}`;
     totalAmount.append(titleAmount);
 
-    // LIMPIAR CARRITO 
-    cartItemList.innerHTML = "";
-    // RECORRERMOS LOS ELEMENTOS DE LA LISTA
+
+
+
+    const cardsContainer = document.createElement("div");
+    addClass(cardsContainer, "cards");
+
+    // RECORRER LOS ELEMENTOS DE LA LISTA
     if (cartItemsStorage.length > 0) {
         cartItemsStorage.forEach(item => {
-            const listItem = d.createElement("div");
-            const p =d.createElement("p");
-            p.textContent = `Producto: ${item.name} - Cantidad: ${item.quantity} - Total: $${item.total}`;
+            console.log(item);
+            const cardCart = document.createElement("div");
+            const img = document.createElement("img");
+            const cardContent = document.createElement("div");
+            const name = document.createElement("h5");
+            const quantity = document.createElement("p");
+            const price = document.createElement("p");
 
-            listItem.appendChild(p);
-            fragment.appendChild(listItem);
+            addClass(cardCart, "card-cart");
+            addClass(img, "card-cart__img");
+            addClass(cardContent, "card-cart__content");
+            addClass(name, "card-cart__name");
+            addClass(quantity, "card-cart__quantity");
+            addClass(price, "card-cart__price");
+
+            img.src = item.image || '../assets/images/cart.png';
+            img.alt = item.name;
+            name.textContent = item.name;
+            quantity.textContent = `Cantidad: ${item.quantity}`;
+            price.textContent = `Total: $${item.total}`;
+
+            cardContent.appendChild(name);
+            cardContent.appendChild(quantity);
+            cardContent.appendChild(price);
+            cardCart.appendChild(img);
+            cardCart.appendChild(cardContent);
+            cardsContainer.appendChild(cardCart);
         });
-        cartItemList.append(fragment);
-        cartItemList.append(totalAmount);
-    };
+        fragment.appendChild(cardsContainer);
+        fragment.appendChild(totalAmount);
+    }
+
+    cartItemList.appendChild(fragment);
+
+    // LIMPIAR CARRITO 
+    if (cartItemList.children.length == 0) {
+        const cartEmpty = d.createElement('h3');
+        addClass(cartEmpty, 'cart__empty')
+        cartEmpty.textContent = "Aun no has añadido productos al carrito...";
+        cartItemList.append(cartEmpty)
+    }
 };
 
+
 // FUNCION AUXILIAR PARA VALIDAR ID EN LOCALSTORAGE
-const validateExistProduct = (infoArr, data, prop, condition) => {
+const validateExistProduct = (infoArr, dataObject, prop, condition) => {
     // BUSCO EL INDICE DEL OBJETO
     let storedProductIndex = infoArr.findIndex(p => p[prop] == condition);
     // SI ES ENCONTRADO MODIFICAR VALORES SINO AGREGAR NUEVO OBJETO DE CARRITO.
-    storedProductIndex !== -1 ? infoArr[storedProductIndex] = data
-        : infoArr.push(data);
+    storedProductIndex !== -1 ? infoArr[storedProductIndex] = dataObject
+        : infoArr.push(dataObject);
 }
 
 // GUARDAR EL ESTADO ACTUAL DE LOS PRODUCTOS.
@@ -468,7 +506,7 @@ const handlePrev = () => {
 };
 
 // FUNCION QUE SE ENCARGA DE ACTUALIZAR EL CARRITO
-const updateCart = (name, inputValue, total) => {
+const updateCart = (image, name, inputValue, total) => {
     // LEER LOS VALORES DEL CARRITO Y CONVERTIRLOS A FORMATO JSON O ARREGLO VACÍO
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
@@ -477,7 +515,7 @@ const updateCart = (name, inputValue, total) => {
         storedProductCart.quantity += inputValue;
         storedProductCart.total += total;
     } else {
-        validateExistProduct(cartItems, { name: name, quantity: inputValue, total: total }, "name", name);
+        validateExistProduct(cartItems, { image: image, name: name, quantity: inputValue, total: total }, "name", name);
     };
 
     // GUARDAR EL CARRITO ACTUALIZADO EN EL LOCALSTORAGE
@@ -586,7 +624,7 @@ const validateTargetEventClick = (e) => {
         textStock.textContent = stock;
 
         // ACTUALIZAR CARRO
-        updateCart(product.name_product, inputValue, addProductTotalCart);
+        updateCart(product.image_product, product.name_product, inputValue, addProductTotalCart);
 
         // VERIFICAR SI EL STOCK ES CERO
         if (stock == 0) {
@@ -633,13 +671,26 @@ const validateTargetEventClick = (e) => {
 // FUNCION PARA EVENTOS DE CLICKS
 const clickEvents = () => d.addEventListener("click", validateTargetEventClick);
 
-const validateMedia = (sizeDisplay)=>{
+const validateMedia = (sizeDisplay) => {
     const media = window.matchMedia(sizeDisplay);
     if (media.matches == true) {
         clickEvents();
     }
 };
 
+// FUNCIÓN PARA MANTENER LINK ACTIVO
+const activeLink = () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (linkPath === currentPath) addClass(link, 'active');
+        else removeClass(link, 'active');
+    });
+}
+
+// FUNCIÓN QUE SE ENCARGA DE INICIAR LAS PÁGINAS
 const initPage = () => {
     //OBTENER DATOS ACTUALES DEL ALMACENAMIENTO
     loadStockFromLocalStorage();
@@ -663,10 +714,9 @@ const initPage = () => {
     if (location.pathname === "/src/pages/shop.html" || location.pathname === "/TP1-Frontend/src/pages/shop.html") {
         renderCartItems();
     }
+
+    activeLink();
 }
 
 //*****************************EVENTO DE CARGA DE LA PAGINA********************************
 d.addEventListener("DOMContentLoaded", initPage);
-
-// ***********************SECCIÓN MISION ACORDEÓN*************************
-
