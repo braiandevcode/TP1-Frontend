@@ -509,7 +509,6 @@ const refoundStock = (product, contentStock) => {
 // VALIDAR TARGET DE EVENTO CLICK
 const validateTargetEventClick = (e) => {
     // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA EJECUTAR LO CORRESPONDIENTE.
-    console.log(e.target);
     // EVENTO A BOTON AGREGAR
     if (e.target.matches(".card-product__btn")) {
         e.preventDefault();
@@ -618,15 +617,10 @@ const validateTargetEventClick = (e) => {
         inputElement.value = "";
     }
 
-
+    // ***********************SECCIÓN MISION ACORDEÓN*************************
     if (e.target.matches(".mision-section h2")) {
         const content = e.target.nextElementSibling;
-
-        if (content.style.display === "none" || content.style.display === "") {
-            content.style.display = "block";
-        } else {
-            content.style.display = "none";
-        }
+        content.style.display === "none" ? content.style.display = "block": content.style.display = "none";
     }
 }
 
@@ -644,6 +638,7 @@ const initPage = () => {
     //OBTENER DATOS ACTUALES DEL ALMACENAMIENTO
     loadStockFromLocalStorage();
 
+    //MEDIA
     validateMedia("(max-width:768px)");
 
     // SALUDAMOS
@@ -668,5 +663,4 @@ const initPage = () => {
 //*****************************EVENTO DE CARGA DE LA PAGINA********************************
 d.addEventListener("DOMContentLoaded", initPage);
 
-// ***********************SECCIÓN MISION ACORDEÓN*************************
 
