@@ -12,14 +12,14 @@ const d = document,
     modalInfo = d.querySelector('.modal__info'),
     actionButton = d.querySelector('.modal__btn-action'),
     modalOverlay = d.querySelector(".modal-overlay"),
-    counterTextProduct=d.querySelector(".icon-cart__text");
+    counterTextProduct = d.querySelector(".icon-cart__text");
 
 
 // VARIABLES GLOBALES
 let hours = new Date().getHours(),
     decrementStock = 0,
     countAmount = 0,
-    counterProduct=0;
+    counterProduct = 0;
 
 
 //***ARREGLOS***//
@@ -295,7 +295,7 @@ const renderCartItems = () => {
     const backBtn = d.querySelector(".back-btn");
 
     const fragment = d.createDocumentFragment();
-   
+
     const cartItemList = d.querySelector(".cart-body");
     const cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
 
@@ -374,7 +374,7 @@ const validateExistProduct = (infoArr, dataObject, prop, condition) => {
     let storedProductIndex = infoArr.findIndex(p => p[prop] == condition);
     // SI ES ENCONTRADO MODIFICAR VALORES SINO AGREGAR NUEVO OBJETO DE CARRITO.
     storedProductIndex !== -1 ? infoArr[storedProductIndex] = dataObject
-    : infoArr.push(dataObject);
+        : infoArr.push(dataObject);
 }
 
 // GUARDAR EL ESTADO ACTUAL DE LOS PRODUCTOS.
@@ -496,11 +496,11 @@ const handleSlideTransition = (callBackInsertElement) => {
 }
 
 // FUNCION PARA ANIMACION DE ANUNCIO DESCUENTO
-const animationTitle = ()=>{
+const animationTitle = () => {
     let containerTitleOff = d.querySelector(".section-brands__title");
     let title = d.querySelector(".section-brands__title h3");
     let durationAnim = (containerTitleOff.offsetWidth + title.offsetWidth) / 200;
-    title.style.animationDuration = `${durationAnim}s`; 
+    title.style.animationDuration = `${durationAnim}s`;
 }
 
 // FUNCION SIGUIENTE
@@ -544,7 +544,7 @@ const updateCart = (image, name, inputValue, total) => {
         storedProductCart.quantity += inputValue;
         storedProductCart.total += total;
     } else {
-        validateExistProduct(cartItems, {quantityUnit:counterProduct, image: image, name: name, quantity: inputValue, total: total }, "name", name);
+        validateExistProduct(cartItems, { quantityUnit: counterProduct, image: image, name: name, quantity: inputValue, total: total }, "name", name);
     };
 
     // GUARDAR EL CARRITO ACTUALIZADO EN EL LOCALSTORAGE
@@ -577,7 +577,7 @@ const refoundStock = (product, contentStock) => {
 // VALIDACIONES DE EVENTO POR EL TARGET
 
 // FUNCION PARA MANEJAR EVENTO DE CANCELAR
-const handleCancelEvent=(e)=>{
+const handleCancelEvent = (e) => {
     e.preventDefault();
     const targetId = e.target.dataset.id;
     const product = productsJson.find(product => product.id_product == targetId);
@@ -609,7 +609,7 @@ const handleCancelEvent=(e)=>{
 }
 
 //FUNCION PARA MANEJAR PRODUCTOS FUERA DE STOCK
-const handleOutOfStock=(targetId, stock) => {
+const handleOutOfStock = (targetId, stock) => {
     let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
     outOfStockProducts.push({ idProduct: targetId, stock: stock });
     localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
@@ -625,7 +625,7 @@ const handleOutOfStock=(targetId, stock) => {
 }
 
 // FUNCION DE EVENTO PARA CONFIRMAR COMPRA
-const handleConfirmEvent = (e) =>{
+const handleConfirmEvent = (e) => {
     e.preventDefault();
     let infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
     let cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -658,16 +658,17 @@ const handleConfirmEvent = (e) =>{
 }
 
 // VALIDAR PAGO
-const validatePyment= (e)=>{
+const validatePyment = (e) => {
     // EN ESTA FUNCION SE PODRIAN HACER VARIAS VALIDACIONES PARA LOS CAMPOS.
     const inputs = d.querySelectorAll("#form-pyment input");
     const arrInputs = Array.from(inputs);
     let isEmpty = arrInputs.every(input => input.value === "");
-    if(isEmpty){
-        showModalsMessageAlert(6) 
-    }else{
+    if (isEmpty) {
+        showModalsMessageAlert(6)
+    } else {
         showModalsMessageAlert(5);
-        removeClass(modalOverlay,"modal-overlay--visible");
+        removeClass(modalOverlay, "modal-overlay--visible");
+        setTimeout(emptyCart, 2000);
     }
 };
 
@@ -697,19 +698,16 @@ const validateTargetEventClick = (e) => {
         addClass(modalContainer, "modal--hidden");
     }
 
-    if(e.target.matches(".payment-btn")){
-        addClass(modalOverlay,"modal-overlay--visible");
+    if (e.target.matches(".payment-btn")) {
+        addClass(modalOverlay, "modal-overlay--visible");
     }
-    if(e.target.matches(".modal-payment__close")){
-        removeClass(modalOverlay,"modal-overlay--visible");
+    if (e.target.matches(".modal-payment__close")) {
+        removeClass(modalOverlay, "modal-overlay--visible");
     }
 
     // VACIAR CARRITO
-    if(e.target.matches(".delete-btn")){
-        let cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
-        cartItemsStorage=[];
-        localStorage.setItem("cartItems",JSON.stringify(cartItemsStorage));
-        location.reload();
+    if (e.target.matches(".delete-btn")) {
+        emptyCart();
     }
 
     // EVENTO A BOTON CANCELAR
@@ -725,21 +723,29 @@ const validateTargetEventClick = (e) => {
     // ***********************SECCIÓN MISION ACORDEÓN*************************
     if (e.target.matches(".mision-section h2")) {
         const content = e.target.nextElementSibling;
-        content.style.display === "none" ? content.style.display = "block": content.style.display = "none";
+        content.style.display === "none" ? content.style.display = "block" : content.style.display = "none";
     }
 };
 
+//VACIAR CARRITO 
+const emptyCart = () => {
+    let cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
+    cartItemsStorage = [];
+    localStorage.setItem("cartItems", JSON.stringify(cartItemsStorage));
+    location.reload();
+}
+
 // VALIDACION DE EVENTO SUBMIT
-const validateTargetSubmit = (e)=>{
+const validateTargetSubmit = (e) => {
     e.preventDefault();
-    if(formPyment) {
+    if (formPyment) {
         validatePyment();
         e.target.reset();
     }
 };
 
 // EVENTOS SUBMIT
-const eventSubmits = ()=> d.addEventListener("submit", validateTargetSubmit);
+const eventSubmits = () => d.addEventListener("submit", validateTargetSubmit);
 
 // FUNCION PARA EVENTOS DE CLICKS
 const clickEvents = () => d.addEventListener("click", validateTargetEventClick);
@@ -764,9 +770,9 @@ const activeLink = () => {
 }
 
 // FUNCION PARA VALIDAR RUTA EN LA QUE NOS ENCONTRAMOS Y QUE NO DE MessageAlertES EN CONSOLA.
-const locationPathName = (routeGit, routeLocal, callback)=>{
+const locationPathName = (routeGit, routeLocal, callback) => {
     let page = location.pathname === routeGit || location.pathname === routeLocal
-    if(page) callback();
+    if (page) callback();
 }
 
 // FUNCIÓN QUE SE ENCARGA DE INICIAR LAS PÁGINAS
@@ -788,9 +794,9 @@ const initPage = () => {
     // EVENTO DE CLICK.
     clickEvents();
 
-    locationPathName(`${routeFolderGit}/index.html`, `${routeFolderLocal}/index.html`, ()=> animationTitle());
-    locationPathName(`${routeFolderGit}/products.html`, `${routeFolderLocal}/products.html`, ()=> renderProducts());
-    locationPathName(`${routeFolderGit}/shop.html`, `${routeFolderLocal}/shop.html`,()=> renderCartItems());
+    locationPathName(`${routeFolderGit}/index.html`, `${routeFolderLocal}/index.html`, () => animationTitle());
+    locationPathName(`${routeFolderGit}/products.html`, `${routeFolderLocal}/products.html`, () => renderProducts());
+    locationPathName(`${routeFolderGit}/shop.html`, `${routeFolderLocal}/shop.html`, () => renderCartItems());
 
     // LINK ACTIVO
     activeLink();
