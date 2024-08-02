@@ -7,16 +7,30 @@ const d = document,
     products = d.getElementById("products"),
     slideShow = d.querySelector(".slide"),
     rootHtml = d.documentElement,
+    formPyment = d.getElementById("form-pyment"),
+    inputsContact = d.querySelectorAll(".form__input"),
+    formContact = d.getElementById("form-contact"),
     modalContainer = d.querySelector('.modal'),  //SELECTORES DE MODALES
     modalInfo = d.querySelector('.modal__info'),
-    actionButton = d.querySelector('.modal__btn-action');
+    actionButton = d.querySelector('.modal__btn-action'),
+    modalOverlay = d.querySelector(".modal-overlay");
+
 
 // VARIABLES GLOBALES
+//Carácteres para validar
+const minCharacter = "abcdefghijklmnñopqrstuvwxyz";
+const mayusCharacter = minCharacter.toUpperCase();
+const simbols = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+
 let hours = new Date().getHours(),
     decrementStock = 0,
     countAmount = 0;
 
-//***ARREGLO DE OBJETOS JSON GLOBALMENTE***//
+
+//***ARREGLOS***//
+//Arreglo que espera la información de los inputsde contacto
+let information = [];
+
 // ARREGLO DE PRODUCTOS
 const productsJson = [
     {
@@ -119,6 +133,17 @@ const contentInfoModal = [
         "description": "Su compra fue cancelada exitosamente!",
         "icon": "bi-check-circle-fill"
     },
+
+    {
+        "title": "Pago",
+        "description": "Su pago se ha enviado con exito!. Gracias por su compra",
+        "icon": "bi-check-circle-fill"
+    },
+    {
+        "title": "Campos vacios",
+        "description": "Los campos no pueden estar vacios. Todos los campos deben estar llenos.",
+        "icon": "bi-dash-circle-fill"
+    },
 ]
 
 // *************************************FUNCIONES GLOBALES PARA USAR EN CUALQUIER CONTEXTO**************************//
@@ -135,14 +160,6 @@ const addClass = (element, classAdd) => element.classList.add(classAdd);
 // FUNCION AUXILIAR PARA REMOVER CLASES
 const removeClass = (element, classRemove) => element.classList.remove(classRemove);
 
-// FUNCION REUTILIZABLE PARA EVENTOS DE FOCO
-const eventFocus = (elEvent, classTargetElement, classNameModified) => {
-    const referenceElementEvent = d.querySelector(elEvent);
-    const referenceElementModified = d.querySelector(classTargetElement);
-
-    referenceElementEvent.addEventListener("focus", () => addClass(referenceElementModified, classNameModified));
-    referenceElementEvent.addEventListener("blur", () => removeClass(referenceElementModified, classNameModified));
-};
 
 // ***************************FUNCIONALIDAD DE SALUDO DE BIENVENIDA*************************//
 // FUNCION QUE VALIDA LA HORA LOCAL DEL USUARIO
@@ -188,7 +205,7 @@ const configureModal = (info) => {
 }
 
 // FUNCION PARA MODAL DE MENSAJES
-const showModalsError = (indexMessage) => {
+const showModalsMessageAlert = (indexMessage) => {
     const infoModal = contentInfoModal[indexMessage];
     configureModal(infoModal);
     removeClass(modalContainer, "modal--hidden");
@@ -281,49 +298,56 @@ const operateAmountTotal = (amount) => {
 
 //***RENDERIZADO DE LA LISTA DE PRODUCTOS AGREGADOS****
 const renderCartItems = () => {
-    const fragment = document.createDocumentFragment();
+    const btnPyment = d.querySelector(".payment-btn");
+    const btnDeleteCart = d.querySelector(".delete-btn");
+    const backBtn = d.querySelector(".back-btn");
+
+    const fragment = d.createDocumentFragment();
+   
+    const cartItemList = d.querySelector(".cart-body");
     const cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-    const cartItemList = document.querySelector(".cart-body");
-
-    const totalAmount = document.createElement("div");
-    const titleAmount = document.createElement("h3");
+    const totalAmount = d.createElement("div");
+    const titleAmount = d.createElement("h3");
     addClass(totalAmount, "card-total");
+    addClass(totalAmount, "d-flex");
+    addClass(totalAmount, "ai-center");
+    addClass(totalAmount, "jc-center");
     addClass(titleAmount, "card-total__price");
 
-    const total = cartItemsStorage.reduce((acc, item) => acc + item.total, 0);
+    const total = operateAmountTotal(countAmount);
     titleAmount.textContent = `Total: $${total}`;
     totalAmount.append(titleAmount);
 
-
-
-
-    const cardsContainer = document.createElement("div");
+    const cardsContainer = d.createElement("div");
     addClass(cardsContainer, "cards");
+    addClass(cardsContainer, "d-flex");
 
     // RECORRER LOS ELEMENTOS DE LA LISTA
     if (cartItemsStorage.length > 0) {
         cartItemsStorage.forEach(item => {
-            console.log(item);
-            const cardCart = document.createElement("div");
-            const img = document.createElement("img");
-            const cardContent = document.createElement("div");
-            const name = document.createElement("h5");
-            const quantity = document.createElement("p");
-            const price = document.createElement("p");
+            const cardCart = d.createElement("div");
+            const img = d.createElement("img");
+            const cardContent = d.createElement("div");
+            const name = d.createElement("h5");
+            const quantity = d.createElement("p");
+            const price = d.createElement("p");
 
             addClass(cardCart, "card-cart");
+            addClass(cardCart, "d-flex");
             addClass(img, "card-cart__img");
             addClass(cardContent, "card-cart__content");
+            addClass(cardContent, "d-flex");
             addClass(name, "card-cart__name");
             addClass(quantity, "card-cart__quantity");
             addClass(price, "card-cart__price");
 
+            // IMAGEN DE PRODUCTO O IMAGEN POR DEFECTO
             img.src = item.image || '../assets/images/cart.png';
             img.alt = item.name;
             name.textContent = item.name;
             quantity.textContent = `Cantidad: ${item.quantity}`;
-            price.textContent = `Total: $${item.total}`;
+            price.textContent = `Precio: $${item.total}`;
 
             cardContent.appendChild(name);
             cardContent.appendChild(quantity);
@@ -340,13 +364,17 @@ const renderCartItems = () => {
 
     // LIMPIAR CARRITO 
     if (cartItemList.children.length == 0) {
+        addClass(btnPyment, "payment-btn--hide");
         const cartEmpty = d.createElement('h3');
         addClass(cartEmpty, 'cart__empty')
         cartEmpty.textContent = "Aun no has añadido productos al carrito...";
-        cartItemList.append(cartEmpty)
+        cartItemList.append(cartEmpty);
+        return;
     }
+    removeClass(btnPyment, "payment-btn--hide");
+    removeClass(btnDeleteCart, "payment-btn--hide");
+    removeClass(backBtn, "payment-btn--hide");
 };
-
 
 // FUNCION AUXILIAR PARA VALIDAR ID EN LOCALSTORAGE
 const validateExistProduct = (infoArr, dataObject, prop, condition) => {
@@ -354,7 +382,7 @@ const validateExistProduct = (infoArr, dataObject, prop, condition) => {
     let storedProductIndex = infoArr.findIndex(p => p[prop] == condition);
     // SI ES ENCONTRADO MODIFICAR VALORES SINO AGREGAR NUEVO OBJETO DE CARRITO.
     storedProductIndex !== -1 ? infoArr[storedProductIndex] = dataObject
-        : infoArr.push(dataObject);
+    : infoArr.push(dataObject);
 }
 
 // GUARDAR EL ESTADO ACTUAL DE LOS PRODUCTOS.
@@ -397,14 +425,14 @@ const validateDataProducts = (e) => {
     if (!isNaN(inputValue)) {
         //SI EL VALOR ES MENOR A 0
         if (inputValue < 0) {
-            showModalsError(0);
+            showModalsMessageAlert(0);
             removeClass(actionButton, "modal__btn-action--hidden");
             return;
         }
 
         // SI VALOR DE INPUT ES MAYOR AL STOCK
         if (inputValue > stock) {
-            showModalsError(2);
+            showModalsMessageAlert(2);
             removeClass(actionButton, "modal__btn-action--hidden");
             return
         }
@@ -436,17 +464,18 @@ const validateDataProducts = (e) => {
         return true;
     }
 
-    showModalsError(1);
+    showModalsMessageAlert(1);
     return false;
 }
 //*************************************FUNCIONALIDAD DE SLIDE*****************************************//
 
 // FUNCION REUTILIZABLE PARA USO DE TRANSICION EN SLIDE
-const handleSlideTransition = (insertMethod) => {
-    if (typeof insertMethod !== 'function') {
-        throw new Error('Lo que añadi no es un metodo!!');
+const handleSlideTransition = (callBackInsertElement) => {
+    if (typeof callBackInsertElement !== 'function') {
+        throw new MessageAlert('Lo que añadi no es un metodo!!');
     }
 
+    // METODO DE TRANSICIÓN
     const transition = () => {
         // REMOVER CLASES DE TRANSICION Y TRASNLATE
         removeClass(slideShow, "slide--translate");
@@ -458,7 +487,7 @@ const handleSlideTransition = (insertMethod) => {
         addClass(slideShow, "slide--reset");
 
         // FUNCION A EJECUTAR PARA AGREGAR ELEMENTOS HIJOS MEDIANTE UN METODO ESPECIFICO.
-        insertMethod();
+        callBackInsertElement();
 
         // SE RESTAURA VARIABLE CSS DESPUES DE 10MS
         setTimeout(() => {
@@ -472,6 +501,14 @@ const handleSlideTransition = (insertMethod) => {
 
     // EVENTO DE TRANSICION
     slideShow.addEventListener('transitionend', transition);
+}
+
+// FUNCION PARA ANIMACION DE ANUNCIO DESCUENTO
+const animationTitle = ()=>{
+    let containerTitleOff = d.querySelector(".section-brands__title");
+    let title = d.querySelector(".section-brands__title h3");
+    let durationAnim = (containerTitleOff.offsetWidth + title.offsetWidth) / 200;
+    title.style.animationDuration = `${durationAnim}s`; 
 }
 
 // FUNCION SIGUIENTE
@@ -544,6 +581,56 @@ const refoundStock = (product, contentStock) => {
 }
 
 /*****************************************EVENTOS Y FUNCIONES PARA TODA LA PÁGINA*****************************************/
+
+// VALIDACIONES DE EVENTO POR EL TARGET
+
+// VALIDAR FORMULARIO DE CONTACTO 
+const validateContactForm = ()=>{
+    //Reseteamos (vaciamos) el arreglo en cada evento submit para no acumular en caso de error de validación
+    information.length = 0;
+    //Le añadimos el valor de cada input al arreglo information
+    inputs.forEach(input => information.push(input.value));
+
+    //Instanciamos Blob para guardar la información
+    let blob = new Blob([information], { type: "text/plain;charset=utf-8" });
+ 
+    //Guardamos en una variable el valor de teléfono
+    let phone = information[3];
+ 
+    let isValidate = true;
+    //Recorremos los carácteres del contenido del input telefóno
+    for (let i = 0; i < phone.length; i++) {
+        //¿En las letras minusculas, mayusculas o simbolos tienen algun caracter de los ingresados en el campo telefono?
+        if (minCharacter.includes(phone[i]) || mayusCharacter.includes(phone[i]) || simbols.includes(phone[i])) {
+            // SI ES CIERTO ENTONCES NO ES VALIDO.
+            isValidate = false;
+            break;
+        }
+    }
+ 
+    if(isValidate) {
+        //Libreria FileServer.js
+        saveAs(blob, "contact.txt");
+        return true;
+    }
+    return false;
+ 
+}
+
+// VALIDAR PAGO
+const validatePyment= (e)=>{
+    // EN ESTA FUNCION SE PODRIAN HACER VARIAS VALIDACIONES PARA LOS CAMPOS.
+    const inputs = d.querySelectorAll("#form-pyment input");
+    const arrInputs = Array.from(inputs);
+    let isEmpty = arrInputs.every(input => input.value === "");
+    if(isEmpty){
+        showModalsMessageAlert(6) 
+    }else{
+        showModalsMessageAlert(5);
+        removeClass(modalOverlay,"modal-overlay--visible");
+    }
+};
+
 // VALIDAR TARGET DE EVENTO CLICK
 const validateTargetEventClick = (e) => {
     // SI EL EVENTO DE CLICK ESTA ORIGINADO EN UN ELEMENTO CON LA CLASE DADA EJECUTAR LO CORRESPONDIENTE.
@@ -568,6 +655,21 @@ const validateTargetEventClick = (e) => {
     // EVENTO AL BOTON OK (CERRAR MODAL)
     if (e.target.matches(".modal__btn-action")) {
         addClass(modalContainer, "modal--hidden");
+    }
+
+    if(e.target.matches(".payment-btn")){
+        addClass(modalOverlay,"modal-overlay--visible");
+    }
+    if(e.target.matches(".modal-payment__close")){
+        removeClass(modalOverlay,"modal-overlay--visible");
+    }
+
+    // VACIAR CARRITO
+    if(e.target.matches(".delete-btn")){
+        let cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
+        cartItemsStorage=[];
+        localStorage.setItem("cartItems",JSON.stringify(cartItemsStorage)); 
+        location.reload();
     }
 
     // EVENTO A BOTON CANCELAR
@@ -599,7 +701,7 @@ const validateTargetEventClick = (e) => {
 
         addClass(modalContainer, "modal--hidden");
         removeClass(actionButton, "modal__btn-action--hidden");
-        showModalsError(4);
+        showModalsMessageAlert(4);
         // VACIAMOS CAMPO
         inputElment.value = "";
     }
@@ -649,7 +751,7 @@ const validateTargetEventClick = (e) => {
 
         // ASIGNAR LOS NUEVOS VALORES AL CONFIRMAR.
         localStorage.setItem("info", JSON.stringify(infoProductStorage));
-        showModalsError(3);
+        showModalsMessageAlert(3);
         removeClass(actionButton, "modal__btn-action--hidden");
         // VACIAMOS CAMPO
         inputElement.value = "";
@@ -661,6 +763,19 @@ const validateTargetEventClick = (e) => {
         content.style.display === "none" ? content.style.display = "block": content.style.display = "none";
     }
 }
+
+
+
+
+const validateTargetSubmit = (e)=>{
+    e.preventDefault();
+    if(formPyment) validatePyment();
+    if(formContact) validateContactForm();
+    e.target.reset()
+}
+
+// EVENTOS SUBMIT
+const eventSubmits = ()=> d.addEventListener("submit", validateTargetSubmit);
 
 // FUNCION PARA EVENTOS DE CLICKS
 const clickEvents = () => d.addEventListener("click", validateTargetEventClick);
@@ -674,7 +789,7 @@ const validateMedia = (sizeDisplay) => {
 
 // FUNCIÓN PARA MANTENER LINK ACTIVO
 const activeLink = () => {
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = d.querySelectorAll('.nav-link');
     const currentPath = window.location.pathname;
 
     navLinks.forEach(link => {
@@ -684,8 +799,16 @@ const activeLink = () => {
     });
 }
 
+// FUNCION PARA VALIDAR RUTA EN LA QUE NOS ENCONTRAMOS Y QUE NO DE MessageAlertES EN CONSOLA.
+const locationPathName = (routeGit, routeLocal, callback)=>{
+    let page = location.pathname === routeGit || location.pathname === routeLocal
+    if(page) callback();
+}
+
 // FUNCIÓN QUE SE ENCARGA DE INICIAR LAS PÁGINAS
 const initPage = () => {
+    let routeFolderGit = "/TP1-Frontend/src/pages";
+    let routeFolderLocal = "/src/pages"
     //OBTENER DATOS ACTUALES DEL ALMACENAMIENTO
     loadStockFromLocalStorage();
 
@@ -695,21 +818,17 @@ const initPage = () => {
     // SALUDAMOS
     grettWelcome();
 
-    // UTILIZO FUNCION PARA EVENTO DE FOCO
-    eventFocus(".form-search__search", ".form-search", "form-search--focus");
+    // EVENTO SUBMIT
+    eventSubmits();
 
     // EVENTO DE CLICK.
     clickEvents();
 
-    // DESCOMENTAR ESTAS LINEAS PARA EL DESARROLLO LOCAL.
-    if (location.pathname === "/src/pages/products.html" || location.pathname === "/TP1-Frontend/src/pages/products.html") {
-        renderProducts();
-    }
+    locationPathName(`${routeFolderGit}/index.html`, `${routeFolderLocal}/index.html`, ()=> animationTitle());
+    locationPathName(`${routeFolderGit}/products.html`, `${routeFolderLocal}/products.html`, ()=> renderProducts());
+    locationPathName(`${routeFolderGit}/shop.html`, `${routeFolderLocal}/shop.html`,()=> renderCartItems());
 
-    if (location.pathname === "/src/pages/shop.html" || location.pathname === "/TP1-Frontend/src/pages/shop.html") {
-        renderCartItems();
-    }
-
+    // LINK ACTIVO
     activeLink();
 }
 

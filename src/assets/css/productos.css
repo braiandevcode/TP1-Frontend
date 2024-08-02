@@ -208,9 +208,29 @@ h1 {
     right: 0;
     opacity: 1;
 }
+.header-page--product{
+    position: relative;
+}
 
+.icon-cart{
+    position: absolute;
+    top:.8rem;
+    right: 2rem;
+    color: #148a24;
+    font-weight: bold;
+    font-size: 1.7rem;
+    border-radius: 50%;
+    transition: all .5s ease-in;
+
+}
+.icon-cart__text{
+    color: #dbd5d5;
+}
 /* ******************HOVERS****************** */
 @media (hover: hover) {
+    .icon-cart:hover{
+        color: orange;
+    }
     .card-product__btn:hover {
         background-color: #FFF;
         color: #156b20;

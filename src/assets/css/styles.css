@@ -27,6 +27,7 @@ body {
     font-family: "Roboto", sans-serif;
     color: #FDFDFD;
     /* background-color: #f3f3f3; */
+    letter-spacing: 1px;
 }
 
 /* PARA TODO EL ALTO DEL VH*/
@@ -336,13 +337,75 @@ button {
 .footer-social,
 .aside-nav,
 .nav-list,
-.slide__show {
+.slide__show ,
+.section-brands__images{
     gap: 1rem;
 }
 
+/* SECCION DE MARCAS DEL SUPERMERCADO */
+.section-brands{
+    color: #156b20;
+    font-size: 1.2rem;
+}
+.section-brands__title{
+    position: relative;
+    margin-bottom: .7em;
+    padding: 1rem 0;
+    background: #e28a16;
+    display: flex;
+    justify-content: center;
+}
+
+.section-brands__title h3{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: max-content;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    animation: moveTitle 10s linear infinite;
+}
+
+@keyframes moveTitle {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.section-brands__images{
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.section-brands__image{
+    flex: 0 1 250px;
+    align-self: center;
+    transform: scale(.7);
+    transition: transform .7s ease-in-out;
+    border-radius: 6px;
+    box-shadow: -4px -4px 15px #bbbdbb, 4px 4px 15px #bbbdbb;
+    position: relative;
+}
+
+.section-brands__image a{
+    width: 80%;
+    margin: 0 auto;
+}
+.section-brands__image a img{
+    height: 250px;
+    width: 300px;
+    margin: 0 auto;
+}
 
 /******************HOVERS***************************/
 @media(hover: hover) and (pointer: fine) {
+    .section-brands__image:hover{
+        transform: scale(.9);
+    }
+
     a:hover {
         color: #fff;
     }
@@ -372,15 +435,6 @@ button {
 
 /***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
 @media screen and (min-width: 520px) {
-    .header-page {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .header-page__greeting {
-        justify-content: start;
-    }
-
     .banner {
         height: 30vh;
     }
@@ -448,5 +502,14 @@ button {
 
     .slide__fig {
         flex-basis: 25%;
+    }
+
+    .header-page {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .header-page__greeting {
+        justify-content: start;
     }
 }
