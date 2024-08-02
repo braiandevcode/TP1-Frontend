@@ -8,8 +8,6 @@ const d = document,
     slideShow = d.querySelector(".slide"),
     rootHtml = d.documentElement,
     formPyment = d.getElementById("form-pyment"),
-    inputsContact = d.querySelectorAll(".form__input"),
-    formContact = d.getElementById("form-contact"),
     modalContainer = d.querySelector('.modal'),  //SELECTORES DE MODALES
     modalInfo = d.querySelector('.modal__info'),
     actionButton = d.querySelector('.modal__btn-action'),
@@ -17,20 +15,12 @@ const d = document,
 
 
 // VARIABLES GLOBALES
-//Carácteres para validar
-const minCharacter = "abcdefghijklmnñopqrstuvwxyz";
-const mayusCharacter = minCharacter.toUpperCase();
-const simbols = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-
 let hours = new Date().getHours(),
     decrementStock = 0,
     countAmount = 0;
 
 
 //***ARREGLOS***//
-//Arreglo que espera la información de los inputsde contacto
-let information = [];
-
 // ARREGLO DE PRODUCTOS
 const productsJson = [
     {
@@ -584,39 +574,6 @@ const refoundStock = (product, contentStock) => {
 
 // VALIDACIONES DE EVENTO POR EL TARGET
 
-// VALIDAR FORMULARIO DE CONTACTO 
-const validateContactForm = ()=>{
-    //Reseteamos (vaciamos) el arreglo en cada evento submit para no acumular en caso de error de validación
-    information.length = 0;
-    //Le añadimos el valor de cada input al arreglo information
-    inputs.forEach(input => information.push(input.value));
-
-    //Instanciamos Blob para guardar la información
-    let blob = new Blob([information], { type: "text/plain;charset=utf-8" });
- 
-    //Guardamos en una variable el valor de teléfono
-    let phone = information[3];
- 
-    let isValidate = true;
-    //Recorremos los carácteres del contenido del input telefóno
-    for (let i = 0; i < phone.length; i++) {
-        //¿En las letras minusculas, mayusculas o simbolos tienen algun caracter de los ingresados en el campo telefono?
-        if (minCharacter.includes(phone[i]) || mayusCharacter.includes(phone[i]) || simbols.includes(phone[i])) {
-            // SI ES CIERTO ENTONCES NO ES VALIDO.
-            isValidate = false;
-            break;
-        }
-    }
- 
-    if(isValidate) {
-        //Libreria FileServer.js
-        saveAs(blob, "contact.txt");
-        return true;
-    }
-    return false;
- 
-}
-
 // VALIDAR PAGO
 const validatePyment= (e)=>{
     // EN ESTA FUNCION SE PODRIAN HACER VARIAS VALIDACIONES PARA LOS CAMPOS.
@@ -762,17 +719,16 @@ const validateTargetEventClick = (e) => {
         const content = e.target.nextElementSibling;
         content.style.display === "none" ? content.style.display = "block": content.style.display = "none";
     }
-}
+};
 
-
-
-
+// VALIDACION DE EVENTO SUBMIT
 const validateTargetSubmit = (e)=>{
     e.preventDefault();
-    if(formPyment) validatePyment();
-    if(formContact) validateContactForm();
-    e.target.reset()
-}
+    if(formPyment) {
+        validatePyment();
+        e.target.reset();
+    }
+};
 
 // EVENTOS SUBMIT
 const eventSubmits = ()=> d.addEventListener("submit", validateTargetSubmit);
