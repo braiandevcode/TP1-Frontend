@@ -577,7 +577,7 @@ const refoundStock = (product, contentStock) => {
 // VALIDACIONES DE EVENTO POR EL TARGET
 
 // FUNCION PARA MANEJAR EVENTO DE CANCELAR
- const handleCancelEvent=(e)=>{
+const handleCancelEvent=(e)=>{
     e.preventDefault();
     const targetId = e.target.dataset.id;
     const product = productsJson.find(product => product.id_product == targetId);
@@ -657,8 +657,6 @@ const handleConfirmEvent = (e) =>{
     inputElement.value = "";
 }
 
-
-
 // VALIDAR PAGO
 const validatePyment= (e)=>{
     // EN ESTA FUNCION SE PODRIAN HACER VARIAS VALIDACIONES PARA LOS CAMPOS.
@@ -710,13 +708,13 @@ const validateTargetEventClick = (e) => {
     if(e.target.matches(".delete-btn")){
         let cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
         cartItemsStorage=[];
-        localStorage.setItem("cartItems",JSON.stringify(cartItemsStorage)); 
+        localStorage.setItem("cartItems",JSON.stringify(cartItemsStorage));
         location.reload();
     }
 
     // EVENTO A BOTON CANCELAR
     if (e.target.matches(".modal__btn-cancel")) {
-        handleCancelEvent(E);
+        handleCancelEvent(e);
     }
 
     // EVENTO AL DAR AL CONFIRMAR COMPRA
