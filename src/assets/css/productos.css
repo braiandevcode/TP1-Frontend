@@ -208,29 +208,37 @@ h1 {
     right: 0;
     opacity: 1;
 }
-.header-page--product{
+
+.header-page--product {
     position: relative;
 }
 
-.icon-cart{
+.icon-cart {
     position: absolute;
-    top:.8rem;
+    top: 1rem;
     right: 2rem;
-    color: #148a24;
+    color: #156b20;
+    width: 2.5rem;
+    height: 2.5rem;
+    /* background-color: #444; */
     font-weight: bold;
     font-size: 1.7rem;
     border-radius: 50%;
     transition: all .5s ease-in;
 
 }
-.icon-cart__text{
+
+.icon-cart__text {
     color: #dbd5d5;
 }
+
 /* ******************HOVERS****************** */
 @media (hover: hover) {
-    .icon-cart:hover{
-        color: orange;
+    .icon-cart:hover {
+        color: #156b20;
+        background-color: #ffb76e;
     }
+
     .card-product__btn:hover {
         background-color: #FFF;
         color: #156b20;

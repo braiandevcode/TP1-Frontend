@@ -35,7 +35,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./shop.html">
-                            <i class="nav-icon bi bi-cart4"></i>Shop
+                            <i class="nav-icon bi bi-cart4"></i>Carrito
                         </a>
                     </li>
                 </ul>
@@ -81,11 +81,14 @@
                 <div class="cart-body d-flex jc-center ai-center">
                 </div>
                 <div class="cart__buttons d-flex jc-center ai-center">
-                    <a class="back-btn payment-btn--hide d-flex ai-center" title="Seguir comprando" href="../pages/products.html">
+                    <a class="back-btn payment-btn--hide d-flex ai-center" title="Seguir comprando"
+                        href="../pages/products.html">
                         <i class="icon-back bi bi-arrow-bar-left"></i>Explorar más
                     </a>
-                    <button title="Pagar Carro" class="btn payment-btn payment-btn payment-btn--hide"><i class="bi bi-credit-card"></i>Pagar</button>
-                    <button title="Vaciar Carro" class="btn btn--red delete-btn payment-btn--hide"><i class="bi bi-trash3-fill"></i>Vaciar</button>
+                    <button title="Pagar Carro" class="btn payment-btn payment-btn payment-btn--hide"><i
+                            class="bi bi-credit-card"></i>Pagar</button>
+                    <button title="Vaciar Carro" class="btn btn--red delete-btn payment-btn--hide"><i
+                            class="bi bi-trash3-fill"></i>Vaciar</button>
                 </div>
             </div>
             <form id="form-pyment">
@@ -99,27 +102,30 @@
                             <form id="payment-form">
                                 <div class="form__group">
                                     <label for="cardholder-name">Nombre del Titular</label>
-                                    <input type="text" id="cardholder-name" name="cardholderName" placeholder="Nombre del Titular" >
+                                    <input type="text" id="cardholder-name" name="cardholderName"
+                                        placeholder="Nombre del Titular">
                                 </div>
                                 <div class="form__group">
                                     <label for="card-number">Número de Tarjeta</label>
-                                    <input type="text" id="card-number" name="cardNumber" placeholder="Número de Tarjeta" >
+                                    <input type="text" id="card-number" name="cardNumber"
+                                        placeholder="Número de Tarjeta">
                                 </div>
                                 <div class="form__group">
                                     <label for="expiry-date">Fecha de Expiración</label>
-                                    <input type="text" id="expiry-date" name="expiryDate" placeholder="MM/AA" >
+                                    <input type="text" id="expiry-date" name="expiryDate" placeholder="MM/AA">
                                 </div>
                                 <div class="form__group">
                                     <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="CVV" >
+                                    <input type="text" id="cvv" name="cvv" placeholder="CVV">
                                 </div>
                                 <div class="form__group">
                                     <label for="billing-address">Dirección de Facturación</label>
-                                    <input type="text" id="billing-address" name="billingAddress" placeholder="Dirección de Facturación" >
+                                    <input type="text" id="billing-address" name="billingAddress"
+                                        placeholder="Dirección de Facturación">
                                 </div>
                                 <div class="form__group">
                                     <label for="zip-code">Código Postal</label>
-                                    <input type="text" id="zip-code" name="zipCode" placeholder="Código Postal" >
+                                    <input type="text" id="zip-code" name="zipCode" placeholder="Código Postal">
                                 </div>
                                 <div class="form__group">
                                     <button type="submit" class="form__submit-btn">Enviar Pago</button>
@@ -129,8 +135,8 @@
                     </div>
                 </div>
             </form>
-             <!-- MODAL -->
-             <div class="modal modal--hidden d-flex ai-center jc-center">
+            <!-- MODAL -->
+            <div class="modal modal--hidden d-flex ai-center jc-center">
                 <div class="modal__body">
                     <div class="modal__info d-flex"></div>
                     <div class="modal__btn-action-container">
@@ -169,11 +175,12 @@
                 </div>
             </footer>
 
-             <!-- TEMPLATE MODAL ALERTS -->
-        <template id="template-modal-alerts">
-            <h3 class="modal__title d-flex ai-center"><i class="modal__icon modal__icon--error d-flex ai-center jc-center bi"></i></h3>
-            <p class="modal__description"></p>
-        </template>
+            <!-- TEMPLATE MODAL ALERTS -->
+            <template id="template-modal-alerts">
+                <h3 class="modal__title d-flex ai-center"><i
+                        class="modal__icon modal__icon--error d-flex ai-center jc-center bi"></i></h3>
+                <p class="modal__description"></p>
+            </template>
         </div>
     </div>
     <script src="../js/script.js"></script>

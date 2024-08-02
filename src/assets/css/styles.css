@@ -67,6 +67,10 @@ button {
     font-family: "Roboto", sans-serif;
 }
 
+textarea {
+    font-family: "Roboto", sans-serif;
+}
+
 /* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
 .bi {
     cursor: pointer;
@@ -112,7 +116,7 @@ button {
 }
 
 .header-page__title {
-    color: #eaeaea;
+    color: rgb(255, 232, 215);
 }
 
 /* ICONOS DEL HEADER */
@@ -127,8 +131,12 @@ button {
 /*********************************ASIDE NAVEGACIÓN***********************************/
 /* LOGO */
 .logo {
-    margin: 1.5rem 0;
-    font-size: xxx-large;
+    margin: 2.3rem 0;
+    padding: .7rem;
+    font-size: 2.8rem;
+    background-color: #f2861b;
+    color: #156b20;
+    border-radius: 50%;
 }
 
 .aside-nav {
@@ -337,17 +345,18 @@ button {
 .footer-social,
 .aside-nav,
 .nav-list,
-.slide__show ,
-.section-brands__images{
+.slide__show,
+.section-brands__images {
     gap: 1rem;
 }
 
 /* SECCION DE MARCAS DEL SUPERMERCADO */
-.section-brands{
+.section-brands {
     color: #156b20;
     font-size: 1.2rem;
 }
-.section-brands__title{
+
+.section-brands__title {
     position: relative;
     margin-bottom: .7em;
     padding: 1rem 0;
@@ -356,7 +365,7 @@ button {
     justify-content: center;
 }
 
-.section-brands__title h3{
+.section-brands__title h3 {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -371,16 +380,18 @@ button {
     0% {
         transform: translateX(100%);
     }
+
     100% {
         transform: translateX(-100%);
     }
 }
-.section-brands__images{
+
+.section-brands__images {
     margin-bottom: 3rem;
     flex-wrap: wrap;
 }
 
-.section-brands__image{
+.section-brands__image {
     flex: 0 1 250px;
     align-self: center;
     transform: scale(.7);
@@ -390,11 +401,12 @@ button {
     position: relative;
 }
 
-.section-brands__image a{
+.section-brands__image a {
     width: 80%;
     margin: 0 auto;
 }
-.section-brands__image a img{
+
+.section-brands__image a img {
     height: 250px;
     width: 300px;
     margin: 0 auto;
@@ -402,7 +414,7 @@ button {
 
 /******************HOVERS***************************/
 @media(hover: hover) and (pointer: fine) {
-    .section-brands__image:hover{
+    .section-brands__image:hover {
         transform: scale(.9);
     }
 
@@ -507,6 +519,7 @@ button {
     .header-page {
         flex-direction: row;
         align-items: center;
+        padding: 1.6rem;
     }
 
     .header-page__greeting {

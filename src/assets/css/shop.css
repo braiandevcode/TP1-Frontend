@@ -81,11 +81,11 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.cart__buttons{
+.cart__buttons {
     gap: 2rem;
 }
 
-.btn{
+.btn {
     font-family: inherit;
     font-size: 1rem;
     text-align: center;
@@ -94,37 +94,33 @@
     border-radius: 8px;
     display: inline-block;
 }
+
 .payment-btn,
-.btn{
+.btn {
     transition: all .5s ease-in-out;
     background-color: #19924f;
     color: #c7bcbc;
 }
 
-.btn--red{
+.btn--red {
     background-color: #c42727;
 }
 
 
 /* ICONO FLECHA PARA VOLVER A PRODUCTOS */
-.back-btn{
-    background-color: #a50e5a;
+.back-btn {
+    background-color: #e87918;
     border-radius: 30px;
     padding: .7rem;
     font-size: .8rem;
 }
 
-.icon-back{
-    color: #3a1d7e;
-    font-size: .9rem;
-}
-
 .bi-trash3-fill,
-.bi-credit-card{
+.bi-credit-card {
     margin-right: .3rem;
 }
 
-.payment-btn--hide{
+.payment-btn--hide {
     display: none;
 }
 
@@ -136,14 +132,15 @@
     transition: transform .6s ease-in-out;
 }
 
-.modal-overlay--visible{
+.modal-overlay--visible {
     transform: scale(1);
 }
 
-.modal__header{
+.modal__header {
     color: rgba(34, 32, 32, 0.801);
 }
-.bi-x-circle-fill{
+
+.bi-x-circle-fill {
     font-size: 1.5rem;
     align-self: flex-end;
     color: rgb(21, 74, 109);
@@ -170,7 +167,7 @@
     width: 100%;
     border-radius: 4px;
     font-size: 16px;
-    
+
 }
 
 .form__submit-btn:hover {
@@ -198,7 +195,7 @@
     }
 }
 
-@media(hover: hover){
+@media(hover: hover) {
     .btn:hover {
         background-color: #FFF;
         color: #156b20;
