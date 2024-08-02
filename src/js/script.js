@@ -11,13 +11,15 @@ const d = document,
     modalContainer = d.querySelector('.modal'),  //SELECTORES DE MODALES
     modalInfo = d.querySelector('.modal__info'),
     actionButton = d.querySelector('.modal__btn-action'),
-    modalOverlay = d.querySelector(".modal-overlay");
+    modalOverlay = d.querySelector(".modal-overlay"),
+    counterTextProduct=d.querySelector(".icon-cart__text");
 
 
 // VARIABLES GLOBALES
 let hours = new Date().getHours(),
     decrementStock = 0,
-    countAmount = 0;
+    countAmount = 0,
+    counterProduct=0;
 
 
 //***ARREGLOS***//
@@ -536,13 +538,13 @@ const handlePrev = () => {
 const updateCart = (image, name, inputValue, total) => {
     // LEER LOS VALORES DEL CARRITO Y CONVERTIRLOS A FORMATO JSON O ARREGLO VACÍO
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
+    counterProduct++;
     let storedProductCart = cartItems.find(prod => prod.name == name);
     if (storedProductCart) {
         storedProductCart.quantity += inputValue;
         storedProductCart.total += total;
     } else {
-        validateExistProduct(cartItems, { image: image, name: name, quantity: inputValue, total: total }, "name", name);
+        validateExistProduct(cartItems, {quantityUnit:counterProduct, image: image, name: name, quantity: inputValue, total: total }, "name", name);
     };
 
     // GUARDAR EL CARRITO ACTUALIZADO EN EL LOCALSTORAGE
@@ -573,6 +575,89 @@ const refoundStock = (product, contentStock) => {
 /*****************************************EVENTOS Y FUNCIONES PARA TODA LA PÁGINA*****************************************/
 
 // VALIDACIONES DE EVENTO POR EL TARGET
+
+// FUNCION PARA MANEJAR EVENTO DE CANCELAR
+ const handleCancelEvent=(e)=>{
+    e.preventDefault();
+    const targetId = e.target.dataset.id;
+    const product = productsJson.find(product => product.id_product == targetId);
+    const infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
+
+    const inputElement = d.getElementById(`${targetId}`);
+    const button = d.querySelector(`[data-idproduct="${targetId}"]`);
+    const contentStock = inputElement.parentElement.firstElementChild;
+
+    refoundStock(product, contentStock);
+
+    let storedProduct = infoProductStorage.find(prod => prod.idProduct == targetId);
+    if (storedProduct) {
+        storedProduct.stock = product.stock_product;
+    } else {
+        validateExistProduct(infoProductStorage, { stock, price, idProduct: product.price_product }, "idProduct", targetId);
+    }
+
+    localStorage.setItem("info", JSON.stringify(infoProductStorage));
+
+    button.removeAttribute("disabled");
+    removeClass(button, "card-product__btn--disabled");
+
+    addClass(modalContainer, "modal--hidden");
+    removeClass(actionButton, "modal__btn-action--hidden");
+    showModalsMessageAlert(4);
+
+    inputElement.value = "";
+}
+
+//FUNCION PARA MANEJAR PRODUCTOS FUERA DE STOCK
+const handleOutOfStock=(targetId, stock) => {
+    let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
+    outOfStockProducts.push({ idProduct: targetId, stock: stock });
+    localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
+
+    outOfStockProducts.forEach(product => {
+        const cardId = d.querySelector(`[data-card="${product.idProduct}"]`);
+        const btnIdproduct = d.querySelector(`[data-idproduct="${product.idProduct}"]`);
+        const textStock = cardId.querySelector("h5");
+        textStock.textContent = "Sin Stock";
+        textStock.dataset.stock = 0;
+        buttonDisabled(btnIdproduct, 0);
+    });
+}
+
+// FUNCION DE EVENTO PARA CONFIRMAR COMPRA
+const handleConfirmEvent = (e) =>{
+    e.preventDefault();
+    let infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
+    let cartItemsStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const targetId = e.target.dataset.id;
+    const product = productsJson.find(prod => prod.id_product == targetId);
+
+    const stock = product.stock_product;
+    const inputElement = d.getElementById(`${targetId}`);
+    const inputValue = parseInt(inputElement.value);
+    const addProductTotalCart = inputValue * product.price_product;
+
+    const textStock = d.querySelectorAll(`[data-stock="${targetId}"]`);
+    textStock.forEach(el => el.textContent = stock);
+
+    updateCart(product.image_product, product.name_product, inputValue, addProductTotalCart);
+
+    if (cartItemsStorage.length > 0) {
+        let lastIndex = cartItemsStorage.length - 1;
+        counterTextProduct.textContent = lastIndex + 1;
+    }
+
+    if (stock === 0) {
+        handleOutOfStock(targetId, stock);
+    }
+
+    localStorage.setItem("info", JSON.stringify(infoProductStorage));
+    showModalsMessageAlert(3);
+    removeClass(actionButton, "modal__btn-action--hidden");
+    inputElement.value = "";
+}
+
+
 
 // VALIDAR PAGO
 const validatePyment= (e)=>{
@@ -631,87 +716,12 @@ const validateTargetEventClick = (e) => {
 
     // EVENTO A BOTON CANCELAR
     if (e.target.matches(".modal__btn-cancel")) {
-        e.preventDefault();
-        const targetId = e.target.dataset.id;
-        const product = productsJson.find(product => product.id_product == targetId);
-        const infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
-
-        const inputElment = d.getElementById(`${targetId}`);
-        const button = d.querySelector(`[data-idproduct="${targetId}"]`);
-        const contentStock = inputElment.parentElement.firstElementChild;
-
-        // INVOCAR FUNCION PARA DEVOLVER VALOR AL STOCK AL CANCELAR.
-        refoundStock(product, contentStock);
-
-        // BUSCO PRODUCTO EN ALMACENAMIENTO... POR SU ID
-        let storedProduct = infoProductStorage.find(prod => prod.idProduct == targetId);
-
-        storedProduct ? storedProduct.stock = product.stock_product
-            : validateExistProduct(infoProductStorage, { stock, price, idProduct: product.price_product }, "idProduct", targetId);
-
-        localStorage.setItem("info", JSON.stringify(infoProductStorage));
-
-        // ASEGURAMOS QUE EN CASO DE QUEDAR SIN STOCK Y CANCELAR NO SE APLIQUE EL DISABLED DEL BOTON.
-        button.removeAttribute("disabled");
-        removeClass(button, "card-product__btn--disabled");
-        button.append()
-
-        addClass(modalContainer, "modal--hidden");
-        removeClass(actionButton, "modal__btn-action--hidden");
-        showModalsMessageAlert(4);
-        // VACIAMOS CAMPO
-        inputElment.value = "";
+        handleCancelEvent(E);
     }
 
     // EVENTO AL DAR AL CONFIRMAR COMPRA
     if (e.target.matches(".modal__btn-confirm")) {
-        e.preventDefault();
-        //OBTENEMOS LOS DATOS DESDE EL ALMACENAMIENTO LOCAL.
-        let infoProductStorage = JSON.parse(localStorage.getItem("info")) || [];
-        const targetId = e.target.dataset.id;
-        const product = productsJson.find((prod) => prod.id_product == targetId);
-
-        const stock = product.stock_product;
-        const inputElement = d.getElementById(`${targetId}`);
-        const inputValue = parseInt(inputElement.value);
-
-        const addProductTotalCart = inputValue * product.price_product;
-
-        const textStock = d.querySelectorAll(`[data-stock="${targetId}"]`);
-
-        textStock.textContent = stock;
-
-        // ACTUALIZAR CARRO
-        updateCart(product.image_product, product.name_product, inputValue, addProductTotalCart);
-
-        // VERIFICAR SI EL STOCK ES CERO
-        if (stock == 0) {
-            let outOfStockProducts = JSON.parse(localStorage.getItem("outStock")) || [];
-            outOfStockProducts.push({
-                idProduct: targetId,
-                stock: stock
-            });
-
-            // GUARDAR DATO ACTUAL EN LOCALSTORAGE
-            localStorage.setItem("outStock", JSON.stringify(outOfStockProducts));
-
-            // RECORRER ARREGLO PARA ASIGNAR SIN STOCK A LO ELEMENTOS SEGUN DATOS EN LOCALSTORAGE
-            for (let i = 0; i < outOfStockProducts.length; i++) {
-                const cardId = d.querySelector(`[data-card="${outOfStockProducts[i].idProduct}"]`);
-                const btnIdproduct = d.querySelector(`[data-idproduct="${outOfStockProducts[i].idProduct}"]`);
-                const textStock = cardId.querySelector("h5");
-                textStock.textContent = "Sin Stock";
-                textStock.dataset.stock = 0;
-                buttonDisabled(btnIdproduct, 0);
-            };
-        };
-
-        // ASIGNAR LOS NUEVOS VALORES AL CONFIRMAR.
-        localStorage.setItem("info", JSON.stringify(infoProductStorage));
-        showModalsMessageAlert(3);
-        removeClass(actionButton, "modal__btn-action--hidden");
-        // VACIAMOS CAMPO
-        inputElement.value = "";
+        handleConfirmEvent(e);
     }
 
     // ***********************SECCIÓN MISION ACORDEÓN*************************
