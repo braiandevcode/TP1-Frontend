@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Trabajo practico de la carrera fullstack de la institucion CEPIT" />
+    <meta name="keywords" content="HTML, CSS, JAVASCRIPT, TYPESCRIPT" />
+    <link rel="stylesheet" href="./src/assets/css/styles.css">
+    <title>Supermercado MB</title>
+</head>
+
+<body>
+    <div class="root-page">
+        <main>
+            <!-- CONTENEDOR PRINCIPAL DEL MAIN -->
+            <div class="container-main d-flex jc-center">
+                <!--NAVEGACION ASIDE  -->
+                <aside class="aside-nav ai-center aside-nav--visible">
+                    <div class="logo d-flex ai-center jc-center">
+                        <h3>MB</h3>
+                    </div>
+                    <nav class="nav">
+                        <ul class="nav-list nav-list--direction d-flex jc-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="nav-icon bi bi-house-door-fill"></i>Inicio
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./src/pages/products.html">
+                                    <i class="nav-icon bi bi-bag-heart-fill"></i>Productos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./src/pages/form.html">
+                                    <i class="nav-icon bi bi-person-fill"></i>Contacto
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./src/pages/shop.html">
+                                    <i class="nav-icon bi bi-cart4"></i>Carrito
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+                <nav class="nav nav--position nav--visible d-flex jc-center">
+                    <ul class="nav-list nav-list--direction d-flex jc-center ai-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="nav-icon bi bi-house-door-fill"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./src/pages/products.html">
+                                <i class="nav-icon bi bi-bag-heart-fill"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./src/pages/form.html">
+                                <i class="nav-icon bi bi-person-fill"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./src/pages/shop.html">
+                                <i class="nav-icon bi bi-cart4"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- CONTENEDOR  PRINCIPAL DE INFORMACIÓN DE PÁGINA-->
+                <div class="container-info-page d-flex">
+                    <!-- CABECERA DE PÁGINA -->
+                    <header class="header-page d-flex jc-spaceB">
+                        <h2 class="header-page__logo">MB Supermercados</h2>
+                        <div class="header-page__greeting d-flex">
+                            <h3 class="header-page__title"><i class="header-page__welcome bi"></i>
+                            </h3>
+                        </div>
+                    </header>
+                    <!-- BANNER -->
+                    <div id="banner" class="banner d-flex">
+                        <hr class="banner__divisor">
+                    </div>
+                    <!-- SLIDE -->
+                    <div class="slider d-flex ai-center">
+                        <div class="slide d-flex ai-center">
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/vaso.png" alt="Supermercado MB" />
+                            </figure>
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/bowl.png" alt="Supermercado MB" />
+                            </figure>
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/vaso2.png" alt="Supermercado MB" />
+                            </figure>
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/olla.png" alt="Supermercado MB" />
+                            </figure>
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/acolchado.png" alt="Supermercado MB" />
+                            </figure>
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/balde.png" alt="Supermercado MB" />
+                            </figure>
+                            <figure class="slide__fig">
+                                <img class="slide__img" src="./src/assets/images/capelina.png" alt="Supermercado MB" />
+                            </figure>
+                        </div>
+                        <i class="bi bi-arrow-left-circle-fill d-flex jc-center ai-center"></i>
+                        <i class="bi bi-arrow-right-circle-fill d-flex jc-center ai-center"></i>
+                    </div>
+
+                    <div class="section-brands">
+                        <div class="section-brands__title">
+                            <h3>50% de descuento en nuestras marcas seleccionadas.</h3>
+                        </div>
+                        <div class="section-brands__images d-flex ai-center  jc-center">
+                            <div class="section-brands__image">
+                                <a href="https://www.pampers.com.ar/producto" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/pamp.webp" alt="Imagen de pañales">
+                                </a>
+                            </div>
+                            <div class="section-brands__image">
+                                <a href="https://www.lysoform.com.ar/es-ar" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/lisoform.jpg" alt="Imagen de Lisoform">
+                                </a>
+                            </div>
+                            <div class="section-brands__image">
+                                <a href="https://www.saba.com.mx/" target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/toallasF.webp" alt="Toallas femeninas">
+                                </a>
+                            </div>
+                            <div class="section-brands__image">
+                                <a href="https://www1.v1.scottbrand.com/productos-de-limpieza/scott-servilleta-con-estilo/"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <img src="./src/assets/images/scoot.jpeg" alt="Imagen de servilletas">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN DE MISION -->
+                    <div class="mision-container d-flex jc-spaceB">
+                        <div class="mision-section">
+                            <h2><span class="span">▾</span> Institucional</h2>
+                            <div class="mision-section-content">
+                                <p><a href="#">» ¿Qué es MB?</a></p>
+                                <p><a href="#">» Misión e Identidad</a></p>
+                                <p><a href="#">» Compromiso Público</a></p>
+                                <p><a href="#">» Historia</a></p>
+
+                            </div>
+                        </div>
+                        <div class="mision-section">
+                            <h2><span class="span">▾</span> Comunidad</h2>
+                            <div class="mision-section-content">
+                                <ul>
+                                    <li><a href="#"><i class="bi bi-envelope"></i> MBmail</a></li>
+                                    <li><a href="#"><i class="bi bi-linkedin"></i> Linkedin</a></li>
+                                    <li><a href="#"><i class="bi bi-youtube"></i> Youtube</a></li>
+                                    <li><a href="#"><i class="bi bi-shield-exclamation"></i> Antifraude</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mision-section">
+                            <h2><span class="span">▾</span> Sucursales</h2>
+                            <div class="mision-section-content">
+
+                                <ul>
+                                    <li><i class="bi bi-geo-alt"></i> Olavarría</li>
+                                    <li><i class="bi bi-geo-alt"></i> Tandil</li>
+                                    <li><i class="bi bi-geo-alt"></i> Azul</li>
+                                    <li><i class="bi bi-geo-alt"></i> La Plata</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <footer class="footer d-flex jc-center ai-center">
+                        <div class="footer__container-social d-flex ai-center jc-center">
+                            <nav>
+                                <ul class="footer-social d-flex jc-center">
+                                    <li class="footer-social__list-item footer-social__list-up">
+                                        <a class="footer-social__link" href="#" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <i class="bi bi-instagram bi-social"></i>
+                                        </a>
+                                    </li>
+                                    <li class="footer-social__list-item
+                                    footer-social__list-up">
+                                        <a class="footer-social__link" href="#" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <i class="bi bi-twitter-x "></i>
+                                        </a>
+                                    </li>
+                                    <li class="footer-social__list-item footer-social__list-up ">
+                                        <a class="footer-social__link" href="#" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <i class="bi bi-whatsapp"></i>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="footer__copyrigth">
+                            <p>MBsupermercados©Todos los derechos reservados. 2024</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="./src/js/script.js" type="module"></script>
+</body>
+
+</html>

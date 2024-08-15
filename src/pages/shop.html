@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/shop.css">
+    <title>Supermercado MB</title>
+</head>
+
+<body>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="container-main d-flex jc-center">
+        <!--NAVEGACION ASIDE  -->
+        <aside class="aside-nav ai-center aside-nav--visible">
+            <div class="logo d-flex ai-center jc-center">
+                <h3>MB</h3>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list nav-list--direction d-flex jc-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">
+                            <i class="nav-icon bi bi-house-door-fill"></i>Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./products.html">
+                            <i class="nav-icon bi bi-bag-heart-fill"></i>Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./form.html">
+                            <i class="nav-icon bi bi-person-fill"></i>Contacto
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./shop.html">
+                            <i class="nav-icon bi bi-cart4"></i>Carrito
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <nav class="nav nav--position nav--visible d-flex jc-center">
+            <ul class="nav-list nav-list--direction d-flex jc-center ai-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../index.html">
+                        <i class="nav-icon bi bi-house-door-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./products.html">
+                        <i class="nav-icon bi bi-bag-heart-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./form.html">
+                        <i class="nav-icon bi bi-person-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./shop.html">
+                        <i class="nav-icon bi bi-cart4"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- CONTENEDOR  PRINCIPAL DE INFORMACIÓN DE PÁGINA-->
+        <div class="container-info-page">
+            <!-- CABECERA DE PÁGINA -->
+            <header class="header-page d-flex jc-spaceB">
+                <h2 class="header-page__logo">MB Supermercados</h2>
+                <div class="header-page__greeting d-flex">
+                    <h3 class="header-page__title"><i class="header-page__welcome bi"></i>
+                    </h3>
+                </div>
+            </header>
+            <!-- CARRITO -->
+            <div class="cart" id="cart">
+                <h2 class="cart__title">Carrito de Compras</h2>
+                <div class="cart-body d-flex jc-center ai-center">
+                </div>
+                <div class="cart__buttons d-flex jc-center ai-center">
+                    <a class="back-btn payment-btn--hide d-flex ai-center" title="Seguir comprando"
+                        href="../pages/products.html">
+                        <i class="icon-back bi bi-arrow-bar-left"></i>Explorar más
+                    </a>
+                    <button title="Pagar Carro" class="btn payment-btn payment-btn payment-btn--hide"><i
+                            class="bi bi-credit-card"></i>Pagar</button>
+                    <button title="Vaciar Carro" class="btn btn--red delete-btn payment-btn--hide"><i
+                            class="bi bi-trash3-fill"></i>Vaciar</button>
+                </div>
+            </div>
+            <form id="form-pyment">
+                <div class="modal-overlay d-flex ai-center jc-center">
+                    <div class="modal-payment d-flex">
+                        <i class="modal-payment__close bi bi-x-circle-fill"></i>
+                        <div class="modal-payment__header d-flex jc-center ai-center">
+                            <h2 class="modal-payment__title">Información de Pago</h2>
+                        </div>
+                        <div class="modal-payment__body">
+                            <form id="payment-form">
+                                <div class="form__group">
+                                    <label for="cardholder-name">Nombre del Titular</label>
+                                    <input type="text" id="cardholder-name" name="cardholderName"
+                                        placeholder="Nombre del Titular">
+                                </div>
+                                <div class="form__group">
+                                    <label for="card-number">Número de Tarjeta</label>
+                                    <input type="text" id="card-number" name="cardNumber"
+                                        placeholder="Número de Tarjeta">
+                                </div>
+                                <div class="form__group">
+                                    <label for="expiry-date">Fecha de Expiración</label>
+                                    <input type="text" id="expiry-date" name="expiryDate" placeholder="MM/AA">
+                                </div>
+                                <div class="form__group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="CVV">
+                                </div>
+                                <div class="form__group">
+                                    <label for="billing-address">Dirección de Facturación</label>
+                                    <input type="text" id="billing-address" name="billingAddress"
+                                        placeholder="Dirección de Facturación">
+                                </div>
+                                <div class="form__group">
+                                    <label for="zip-code">Código Postal</label>
+                                    <input type="text" id="zip-code" name="zipCode" placeholder="Código Postal">
+                                </div>
+                                <div class="form__group">
+                                    <button type="submit" class="form__submit-btn">Enviar Pago</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- MODAL -->
+            <div class="modal modal--hidden d-flex ai-center jc-center">
+                <div class="modal__body">
+                    <div class="modal__info d-flex"></div>
+                    <div class="modal__btn-action-container">
+                        <button class="modal__btn-action">OK</button>
+                    </div>
+                </div>
+            </div>
+            <!-- FOOTER -->
+            <footer class="footer d-flex jc-center ai-center">
+                <div class="footer__container-social d-flex ai-center jc-center">
+                    <nav>
+                        <ul class="footer-social d-flex jc-center">
+
+                            <li class="footer-social__list-item footer-social__list-up">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-instagram bi-social"></i>
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item
+        footer-social__list-up">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-twitter-x "></i>
+                                </a>
+                            </li>
+                            <li class="footer-social__list-item footer-social__list-up ">
+                                <a class="footer-social__link" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__copyrigth">
+                    <p>©Todos los derechos reservados. 2024</p>
+                </div>
+            </footer>
+
+            <!-- TEMPLATE MODAL ALERTS -->
+            <template id="template-modal-alerts">
+                <h3 class="modal__title d-flex ai-center"><i
+                        class="modal__icon modal__icon--error d-flex ai-center jc-center bi"></i></h3>
+                <p class="modal__description"></p>
+            </template>
+        </div>
+    </div>
+    <script src="../js/script.js" type="module"></script>
+</body>
+
+</html>

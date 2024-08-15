@@ -1,0 +1,566 @@
+/**************************************IMPORTACIÓN DE ICONOS**********************************************/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/**************************************IMPORTACIÓN DE FUENTES DE GOOGLE**********************************************/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/****************************RESETEO ****************************************************/
+:root {
+    --translate-slide: 0;
+    --transition-slide: transform .3s ease-out;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+/* PARA TODO EL CUERPO */
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    color: #FDFDFD;
+    /* background-color: #f3f3f3; */
+    letter-spacing: 1px;
+}
+
+/* PARA TODO EL ALTO DEL VH*/
+body,
+main,
+.root-page,
+.container-main {
+    min-height: 100vh;
+}
+
+/* PARA TODAS LAS LISTAS DESORDENADAS */
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+/* PARA TODOS LOS ENLACES */
+a {
+    text-decoration: none;
+    color: #dfdfdf;
+}
+
+.nav-item>a {
+    color: #fff;
+}
+
+/* PARA TODAS LA IMAGENES */
+img {
+    object-fit: cover;
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+}
+
+textarea {
+    font-family: "Roboto", sans-serif;
+}
+
+/* PARA  TODOS LOS ICONOS CON LA CLASE "BI" EXCLUYENDO AL ICONO DE BIENVENIDA*/
+.bi {
+    cursor: pointer;
+}
+
+/*************************CLASES PERSONALIZADAS CON ESTILOS POR DEFECTO********************************+*/
+/* CLASE PARA TODAS LAS CAJAS FLEXBOX */
+.d-flex {
+    display: flex;
+}
+
+/* CLASE PARA ALINEACION CENTRADA */
+.ai-center {
+    align-items: center;
+}
+
+/* CLASE PARA CONTENIDO JUSTIFICADO */
+.jc-center {
+    justify-content: center;
+}
+
+/* CLASE PARA CONTENIDO SPACE-BETWEEN */
+.jc-spaceB {
+    justify-content: space-between;
+}
+
+/************************************CABECERA DE PÁGINA**********************************************************/
+.header-page {
+    padding: 1rem;
+    background-color: #f2861b;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    gap: 1rem;
+    box-shadow: 0 6px 10px rgba(106, 106, 106, 0.3)
+}
+
+.header-page__greeting {
+    display: none;
+    /* justify-content: start; */
+}
+
+.header-page__logo {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.header-page__title {
+    color: rgb(255, 232, 215);
+}
+
+/* ICONOS DEL HEADER */
+.bi-cloud-moon-fill,
+.bi-cloud-sun-fill,
+.bi-brightness-alt-high-fill {
+    margin-right: .5rem;
+    font-size: 1.5rem;
+    cursor: initial;
+}
+
+/*********************************ASIDE NAVEGACIÓN***********************************/
+/* LOGO */
+.logo {
+    margin: 2.3rem 0;
+    padding: .7rem;
+    font-size: 2.8rem;
+    background-color: #f2861b;
+    color: #156b20;
+    border-radius: 50%;
+}
+
+.aside-nav {
+    background-color: #156b20;
+    color: #f2861b;
+    position: relative;
+    flex-basis: 200px;
+    box-shadow: 6px 0 10px rgba(106, 106, 106, 0.3);
+}
+
+.nav-icon {
+    margin: 0 .7rem;
+}
+
+.nav-list {
+    gap: 1.5rem;
+}
+
+.nav-link.active {
+    color: #f2861b;
+}
+
+.aside-nav--visible {
+    display: none;
+}
+
+.nav {
+    height: 2.5rem;
+    font-size: 1.7rem;
+    background-color: #156b20;
+    align-items: center;
+}
+
+.nav--position {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/**********************************CONTENIDO DE INFORMACÍON DE PÁGINA***********************************************/
+.container-info-page {
+    width: 100%;
+    flex-direction: column;
+    min-height: inherit;
+}
+
+/* BANNER */
+.banner {
+    height: 50vh;
+    margin-bottom: 1rem;
+    background-image: url(../images/pexels-kampus-8422723.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.banner__divisor {
+    height: 3px;
+    background-color: #ffffff25;
+    width: 85%;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    align-self: center;
+    border: none;
+    z-index: 0;
+}
+
+.banner::before,
+.banner::after {
+    min-height: inherit;
+    font-weight: bold;
+    background-color: rgba(243, 148, 119, 0.438);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.banner::before {
+    content: "¡Ahorra hasta un 50% en productos seleccionados este mes!";
+    font-size: 1.3rem;
+    height: 50%;
+    color: #FFF;
+}
+
+.banner::after {
+    content: "Ofertas exclusivas para miembros del club de fidelidad. ¡Únete hoy!";
+    font-size: 1.2rem;
+    height: 50%;
+    color: #f9eee8;
+}
+
+/* SLIDER DE IMAGENES */
+.slider {
+    position: relative;
+}
+
+.slide {
+    margin-bottom: 1rem;
+}
+
+.slide,
+.slide__fig {
+    padding: .5rem;
+}
+
+.slide__fig {
+    flex: 1 0 100%;
+}
+
+.slide__img {
+    border-radius: 5px;
+}
+
+.slide--translate {
+    transform: translateX(var(--translate-slide));
+}
+
+.slide--transition {
+    transition: var(--transition-slide);
+}
+
+/*volver a la posición inicial */
+.slide--reset {
+    transition: var(--transition-slide);
+    transform: translateX(var(--translate-slide));
+}
+
+.bi-arrow-left-circle-fill,
+.bi-arrow-right-circle-fill {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 2.5rem;
+    right: 2rem;
+    color: rgba(23, 22, 24, 0.765);
+    opacity: .8;
+    transition: opacity .5s ease-in-out, transform .5s ease-in-out;
+    font-weight: bold;
+}
+
+.bi-arrow-left-circle-fill {
+    left: 2rem;
+}
+
+/* ************SECCION DE MARCAS DEL SUPERMERCADO********** */
+.section-brands {
+    color: #156b20;
+    font-size: 1.2rem;
+}
+
+.section-brands__title {
+    position: relative;
+    margin-bottom: .7em;
+    padding: 1rem 0;
+    background: #e28a16;
+    display: flex;
+    justify-content: center;
+}
+
+.section-brands__title h3 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: max-content;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    animation: moveTitle 10s linear infinite;
+}
+
+@keyframes moveTitle {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.section-brands__images {
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.section-brands__image {
+    flex: 0 1 160px;
+    align-self: center;
+    transform: scale(.85);
+    transition: transform .3s ease-in-out;
+    border-radius: 6px;
+    box-shadow: -2px -2px 5px #bbbdbb, 2px 2px 5px #bbbdbb;
+    position: relative;
+}
+
+.section-brands__image a {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.section-brands__image a img {
+    width: 300px;
+    margin: 0 auto;
+}
+
+/* **********************SECCIÓN MISION*************************** */
+
+.mision-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: #555;
+    border-top: 2px solid #ddd;
+}
+
+.mision-section {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 10px 1rem 10px;
+}
+
+.mision-section h2 {
+    color: #156b20;
+}
+
+.mision-section-content {
+    display: none;
+    margin: 1rem 0 0;
+}
+
+.mision-section-content li,
+.mision-section-content p {
+    margin: 0 0 1rem 1rem;
+}
+
+.mision-section-content a {
+    color: #555;
+}
+
+/*********************************FOOTER******************************************************/
+.footer {
+    height: 6rem;
+    background-color: #f2861b;
+    flex-direction: column;
+    color: #f8d9c8;
+    margin-top: auto;
+    padding-bottom: 2rem;
+}
+
+.footer-social {
+    font-size: 1.3rem;
+    padding-top: 5px;
+}
+
+.footer-social__list-up {
+    transition: transform 0.3s ease;
+}
+
+.footer__copyrigth {
+    text-align: center;
+    font-size: .6rem;
+    padding: .5rem;
+}
+
+/* PARA TODAS LAS CLASES CON GAP DE 1 REM */
+.footer-social,
+.aside-nav,
+.slide__show {
+    gap: 1rem;
+}
+
+
+
+/******************HOVERS***************************/
+@media(hover: hover) and (pointer: fine) {
+    .section-brands__image:hover {
+        transform: scale(.9);
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
+    .card__link-more:hover {
+        color: orange;
+    }
+
+    .nav-list {
+        background-color: transparent;
+    }
+
+    .footer-social__list-up:hover {
+        transform: translateY(-5px);
+    }
+
+    .bi-arrow-left-circle-fill:hover,
+    .bi-arrow-right-circle-fill:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    .mision-section-content a:hover {
+        color: #156b20;
+    }
+}
+
+/***************************MEDIAQUERYS A PARTIR DE LOS 520PX***********************************/
+@media screen and (min-width: 520px) {
+    .header-page {
+        flex-direction: row;
+        align-items: center;
+        padding: 1.6rem;
+    }
+
+    .banner {
+        height: 30vh;
+    }
+
+    .slide__fig {
+        flex-basis: 50%;
+    }
+
+    .footer__copyrigth {
+        font-size: .9rem;
+    }
+}
+
+/***************************MEDIAQUERYS A PARTIR DE LOS 768PX***********************************/
+@media screen and (min-width: 768px) {
+    .nav {
+        height: auto;
+        font-size: 1.2rem;
+        background-color: #156b20;
+        align-items: center;
+    }
+
+    .nav--position {
+        display: none;
+    }
+
+    .nav-list {
+        gap: 1rem;
+    }
+
+    .nav-list--direction {
+        flex-direction: column;
+    }
+
+    .header-page__greeting {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .aside-nav--visible {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .slide__fig {
+        flex-basis: 33.3%;
+    }
+
+    .mision-container {
+        flex-direction: row;
+    }
+
+    .mision-section {
+        width: 30%;
+    }
+
+    .mision-section h2 {
+        color: #f2861b;
+    }
+
+    .mision-section-content {
+        display: block;
+        /* Oculto por defecto en pantallas pequeñas */
+    }
+
+    .span {
+        display: none;
+    }
+
+    .section-brands__image {
+        flex: 0 1 250px;
+        align-self: center;
+        transform: scale(.7);
+        transition: transform .7s ease-in-out;
+        border-radius: 6px;
+        box-shadow: -4px -4px 15px #bbbdbb, 4px 4px 15px #bbbdbb;
+        position: relative;
+    }
+
+    .footer {
+        padding-bottom: 0;
+    }
+}
+
+/***************************MEDIAQUERYS A PARTIR DE LOS 920PX***********************************/
+@media screen and (min-width: 920px) {
+    .banner::before {
+        font-size: 1.8rem;
+    }
+
+    .banner::after {
+        font-size: 1.5rem;
+    }
+
+    .banner {
+        height: 50vh;
+    }
+
+    .slide__fig {
+        flex-basis: 25%;
+    }
+
+}
